@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="11.3% of total for source files.">356 statements</a>
+    title="12.1% of total for source files.">431 statements</a>
      </li> 
      
      
@@ -303,466 +303,551 @@
 <a name="ln-32"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <a name="ln-33"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
 <a name="ln-34"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">grad</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-35"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-36"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-37"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-38"></a>      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">verbosity</span> <span class="o">=</span> <span class="mi">2</span>
-<a name="ln-39"></a>   <span class="k">end type </span><span class="n">d3_config</span>
-<a name="ln-40"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_config</span><span class="p">)</span> <span class="kd">::</span> <span class="n">config</span>
-<a name="ln-41"></a>
-<a name="ln-42"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input</span>
-<a name="ln-43"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input_format</span>
-<a name="ln-44"></a>   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-<a name="ln-45"></a>   <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">param</span>
-<a name="ln-46"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_model</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d3</span>
-<a name="ln-47"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
-<a name="ln-48"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">error</span>
-<a name="ln-49"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">,</span> <span class="n">sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
-<a name="ln-50"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
-<a name="ln-51"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">method</span>
-<a name="ln-52"></a>   <span class="k">type</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">zparam</span>
-<a name="ln-53"></a>   <span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rparam</span>
-<a name="ln-54"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">s9</span>
-<a name="ln-55"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">unit</span>
-<a name="ln-56"></a>   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">echo</span><span class="p">,</span> <span class="n">exist</span>
-<a name="ln-57"></a>
-<a name="ln-58"></a>   <span class="k">call </span><span class="n">get_arguments</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">echo</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-59"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-60"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-61"></a>      <span class="n">error</span> <span class="k">stop</span>
-<a name="ln-62"></a><span class="k">   end if</span>
-<a name="ln-63"></a>
-<a name="ln-64"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-65"></a><span class="k">      call </span><span class="n">header</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
-<a name="ln-66"></a>   <span class="k">end if</span>
+<a name="ln-35"></a>      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">grad_output</span>
+<a name="ln-36"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-37"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-38"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-39"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">mrational</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-40"></a>      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-41"></a>      <span class="kt">integer</span> <span class="kd">::</span> <span class="n">verbosity</span> <span class="o">=</span> <span class="mi">2</span>
+<a name="ln-42"></a>   <span class="k">end type </span><span class="n">d3_config</span>
+<a name="ln-43"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_config</span><span class="p">)</span> <span class="kd">::</span> <span class="n">config</span>
+<a name="ln-44"></a>
+<a name="ln-45"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input</span>
+<a name="ln-46"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input_format</span>
+<a name="ln-47"></a>   <span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a name="ln-48"></a>   <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">param</span>
+<a name="ln-49"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_model</span><span class="p">)</span> <span class="kd">::</span> <span class="n">d3</span>
+<a name="ln-50"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
+<a name="ln-51"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">error</span>
+<a name="ln-52"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">,</span> <span class="n">sigma</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<a name="ln-53"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
+<a name="ln-54"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">method</span>
+<a name="ln-55"></a>   <span class="k">type</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">zparam</span>
+<a name="ln-56"></a>   <span class="k">type</span><span class="p">(</span><span class="n">mzero_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">mparam</span>
+<a name="ln-57"></a>   <span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rparam</span>
+<a name="ln-58"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">s9</span>
+<a name="ln-59"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span><span class="p">,</span> <span class="n">unit</span>
+<a name="ln-60"></a>   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">echo</span><span class="p">,</span> <span class="n">exist</span>
+<a name="ln-61"></a>
+<a name="ln-62"></a>   <span class="k">call </span><span class="n">get_arguments</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">echo</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-63"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-64"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+<a name="ln-65"></a>      <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-66"></a><span class="k">   end if</span>
 <a name="ln-67"></a>
-<a name="ln-68"></a><span class="k">   if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-69"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input_format</span><span class="p">))</span> <span class="n">input_format</span> <span class="o">=</span> <span class="n">filetype</span><span class="p">%</span><span class="n">xyz</span>
-<a name="ln-70"></a>      <span class="k">call </span><span class="n">read_structure</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">input_unit</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-71"></a>   <span class="k">else</span>
-<a name="ln-72"></a><span class="k">      call </span><span class="n">read_structure</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">input</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">input_format</span><span class="p">)</span>
-<a name="ln-73"></a>   <span class="k">end if</span>
-<a name="ln-74"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-75"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-76"></a>      <span class="n">error</span> <span class="k">stop</span>
-<a name="ln-77"></a><span class="k">   end if</span>
-<a name="ln-78"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">wrap</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-79"></a><span class="k">      call </span><span class="n">wrap_to_central_cell</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">)</span>
-<a name="ln-80"></a>   <span class="k">end if</span>
-<a name="ln-81"></a>
-<a name="ln-82"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">atm</span><span class="p">)</span> <span class="n">s9</span> <span class="o">=</span> <span class="n">inp</span><span class="p">%</span><span class="n">s9</span>
-<a name="ln-83"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-84"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-85"></a><span class="k">         call </span><span class="n">get_zero_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
-<a name="ln-86"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-87"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-88"></a>            <span class="n">error</span> <span class="k">stop</span>
-<a name="ln-89"></a><span class="k">         end if</span>
-<a name="ln-90"></a><span class="k">      end if</span>
-<a name="ln-91"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">zparam</span><span class="p">)</span>
-<a name="ln-92"></a>      <span class="k">call </span><span class="n">new_zero_damping</span><span class="p">(</span><span class="n">zparam</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
-<a name="ln-93"></a>      <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">zparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-<a name="ln-94"></a>   <span class="k">end if</span>
-<a name="ln-95"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">rational</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-96"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-97"></a><span class="k">         call </span><span class="n">get_rational_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
-<a name="ln-98"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-99"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-100"></a>            <span class="n">error</span> <span class="k">stop</span>
-<a name="ln-101"></a><span class="k">         end if</span>
-<a name="ln-102"></a><span class="k">      end if</span>
-<a name="ln-103"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">rparam</span><span class="p">)</span>
-<a name="ln-104"></a>      <span class="k">call </span><span class="n">new_rational_damping</span><span class="p">(</span><span class="n">rparam</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
-<a name="ln-105"></a>      <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">rparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
-<a name="ln-106"></a>   <span class="k">end if</span>
-<a name="ln-107"></a>
-<a name="ln-108"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-109"></a><span class="k">      call </span><span class="n">ascii_damping_param</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-68"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-69"></a><span class="k">      call </span><span class="n">header</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
+<a name="ln-70"></a>   <span class="k">end if</span>
+<a name="ln-71"></a>
+<a name="ln-72"></a><span class="k">   if</span> <span class="p">(</span><span class="n">input</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-73"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input_format</span><span class="p">))</span> <span class="n">input_format</span> <span class="o">=</span> <span class="n">filetype</span><span class="p">%</span><span class="n">xyz</span>
+<a name="ln-74"></a>      <span class="k">call </span><span class="n">read_structure</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">input_unit</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-75"></a>   <span class="k">else</span>
+<a name="ln-76"></a><span class="k">      call </span><span class="n">read_structure</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">input</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">input_format</span><span class="p">)</span>
+<a name="ln-77"></a>   <span class="k">end if</span>
+<a name="ln-78"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-79"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+<a name="ln-80"></a>      <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-81"></a><span class="k">   end if</span>
+<a name="ln-82"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">wrap</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-83"></a><span class="k">      call </span><span class="n">wrap_to_central_cell</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">)</span>
+<a name="ln-84"></a>   <span class="k">end if</span>
+<a name="ln-85"></a>
+<a name="ln-86"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">atm</span><span class="p">)</span> <span class="n">s9</span> <span class="o">=</span> <span class="n">inp</span><span class="p">%</span><span class="n">s9</span>
+<a name="ln-87"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-88"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-89"></a><span class="k">         call </span><span class="n">get_zero_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
+<a name="ln-90"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-91"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+<a name="ln-92"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-93"></a><span class="k">         end if</span>
+<a name="ln-94"></a><span class="k">      end if</span>
+<a name="ln-95"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">zparam</span><span class="p">)</span>
+<a name="ln-96"></a>      <span class="k">call </span><span class="n">new_zero_damping</span><span class="p">(</span><span class="n">zparam</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
+<a name="ln-97"></a>      <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">zparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+<a name="ln-98"></a>   <span class="k">end if</span>
+<a name="ln-99"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">mzero</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-100"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-101"></a><span class="k">         call </span><span class="n">get_mzero_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
+<a name="ln-102"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-103"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+<a name="ln-104"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-105"></a><span class="k">         end if</span>
+<a name="ln-106"></a><span class="k">      end if</span>
+<a name="ln-107"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">mparam</span><span class="p">)</span>
+<a name="ln-108"></a>      <span class="k">call </span><span class="n">new_mzero_damping</span><span class="p">(</span><span class="n">mparam</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
+<a name="ln-109"></a>      <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">mparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
 <a name="ln-110"></a>   <span class="k">end if</span>
-<a name="ln-111"></a>
-<a name="ln-112"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-113"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
-<a name="ln-114"></a>   <span class="k">end if</span>
-<a name="ln-115"></a>
-<a name="ln-116"></a><span class="k">   call </span><span class="n">new_d3_model</span><span class="p">(</span><span class="n">d3</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
-<a name="ln-117"></a>
-<a name="ln-118"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">properties</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-119"></a><span class="k">      call </span><span class="n">property_calc</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span><span class="p">)</span>
-<a name="ln-120"></a>   <span class="k">end if</span>
-<a name="ln-121"></a>
-<a name="ln-122"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-123"></a><span class="k">      call </span><span class="n">get_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-124"></a>         <span class="p">&amp;</span> <span class="n">sigma</span><span class="p">)</span>
-<a name="ln-125"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-126"></a><span class="k">         call </span><span class="n">ascii_results</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<a name="ln-127"></a>      <span class="k">end if</span>
-<a name="ln-128"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">tmer</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-129"></a><span class="k">         if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-130"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="s2">&quot;[Info] Dispersion energy written to .EDISP&quot;</span>
-<a name="ln-131"></a>         <span class="k">end if</span>
-<a name="ln-132"></a><span class="k">         open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;.EDISP&quot;</span><span class="p">,</span> <span class="n">newunit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-133"></a>         <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(f24.14)&#39;</span><span class="p">)</span> <span class="n">energy</span>
-<a name="ln-134"></a>         <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-135"></a>      <span class="k">end if</span>
-<a name="ln-136"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-137"></a><span class="k">         inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span><span class="p">,</span> <span class="n">exist</span><span class="o">=</span><span class="n">exist</span><span class="p">)</span>
-<a name="ln-138"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">exist</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-139"></a><span class="k">            call </span><span class="n">turbomole_gradient</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;gradient&quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-<a name="ln-140"></a>            <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-141"></a><span class="k">               write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-142"></a>                  <span class="p">&amp;</span> <span class="s2">&quot;[Info] Dispersion gradient added to Turbomole gradient file&quot;</span>
-<a name="ln-143"></a>            <span class="k">else</span>
-<a name="ln-144"></a><span class="k">               write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-145"></a>                  <span class="p">&amp;</span> <span class="s2">&quot;[Warn] Could not add to Turbomole gradient file&quot;</span>
-<a name="ln-146"></a>            <span class="k">end if</span>
-<a name="ln-147"></a><span class="k">         end if</span>
-<a name="ln-148"></a><span class="k">         inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;gradlatt&quot;</span><span class="p">,</span> <span class="n">exist</span><span class="o">=</span><span class="n">exist</span><span class="p">)</span>
-<a name="ln-149"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">exist</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-150"></a><span class="k">            call </span><span class="n">turbomole_gradlatt</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;gradlatt&quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
-<a name="ln-151"></a>            <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-152"></a><span class="k">               write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-153"></a>                  <span class="p">&amp;</span> <span class="s2">&quot;[Info] Dispersion virial added to Turbomole gradlatt file&quot;</span>
-<a name="ln-154"></a>            <span class="k">else</span>
-<a name="ln-155"></a><span class="k">               write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-156"></a>                  <span class="p">&amp;</span> <span class="s2">&quot;[Warn] Could not add to Turbomole gradlatt file&quot;</span>
-<a name="ln-157"></a>            <span class="k">end if</span>
-<a name="ln-158"></a><span class="k">         end if</span>
-<a name="ln-159"></a><span class="k">      end if</span>
-<a name="ln-160"></a>
-<a name="ln-161"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">json</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-162"></a><span class="k">         open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="p">,</span> <span class="n">newunit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-163"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-164"></a><span class="k">            call </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<a name="ln-165"></a>         <span class="k">else</span>
-<a name="ln-166"></a><span class="k">            call </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
-<a name="ln-167"></a>         <span class="k">end if</span>
-<a name="ln-168"></a><span class="k">         close</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-169"></a>         <span class="k">write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-170"></a>            <span class="p">&amp;</span> <span class="s2">&quot;[Info] JSON dump of results written to &#39;&quot;</span><span class="o">//</span><span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span>
-<a name="ln-171"></a>      <span class="k">end if</span>
-<a name="ln-172"></a><span class="k">   end if</span>
-<a name="ln-173"></a>
-<a name="ln-174"></a>
-<a name="ln-175"></a>
-<a name="ln-176"></a><span class="k">contains</span>
-<a name="ln-177"></a>
-<a name="ln-178"></a>
-<a name="ln-179"></a><span class="k">subroutine </span><span class="n">property_calc</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
-<a name="ln-180"></a>
-<a name="ln-181"></a>   <span class="c">!&gt; Unit for output</span>
-<a name="ln-182"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
-<a name="ln-183"></a>
-<a name="ln-184"></a>   <span class="c">!&gt; Molecular structure data</span>
-<a name="ln-185"></a>   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-<a name="ln-186"></a>
-<a name="ln-187"></a>   <span class="c">!&gt; Dispersion model</span>
-<a name="ln-188"></a>   <span class="k">class</span><span class="p">(</span><span class="n">d3_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">disp</span>
-<a name="ln-189"></a>
-<a name="ln-190"></a>   <span class="c">!&gt; Printout verbosity</span>
-<a name="ln-191"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">verbosity</span>
+<a name="ln-111"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">config</span><span class="p">%</span><span class="n">mrational</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-112"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-113"></a><span class="k">         if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">mrational</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-114"></a><span class="k">            call </span><span class="n">get_mrational_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
+<a name="ln-115"></a>         <span class="k">else</span>
+<a name="ln-116"></a><span class="k">            call </span><span class="n">get_rational_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
+<a name="ln-117"></a>         <span class="k">end if</span>
+<a name="ln-118"></a><span class="k">         if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-119"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+<a name="ln-120"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-121"></a><span class="k">         end if</span>
+<a name="ln-122"></a><span class="k">      end if</span>
+<a name="ln-123"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">rparam</span><span class="p">)</span>
+<a name="ln-124"></a>      <span class="k">call </span><span class="n">new_rational_damping</span><span class="p">(</span><span class="n">rparam</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
+<a name="ln-125"></a>      <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">rparam</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
+<a name="ln-126"></a>   <span class="k">end if</span>
+<a name="ln-127"></a>
+<a name="ln-128"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-129"></a><span class="k">      call </span><span class="n">ascii_damping_param</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-130"></a>   <span class="k">end if</span>
+<a name="ln-131"></a>
+<a name="ln-132"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-133"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+<a name="ln-134"></a>   <span class="k">end if</span>
+<a name="ln-135"></a>
+<a name="ln-136"></a><span class="k">   call </span><span class="n">new_d3_model</span><span class="p">(</span><span class="n">d3</span><span class="p">,</span> <span class="n">mol</span><span class="p">)</span>
+<a name="ln-137"></a>
+<a name="ln-138"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">properties</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-139"></a><span class="k">      call </span><span class="n">property_calc</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span><span class="p">)</span>
+<a name="ln-140"></a>   <span class="k">end if</span>
+<a name="ln-141"></a>
+<a name="ln-142"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">param</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-143"></a><span class="k">      call </span><span class="n">get_dispersion</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">d3</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">realspace_cutoff</span><span class="p">(),</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-144"></a>         <span class="p">&amp;</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-145"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-146"></a><span class="k">         call </span><span class="n">ascii_results</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-147"></a>      <span class="k">end if</span>
+<a name="ln-148"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">tmer</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-149"></a><span class="k">         if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-150"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="s2">&quot;[Info] Dispersion energy written to .EDISP&quot;</span>
+<a name="ln-151"></a>         <span class="k">end if</span>
+<a name="ln-152"></a><span class="k">         open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;.EDISP&quot;</span><span class="p">,</span> <span class="n">newunit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-153"></a>         <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(f24.14)&#39;</span><span class="p">)</span> <span class="n">energy</span>
+<a name="ln-154"></a>         <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-155"></a>      <span class="k">end if</span>
+<a name="ln-156"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-157"></a><span class="k">         open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">config</span><span class="p">%</span><span class="n">grad_output</span><span class="p">,</span> <span class="n">newunit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-158"></a>         <span class="k">call </span><span class="n">tagged_result</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-159"></a>         <span class="k">close</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-160"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-161"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-162"></a>               <span class="p">&amp;</span> <span class="s2">&quot;[Info] Dispersion results written to &#39;&quot;</span><span class="o">//</span><span class="n">config</span><span class="p">%</span><span class="n">grad_output</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span>
+<a name="ln-163"></a>         <span class="k">end if</span>
+<a name="ln-164"></a>
+<a name="ln-165"></a><span class="k">         inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;gradient&quot;</span><span class="p">,</span> <span class="n">exist</span><span class="o">=</span><span class="n">exist</span><span class="p">)</span>
+<a name="ln-166"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">exist</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-167"></a><span class="k">            call </span><span class="n">turbomole_gradient</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;gradient&quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
+<a name="ln-168"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-169"></a><span class="k">               if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-170"></a><span class="k">                  write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-171"></a>                     <span class="p">&amp;</span> <span class="s2">&quot;[Info] Dispersion gradient added to Turbomole gradient file&quot;</span>
+<a name="ln-172"></a>               <span class="k">else</span>
+<a name="ln-173"></a><span class="k">                  write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-174"></a>                     <span class="p">&amp;</span> <span class="s2">&quot;[Warn] Could not add to Turbomole gradient file&quot;</span>
+<a name="ln-175"></a>               <span class="k">end if</span>
+<a name="ln-176"></a><span class="k">            end if</span>
+<a name="ln-177"></a><span class="k">         end if</span>
+<a name="ln-178"></a><span class="k">         inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;gradlatt&quot;</span><span class="p">,</span> <span class="n">exist</span><span class="o">=</span><span class="n">exist</span><span class="p">)</span>
+<a name="ln-179"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">exist</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-180"></a><span class="k">            call </span><span class="n">turbomole_gradlatt</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="s2">&quot;gradlatt&quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="nb">stat</span><span class="p">)</span>
+<a name="ln-181"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-182"></a><span class="k">               if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-183"></a><span class="k">                  write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-184"></a>                     <span class="p">&amp;</span> <span class="s2">&quot;[Info] Dispersion virial added to Turbomole gradlatt file&quot;</span>
+<a name="ln-185"></a>               <span class="k">else</span>
+<a name="ln-186"></a><span class="k">                  write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-187"></a>                     <span class="p">&amp;</span> <span class="s2">&quot;[Warn] Could not add to Turbomole gradlatt file&quot;</span>
+<a name="ln-188"></a>               <span class="k">end if</span>
+<a name="ln-189"></a><span class="k">            end if</span>
+<a name="ln-190"></a><span class="k">         end if</span>
+<a name="ln-191"></a><span class="k">      end if</span>
 <a name="ln-192"></a>
-<a name="ln-193"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
-<a name="ln-194"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:),</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
-<a name="ln-195"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">parameter</span> <span class="kd">::</span> <span class="n">lattr</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-196"></a>
-<a name="ln-197"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-198"></a><span class="k">      call </span><span class="n">ascii_atomic_radii</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
-<a name="ln-199"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-<a name="ln-200"></a>      <span class="k">call </span><span class="n">ascii_atomic_references</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
-<a name="ln-201"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-<a name="ln-202"></a>   <span class="k">end if</span>
-<a name="ln-203"></a>
-<a name="ln-204"></a><span class="k">   </span><span class="n">mref</span> <span class="o">=</span> <span class="nb">maxval</span><span class="p">(</span><span class="n">disp</span><span class="p">%</span><span class="n">ref</span><span class="p">)</span>
-<a name="ln-205"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
-<a name="ln-206"></a>   <span class="k">call </span><span class="n">get_coordination_number</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="mi">3</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rcov</span><span class="p">,</span> <span class="n">cn</span><span class="p">)</span>
-<a name="ln-207"></a>   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">weight_references</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">)</span>
-<a name="ln-208"></a>   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">c6</span><span class="o">=</span><span class="n">c6</span><span class="p">)</span>
+<a name="ln-193"></a><span class="k">      if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">json</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-194"></a><span class="k">         open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="p">,</span> <span class="n">newunit</span><span class="o">=</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-195"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-196"></a><span class="k">            call </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-197"></a>         <span class="k">else</span>
+<a name="ln-198"></a><span class="k">            call </span><span class="n">json_results</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s2">&quot;  &quot;</span><span class="p">,</span> <span class="n">energy</span><span class="p">)</span>
+<a name="ln-199"></a>         <span class="k">end if</span>
+<a name="ln-200"></a><span class="k">         close</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-201"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-202"></a><span class="k">            write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-203"></a>               <span class="p">&amp;</span> <span class="s2">&quot;[Info] JSON dump of results written to &#39;&quot;</span><span class="o">//</span><span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span>
+<a name="ln-204"></a>         <span class="k">end if</span>
+<a name="ln-205"></a><span class="k">      end if</span>
+<a name="ln-206"></a><span class="k">   end if</span>
+<a name="ln-207"></a>
+<a name="ln-208"></a>
 <a name="ln-209"></a>
-<a name="ln-210"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-211"></a><span class="k">      call </span><span class="n">ascii_system_properties</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">c6</span><span class="p">)</span>
-<a name="ln-212"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-<a name="ln-213"></a>   <span class="k">end if</span>
+<a name="ln-210"></a><span class="k">contains</span>
+<a name="ln-211"></a>
+<a name="ln-212"></a>
+<a name="ln-213"></a><span class="k">subroutine </span><span class="n">property_calc</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
 <a name="ln-214"></a>
-<a name="ln-215"></a><span class="k">end subroutine </span><span class="n">property_calc</span>
-<a name="ln-216"></a>
+<a name="ln-215"></a>   <span class="c">!&gt; Unit for output</span>
+<a name="ln-216"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
 <a name="ln-217"></a>
-<a name="ln-218"></a><span class="k">subroutine </span><span class="n">header</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-219"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
-<a name="ln-220"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">version_string</span>
-<a name="ln-221"></a>
-<a name="ln-222"></a>   <span class="k">call </span><span class="n">get_dftd3_version</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">version_string</span><span class="p">)</span>
-<a name="ln-223"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-224"></a>      <span class="s2">&quot;-----------------------------------&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-225"></a>      <span class="s2">&quot; s i m p l e   D F T - D 3  v&quot;</span><span class="o">//</span> <span class="n">version_string</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-226"></a>      <span class="s2">&quot;-----------------------------------&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
-<a name="ln-227"></a>
-<a name="ln-228"></a><span class="k">end subroutine </span><span class="n">header</span>
+<a name="ln-218"></a>   <span class="c">!&gt; Molecular structure data</span>
+<a name="ln-219"></a>   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a name="ln-220"></a>
+<a name="ln-221"></a>   <span class="c">!&gt; Dispersion model</span>
+<a name="ln-222"></a>   <span class="k">class</span><span class="p">(</span><span class="n">d3_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">disp</span>
+<a name="ln-223"></a>
+<a name="ln-224"></a>   <span class="c">!&gt; Printout verbosity</span>
+<a name="ln-225"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">verbosity</span>
+<a name="ln-226"></a>
+<a name="ln-227"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
+<a name="ln-228"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:),</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
 <a name="ln-229"></a>
-<a name="ln-230"></a>
-<a name="ln-231"></a><span class="k">subroutine </span><span class="n">help</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-232"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
-<a name="ln-233"></a>
-<a name="ln-234"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, *(1x, a))&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-235"></a>      <span class="s2">&quot;Usage: &quot;</span><span class="o">//</span><span class="n">prog_name</span><span class="o">//</span><span class="s2">&quot; [options] &lt;input&gt;&quot;</span>
+<a name="ln-230"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-231"></a><span class="k">      call </span><span class="n">ascii_atomic_radii</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+<a name="ln-232"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+<a name="ln-233"></a>      <span class="k">call </span><span class="n">ascii_atomic_references</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
+<a name="ln-234"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+<a name="ln-235"></a>   <span class="k">end if</span>
 <a name="ln-236"></a>
-<a name="ln-237"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-238"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-239"></a>      <span class="s2">&quot;Takes an geometry input to calculate the D3 dispersion correction.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-240"></a>      <span class="s2">&quot;Periodic calculations are performed automatically for periodic input formats.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-241"></a>      <span class="s2">&quot;Specify the functional to select the correct parameters.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-242"></a>      <span class="s2">&quot;&quot;</span>
+<a name="ln-237"></a><span class="k">   </span><span class="n">mref</span> <span class="o">=</span> <span class="nb">maxval</span><span class="p">(</span><span class="n">disp</span><span class="p">%</span><span class="n">ref</span><span class="p">)</span>
+<a name="ln-238"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+<a name="ln-239"></a>   <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="mi">3</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
+<a name="ln-240"></a>   <span class="k">call </span><span class="n">get_coordination_number</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="mi">3</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rcov</span><span class="p">,</span> <span class="n">cn</span><span class="p">)</span>
+<a name="ln-241"></a>   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">weight_references</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">)</span>
+<a name="ln-242"></a>   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">c6</span><span class="o">=</span><span class="n">c6</span><span class="p">)</span>
 <a name="ln-243"></a>
-<a name="ln-244"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(2x, a, t25, a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-245"></a>      <span class="s2">&quot;-i, --input &lt;format&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Hint for the format of the input file&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-246"></a>      <span class="s2">&quot;--bj &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use rational (Becke-Johnson) damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-247"></a>      <span class="s2">&quot;--bj-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for rational damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-248"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, a1, a2 (requires four arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-249"></a>      <span class="s2">&quot;--zero &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use zero (Chai-Head-Gordon) damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-250"></a>      <span class="s2">&quot;--zero-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for zero damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-251"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, rs6 (requires three arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-252"></a>      <span class="s2">&quot;--atm&quot;</span><span class="p">,</span> <span class="s2">&quot;Use ATM three-body dispersion&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-253"></a>      <span class="s2">&quot;--atm-scale &lt;s9&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use scaled ATM three-body dispersion&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-254"></a>      <span class="s2">&quot;--noedisp&quot;</span><span class="p">,</span> <span class="s2">&quot;Disable writing of dispersion energy to .EDISP file&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-255"></a>      <span class="s2">&quot;--json [file]&quot;</span><span class="p">,</span> <span class="s2">&quot;Dump results to JSON output (default: dftd3.json)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-256"></a>      <span class="s2">&quot;--grad&quot;</span><span class="p">,</span> <span class="s2">&quot;Request gradient evaluation&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-257"></a>      <span class="s2">&quot;--property&quot;</span><span class="p">,</span> <span class="s2">&quot;Evaluate dispersion related properties&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-258"></a>      <span class="s2">&quot;-v, --verbose&quot;</span><span class="p">,</span> <span class="s2">&quot;Show more, can be used multiple times&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-259"></a>      <span class="s2">&quot;-s, --silent&quot;</span><span class="p">,</span> <span class="s2">&quot;Show less, use twice to supress all output&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-260"></a>      <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="s2">&quot;Print program version and exit&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-261"></a>      <span class="s2">&quot;--help&quot;</span><span class="p">,</span> <span class="s2">&quot;Show this help message&quot;</span>
-<a name="ln-262"></a>
-<a name="ln-263"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+<a name="ln-244"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-245"></a><span class="k">      call </span><span class="n">ascii_system_properties</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">c6</span><span class="p">)</span>
+<a name="ln-246"></a>      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+<a name="ln-247"></a>   <span class="k">end if</span>
+<a name="ln-248"></a>
+<a name="ln-249"></a><span class="k">end subroutine </span><span class="n">property_calc</span>
+<a name="ln-250"></a>
+<a name="ln-251"></a>
+<a name="ln-252"></a><span class="k">subroutine </span><span class="n">header</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-253"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
+<a name="ln-254"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">version_string</span>
+<a name="ln-255"></a>
+<a name="ln-256"></a>   <span class="k">call </span><span class="n">get_dftd3_version</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">version_string</span><span class="p">)</span>
+<a name="ln-257"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-258"></a>      <span class="s2">&quot;-----------------------------------&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-259"></a>      <span class="s2">&quot; s i m p l e   D F T - D 3  v&quot;</span><span class="o">//</span> <span class="n">version_string</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-260"></a>      <span class="s2">&quot;-----------------------------------&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span>
+<a name="ln-261"></a>
+<a name="ln-262"></a><span class="k">end subroutine </span><span class="n">header</span>
+<a name="ln-263"></a>
 <a name="ln-264"></a>
-<a name="ln-265"></a><span class="k">end subroutine </span><span class="n">help</span>
-<a name="ln-266"></a>
+<a name="ln-265"></a><span class="k">subroutine </span><span class="n">help</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-266"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
 <a name="ln-267"></a>
-<a name="ln-268"></a><span class="k">subroutine </span><span class="n">version</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
-<a name="ln-269"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
-<a name="ln-270"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">version_string</span>
-<a name="ln-271"></a>
-<a name="ln-272"></a>   <span class="k">call </span><span class="n">get_dftd3_version</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">version_string</span><span class="p">)</span>
-<a name="ln-273"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, *(1x, a))&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
-<a name="ln-274"></a>      <span class="p">&amp;</span> <span class="n">prog_name</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">version_string</span>
-<a name="ln-275"></a>
-<a name="ln-276"></a><span class="k">end subroutine </span><span class="n">version</span>
+<a name="ln-268"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, *(1x, a))&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-269"></a>      <span class="s2">&quot;Usage: &quot;</span><span class="o">//</span><span class="n">prog_name</span><span class="o">//</span><span class="s2">&quot; [options] &lt;input&gt;&quot;</span>
+<a name="ln-270"></a>
+<a name="ln-271"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-272"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-273"></a>      <span class="s2">&quot;Takes an geometry input to calculate the D3 dispersion correction.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-274"></a>      <span class="s2">&quot;Periodic calculations are performed automatically for periodic input formats.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-275"></a>      <span class="s2">&quot;Specify the functional to select the correct parameters.&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-276"></a>      <span class="s2">&quot;&quot;</span>
 <a name="ln-277"></a>
-<a name="ln-278"></a>
-<a name="ln-279"></a><span class="c">!&gt; Obtain the command line argument at a given index</span>
-<a name="ln-280"></a><span class="k">subroutine </span><span class="n">get_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-281"></a>
-<a name="ln-282"></a>   <span class="c">!&gt; Index of command line argument, range [0:command_argument_count()]</span>
-<a name="ln-283"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">idx</span>
-<a name="ln-284"></a>
-<a name="ln-285"></a>   <span class="c">!&gt; Command line argument</span>
-<a name="ln-286"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span>
-<a name="ln-287"></a>
-<a name="ln-288"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">length</span><span class="p">,</span> <span class="nb">stat</span>
-<a name="ln-289"></a>
-<a name="ln-290"></a><span class="nb">   </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-291"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-292"></a><span class="k">      return</span>
-<a name="ln-293"></a><span class="k">   </span><span class="n">endif</span>
-<a name="ln-294"></a>
-<a name="ln-295"></a>   <span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span><span class="p">,</span> <span class="nb">stat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-296"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-297"></a><span class="k">      return</span>
-<a name="ln-298"></a><span class="k">   </span><span class="n">endif</span>
-<a name="ln-299"></a>
-<a name="ln-300"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-301"></a><span class="k">      call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
-<a name="ln-302"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-303"></a><span class="k">         deallocate</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-<a name="ln-304"></a>         <span class="k">return</span>
-<a name="ln-305"></a><span class="k">      end if</span>
-<a name="ln-306"></a><span class="k">   end if</span>
-<a name="ln-307"></a>
-<a name="ln-308"></a><span class="k">end subroutine </span><span class="n">get_argument</span>
+<a name="ln-278"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(2x, a, t25, a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-279"></a>      <span class="s2">&quot;-i, --input &lt;format&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Hint for the format of the input file&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-280"></a>      <span class="s2">&quot;--bj &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use rational (Becke-Johnson) damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-281"></a>      <span class="s2">&quot;--bj-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for rational damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-282"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, a1, a2 (requires four arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-283"></a>      <span class="s2">&quot;--zero &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use zero (Chai-Head-Gordon) damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-284"></a>      <span class="s2">&quot;--zero-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for zero damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-285"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, rs6 (requires three arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-286"></a>      <span class="s2">&quot;--bjm &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use modified rational damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-287"></a>      <span class="s2">&quot;--bjm-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for rational damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-288"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, a1, a2 (requires four arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-289"></a>      <span class="s2">&quot;--zerom &lt;method&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use modified zero damping function&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-290"></a>      <span class="s2">&quot;--zerom-param &lt;list&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Specify parameters for modified zero damping,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-291"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;expected order is s6, s8, rs6, bet (requires four arguments)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-292"></a>      <span class="s2">&quot;--atm&quot;</span><span class="p">,</span> <span class="s2">&quot;Use ATM three-body dispersion&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-293"></a>      <span class="s2">&quot;--atm-scale &lt;s9&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;Use scaled ATM three-body dispersion&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-294"></a>      <span class="s2">&quot;--noedisp&quot;</span><span class="p">,</span> <span class="s2">&quot;Disable writing of dispersion energy to .EDISP file&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-295"></a>      <span class="s2">&quot;--json [file]&quot;</span><span class="p">,</span> <span class="s2">&quot;Dump results to JSON output (default: dftd3.json)&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-296"></a>      <span class="s2">&quot;--grad [file]&quot;</span><span class="p">,</span> <span class="s2">&quot;Request gradient evaluation,&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-297"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;write results to file (default: dftd3.txt),&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-298"></a>      <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="s2">&quot;attempts to add to Turbomole gradient and gradlatt files&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-299"></a>      <span class="s2">&quot;--property&quot;</span><span class="p">,</span> <span class="s2">&quot;Evaluate dispersion related properties&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-300"></a>      <span class="s2">&quot;-v, --verbose&quot;</span><span class="p">,</span> <span class="s2">&quot;Show more, can be used multiple times&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-301"></a>      <span class="s2">&quot;-s, --silent&quot;</span><span class="p">,</span> <span class="s2">&quot;Show less, use twice to supress all output&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-302"></a>      <span class="s2">&quot;--version&quot;</span><span class="p">,</span> <span class="s2">&quot;Print program version and exit&quot;</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-303"></a>      <span class="s2">&quot;--help&quot;</span><span class="p">,</span> <span class="s2">&quot;Show this help message&quot;</span>
+<a name="ln-304"></a>
+<a name="ln-305"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+<a name="ln-306"></a>
+<a name="ln-307"></a><span class="k">end subroutine </span><span class="n">help</span>
+<a name="ln-308"></a>
 <a name="ln-309"></a>
-<a name="ln-310"></a>
-<a name="ln-311"></a><span class="k">subroutine </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-312"></a>
-<a name="ln-313"></a>   <span class="c">!&gt; Index of command line argument, range [0:command_argument_count()]</span>
-<a name="ln-314"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iarg</span>
-<a name="ln-315"></a>
-<a name="ln-316"></a>   <span class="c">!&gt; Real value</span>
-<a name="ln-317"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
-<a name="ln-318"></a>
-<a name="ln-319"></a>   <span class="c">!&gt; Error handling</span>
-<a name="ln-320"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">error</span>
-<a name="ln-321"></a>
-<a name="ln-322"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span>
-<a name="ln-323"></a><span class="nb">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">arg</span>
-<a name="ln-324"></a>
-<a name="ln-325"></a>   <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-326"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-327"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value, argument missing&quot;</span><span class="p">)</span>
-<a name="ln-328"></a>      <span class="k">return</span>
-<a name="ln-329"></a><span class="k">   end if</span>
-<a name="ln-330"></a><span class="k">   read</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">val</span>
-<a name="ln-331"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-332"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value from &#39;&quot;</span><span class="o">//</span><span class="n">arg</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
-<a name="ln-333"></a>      <span class="k">return</span>
-<a name="ln-334"></a><span class="k">   end if</span>
-<a name="ln-335"></a>
-<a name="ln-336"></a><span class="k">end subroutine </span><span class="n">get_argument_as_real</span>
-<a name="ln-337"></a>
-<a name="ln-338"></a>
-<a name="ln-339"></a><span class="k">subroutine </span><span class="n">get_arguments</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">echo</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-340"></a>
-<a name="ln-341"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">input</span>
-<a name="ln-342"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">input_format</span>
-<a name="ln-343"></a>
-<a name="ln-344"></a>   <span class="c">!&gt; Configuation data</span>
-<a name="ln-345"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_config</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">config</span>
-<a name="ln-346"></a>
-<a name="ln-347"></a>   <span class="c">!&gt; Method name</span>
-<a name="ln-348"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">method</span>
+<a name="ln-310"></a><span class="k">subroutine </span><span class="n">version</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+<a name="ln-311"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
+<a name="ln-312"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">version_string</span>
+<a name="ln-313"></a>
+<a name="ln-314"></a>   <span class="k">call </span><span class="n">get_dftd3_version</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">version_string</span><span class="p">)</span>
+<a name="ln-315"></a>   <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, *(1x, a))&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+<a name="ln-316"></a>      <span class="p">&amp;</span> <span class="n">prog_name</span><span class="p">,</span> <span class="s2">&quot;version&quot;</span><span class="p">,</span> <span class="n">version_string</span>
+<a name="ln-317"></a>
+<a name="ln-318"></a><span class="k">end subroutine </span><span class="n">version</span>
+<a name="ln-319"></a>
+<a name="ln-320"></a>
+<a name="ln-321"></a><span class="c">!&gt; Obtain the command line argument at a given index</span>
+<a name="ln-322"></a><span class="k">subroutine </span><span class="n">get_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-323"></a>
+<a name="ln-324"></a>   <span class="c">!&gt; Index of command line argument, range [0:command_argument_count()]</span>
+<a name="ln-325"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">idx</span>
+<a name="ln-326"></a>
+<a name="ln-327"></a>   <span class="c">!&gt; Command line argument</span>
+<a name="ln-328"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span>
+<a name="ln-329"></a>
+<a name="ln-330"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">length</span><span class="p">,</span> <span class="nb">stat</span>
+<a name="ln-331"></a>
+<a name="ln-332"></a><span class="nb">   </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="n">length</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-333"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-334"></a><span class="k">      return</span>
+<a name="ln-335"></a><span class="k">   </span><span class="n">endif</span>
+<a name="ln-336"></a>
+<a name="ln-337"></a>   <span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">length</span><span class="p">)</span> <span class="kd">::</span> <span class="n">arg</span><span class="p">,</span> <span class="nb">stat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-338"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-339"></a><span class="k">      return</span>
+<a name="ln-340"></a><span class="k">   </span><span class="n">endif</span>
+<a name="ln-341"></a>
+<a name="ln-342"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-343"></a><span class="k">      call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">arg</span><span class="p">,</span> <span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
+<a name="ln-344"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-345"></a><span class="k">         deallocate</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+<a name="ln-346"></a>         <span class="k">return</span>
+<a name="ln-347"></a><span class="k">      end if</span>
+<a name="ln-348"></a><span class="k">   end if</span>
 <a name="ln-349"></a>
-<a name="ln-350"></a>   <span class="c">!&gt; Damping paramaters</span>
-<a name="ln-351"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
+<a name="ln-350"></a><span class="k">end subroutine </span><span class="n">get_argument</span>
+<a name="ln-351"></a>
 <a name="ln-352"></a>
-<a name="ln-353"></a>   <span class="c">!&gt; Print information</span>
-<a name="ln-354"></a>   <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">echo</span>
-<a name="ln-355"></a>
-<a name="ln-356"></a>   <span class="c">!&gt; Error handling</span>
-<a name="ln-357"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
-<a name="ln-358"></a>
-<a name="ln-359"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iarg</span><span class="p">,</span> <span class="n">narg</span>
-<a name="ln-360"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">arg</span>
-<a name="ln-361"></a>
-<a name="ln-362"></a>   <span class="n">echo</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-363"></a>   <span class="n">iarg</span> <span class="o">=</span> <span class="mi">0</span>
-<a name="ln-364"></a>   <span class="n">narg</span> <span class="o">=</span> <span class="nb">command_argument_count</span><span class="p">()</span>
-<a name="ln-365"></a>   <span class="k">do while</span><span class="p">(</span><span class="n">iarg</span> <span class="o">&lt;</span> <span class="n">narg</span><span class="p">)</span>
-<a name="ln-366"></a>      <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-367"></a>      <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-368"></a>      <span class="k">select case</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
-<a name="ln-369"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--help&quot;</span><span class="p">)</span>
-<a name="ln-370"></a>         <span class="k">call </span><span class="n">help</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
-<a name="ln-371"></a>         <span class="k">stop</span>
-<a name="ln-372"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">)</span>
-<a name="ln-373"></a>         <span class="k">call </span><span class="n">version</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
-<a name="ln-374"></a>         <span class="k">stop</span>
-<a name="ln-375"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">)</span>
-<a name="ln-376"></a>         <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-377"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--silent&quot;</span><span class="p">)</span>
-<a name="ln-378"></a>         <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-379"></a>      <span class="k">case </span><span class="n">default</span>
-<a name="ln-380"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-381"></a><span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">input</span><span class="p">)</span>
-<a name="ln-382"></a>            <span class="k">cycle</span>
-<a name="ln-383"></a><span class="k">         end if</span>
-<a name="ln-384"></a><span class="k">         if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-385"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Unknown argument encountered: &#39;&quot;</span><span class="o">//</span><span class="n">arg</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
-<a name="ln-386"></a>         <span class="k">else</span>
-<a name="ln-387"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Too many positional arguments present&quot;</span><span class="p">)</span>
-<a name="ln-388"></a>         <span class="k">end if</span>
-<a name="ln-389"></a><span class="k">         exit</span>
-<a name="ln-390"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="s2">&quot;--input&quot;</span><span class="p">)</span>
-<a name="ln-391"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-392"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-393"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-394"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for input format&quot;</span><span class="p">)</span>
-<a name="ln-395"></a>            <span class="k">exit</span>
-<a name="ln-396"></a><span class="k">         end if</span>
-<a name="ln-397"></a><span class="k">         </span><span class="n">input_format</span> <span class="o">=</span> <span class="n">get_filetype</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="o">//</span><span class="n">arg</span><span class="p">)</span>
-<a name="ln-398"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--json&quot;</span><span class="p">)</span>
-<a name="ln-399"></a>         <span class="n">config</span><span class="p">%</span><span class="n">json</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-400"></a>         <span class="n">config</span><span class="p">%</span><span class="n">json_output</span> <span class="o">=</span> <span class="s2">&quot;dftd3.json&quot;</span>
-<a name="ln-401"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-402"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-403"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-404"></a><span class="k">            if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-405"></a><span class="k">               </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">-</span> <span class="mi">1</span>
-<a name="ln-406"></a>               <span class="k">cycle</span>
-<a name="ln-407"></a><span class="k">            end if</span>
-<a name="ln-408"></a><span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="p">)</span>
-<a name="ln-409"></a>         <span class="k">end if</span>
-<a name="ln-410"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--property&quot;</span><span class="p">)</span>
-<a name="ln-411"></a>         <span class="n">config</span><span class="p">%</span><span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-412"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--noedisp&quot;</span><span class="p">)</span>
-<a name="ln-413"></a>         <span class="n">config</span><span class="p">%</span><span class="n">tmer</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-414"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--nowrap&quot;</span><span class="p">)</span>
-<a name="ln-415"></a>         <span class="n">config</span><span class="p">%</span><span class="n">wrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-<a name="ln-416"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--grad&quot;</span><span class="p">)</span>
-<a name="ln-417"></a>         <span class="n">config</span><span class="p">%</span><span class="n">grad</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-418"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--atm&quot;</span><span class="p">)</span>
-<a name="ln-419"></a>         <span class="n">inp</span><span class="p">%</span><span class="n">s9</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
-<a name="ln-420"></a>         <span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-421"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--atm-scale&quot;</span><span class="p">)</span>
-<a name="ln-422"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-423"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s9</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-424"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-425"></a><span class="k">         </span><span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-426"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zero&quot;</span><span class="p">)</span>
-<a name="ln-427"></a>         <span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-428"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-429"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-430"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-431"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
-<a name="ln-432"></a>            <span class="k">exit</span>
-<a name="ln-433"></a><span class="k">         end if</span>
-<a name="ln-434"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
-<a name="ln-435"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zero-param&quot;</span><span class="p">)</span>
-<a name="ln-436"></a>         <span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-437"></a>         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-438"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-439"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-440"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-441"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-442"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-443"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-444"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-445"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">rs6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-446"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-447"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--bj&quot;</span><span class="p">)</span>
-<a name="ln-448"></a>         <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-449"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-450"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-<a name="ln-451"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-452"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
-<a name="ln-453"></a>            <span class="k">exit</span>
-<a name="ln-454"></a><span class="k">         end if</span>
-<a name="ln-455"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
-<a name="ln-456"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bj-param&quot;</span><span class="p">)</span>
-<a name="ln-457"></a>         <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-458"></a>         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-459"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-460"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-461"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-462"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-463"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-464"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-465"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-466"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">a1</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-467"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-468"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
-<a name="ln-469"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">a2</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-<a name="ln-470"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
-<a name="ln-471"></a><span class="k">      end select</span>
-<a name="ln-472"></a><span class="k">   end do</span>
-<a name="ln-473"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">return</span>
-<a name="ln-474"></a>
-<a name="ln-475"></a><span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">method</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-476"></a><span class="k">      </span><span class="n">config</span><span class="p">%</span><span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-<a name="ln-477"></a>   <span class="k">end if</span>
-<a name="ln-478"></a>
-<a name="ln-479"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">config</span><span class="p">%</span><span class="n">rational</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-480"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Can only select zero or rational damping function&quot;</span><span class="p">)</span>
-<a name="ln-481"></a>      <span class="k">return</span>
-<a name="ln-482"></a><span class="k">   end if</span>
-<a name="ln-483"></a>
-<a name="ln-484"></a><span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-485"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
-<a name="ln-486"></a><span class="k">         call </span><span class="n">help</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
-<a name="ln-487"></a>         <span class="n">error</span> <span class="k">stop</span>
-<a name="ln-488"></a><span class="k">      end if</span>
-<a name="ln-489"></a><span class="k">   end if</span>
-<a name="ln-490"></a>
-<a name="ln-491"></a><span class="k">end subroutine </span><span class="n">get_arguments</span>
-<a name="ln-492"></a>
-<a name="ln-493"></a>
-<a name="ln-494"></a><span class="k">end program </span><span class="n">dftd3_main</span>
+<a name="ln-353"></a><span class="k">subroutine </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-354"></a>
+<a name="ln-355"></a>   <span class="c">!&gt; Index of command line argument, range [0:command_argument_count()]</span>
+<a name="ln-356"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iarg</span>
+<a name="ln-357"></a>
+<a name="ln-358"></a>   <span class="c">!&gt; Real value</span>
+<a name="ln-359"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
+<a name="ln-360"></a>
+<a name="ln-361"></a>   <span class="c">!&gt; Error handling</span>
+<a name="ln-362"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">error</span>
+<a name="ln-363"></a>
+<a name="ln-364"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span>
+<a name="ln-365"></a><span class="nb">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">arg</span>
+<a name="ln-366"></a>
+<a name="ln-367"></a>   <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-368"></a>   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-369"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value, argument missing&quot;</span><span class="p">)</span>
+<a name="ln-370"></a>      <span class="k">return</span>
+<a name="ln-371"></a><span class="k">   end if</span>
+<a name="ln-372"></a><span class="k">   read</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">val</span>
+<a name="ln-373"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-374"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value from &#39;&quot;</span><span class="o">//</span><span class="n">arg</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+<a name="ln-375"></a>      <span class="k">return</span>
+<a name="ln-376"></a><span class="k">   end if</span>
+<a name="ln-377"></a>
+<a name="ln-378"></a><span class="k">end subroutine </span><span class="n">get_argument_as_real</span>
+<a name="ln-379"></a>
+<a name="ln-380"></a>
+<a name="ln-381"></a><span class="k">subroutine </span><span class="n">get_arguments</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">echo</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-382"></a>
+<a name="ln-383"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">input</span>
+<a name="ln-384"></a>   <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">input_format</span>
+<a name="ln-385"></a>
+<a name="ln-386"></a>   <span class="c">!&gt; Configuation data</span>
+<a name="ln-387"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_config</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">config</span>
+<a name="ln-388"></a>
+<a name="ln-389"></a>   <span class="c">!&gt; Method name</span>
+<a name="ln-390"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">method</span>
+<a name="ln-391"></a>
+<a name="ln-392"></a>   <span class="c">!&gt; Damping paramaters</span>
+<a name="ln-393"></a>   <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
+<a name="ln-394"></a>
+<a name="ln-395"></a>   <span class="c">!&gt; Print information</span>
+<a name="ln-396"></a>   <span class="kt">logical</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">echo</span>
+<a name="ln-397"></a>
+<a name="ln-398"></a>   <span class="c">!&gt; Error handling</span>
+<a name="ln-399"></a>   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
+<a name="ln-400"></a>
+<a name="ln-401"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iarg</span><span class="p">,</span> <span class="n">narg</span>
+<a name="ln-402"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">arg</span>
+<a name="ln-403"></a>
+<a name="ln-404"></a>   <span class="n">echo</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-405"></a>   <span class="n">iarg</span> <span class="o">=</span> <span class="mi">0</span>
+<a name="ln-406"></a>   <span class="n">narg</span> <span class="o">=</span> <span class="nb">command_argument_count</span><span class="p">()</span>
+<a name="ln-407"></a>   <span class="k">do while</span><span class="p">(</span><span class="n">iarg</span> <span class="o">&lt;</span> <span class="n">narg</span><span class="p">)</span>
+<a name="ln-408"></a>      <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-409"></a>      <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-410"></a>      <span class="k">select case</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+<a name="ln-411"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--help&quot;</span><span class="p">)</span>
+<a name="ln-412"></a>         <span class="k">call </span><span class="n">help</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
+<a name="ln-413"></a>         <span class="k">stop</span>
+<a name="ln-414"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--version&quot;</span><span class="p">)</span>
+<a name="ln-415"></a>         <span class="k">call </span><span class="n">version</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
+<a name="ln-416"></a>         <span class="k">stop</span>
+<a name="ln-417"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;-v&quot;</span><span class="p">,</span> <span class="s2">&quot;--verbose&quot;</span><span class="p">)</span>
+<a name="ln-418"></a>         <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-419"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;-s&quot;</span><span class="p">,</span> <span class="s2">&quot;--silent&quot;</span><span class="p">)</span>
+<a name="ln-420"></a>         <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-421"></a>      <span class="k">case </span><span class="n">default</span>
+<a name="ln-422"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-423"></a><span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">input</span><span class="p">)</span>
+<a name="ln-424"></a>            <span class="k">cycle</span>
+<a name="ln-425"></a><span class="k">         end if</span>
+<a name="ln-426"></a><span class="k">         if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-427"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Unknown argument encountered: &#39;&quot;</span><span class="o">//</span><span class="n">arg</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
+<a name="ln-428"></a>         <span class="k">else</span>
+<a name="ln-429"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Too many positional arguments present&quot;</span><span class="p">)</span>
+<a name="ln-430"></a>         <span class="k">end if</span>
+<a name="ln-431"></a><span class="k">         exit</span>
+<a name="ln-432"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;-i&quot;</span><span class="p">,</span> <span class="s2">&quot;--input&quot;</span><span class="p">)</span>
+<a name="ln-433"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-434"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-435"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-436"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for input format&quot;</span><span class="p">)</span>
+<a name="ln-437"></a>            <span class="k">exit</span>
+<a name="ln-438"></a><span class="k">         end if</span>
+<a name="ln-439"></a><span class="k">         </span><span class="n">input_format</span> <span class="o">=</span> <span class="n">get_filetype</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="o">//</span><span class="n">arg</span><span class="p">)</span>
+<a name="ln-440"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--json&quot;</span><span class="p">)</span>
+<a name="ln-441"></a>         <span class="n">config</span><span class="p">%</span><span class="n">json</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-442"></a>         <span class="n">config</span><span class="p">%</span><span class="n">json_output</span> <span class="o">=</span> <span class="s2">&quot;dftd3.json&quot;</span>
+<a name="ln-443"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-444"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-445"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-446"></a><span class="k">            if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-447"></a><span class="k">               </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-448"></a>               <span class="k">cycle</span>
+<a name="ln-449"></a><span class="k">            end if</span>
+<a name="ln-450"></a><span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">json_output</span><span class="p">)</span>
+<a name="ln-451"></a>         <span class="k">end if</span>
+<a name="ln-452"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--property&quot;</span><span class="p">)</span>
+<a name="ln-453"></a>         <span class="n">config</span><span class="p">%</span><span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-454"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--noedisp&quot;</span><span class="p">)</span>
+<a name="ln-455"></a>         <span class="n">config</span><span class="p">%</span><span class="n">tmer</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-456"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--nowrap&quot;</span><span class="p">)</span>
+<a name="ln-457"></a>         <span class="n">config</span><span class="p">%</span><span class="n">wrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<a name="ln-458"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--grad&quot;</span><span class="p">)</span>
+<a name="ln-459"></a>         <span class="n">config</span><span class="p">%</span><span class="n">grad</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-460"></a>         <span class="n">config</span><span class="p">%</span><span class="n">grad_output</span> <span class="o">=</span> <span class="s2">&quot;dftd3.txt&quot;</span>
+<a name="ln-461"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-462"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-463"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-464"></a><span class="k">            if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-465"></a><span class="k">               </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">-</span> <span class="mi">1</span>
+<a name="ln-466"></a>               <span class="k">cycle</span>
+<a name="ln-467"></a><span class="k">            end if</span>
+<a name="ln-468"></a><span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">grad_output</span><span class="p">)</span>
+<a name="ln-469"></a>         <span class="k">end if</span>
+<a name="ln-470"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--atm&quot;</span><span class="p">)</span>
+<a name="ln-471"></a>         <span class="n">inp</span><span class="p">%</span><span class="n">s9</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
+<a name="ln-472"></a>         <span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-473"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--atm-scale&quot;</span><span class="p">)</span>
+<a name="ln-474"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-475"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s9</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-476"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-477"></a><span class="k">         </span><span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-478"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zero&quot;</span><span class="p">)</span>
+<a name="ln-479"></a>         <span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-480"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-481"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-482"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-483"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+<a name="ln-484"></a>            <span class="k">exit</span>
+<a name="ln-485"></a><span class="k">         end if</span>
+<a name="ln-486"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-487"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zerom&quot;</span><span class="p">)</span>
+<a name="ln-488"></a>         <span class="n">config</span><span class="p">%</span><span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-489"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-490"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-491"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-492"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+<a name="ln-493"></a>            <span class="k">exit</span>
+<a name="ln-494"></a><span class="k">         end if</span>
+<a name="ln-495"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-496"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zero-param&quot;</span><span class="p">)</span>
+<a name="ln-497"></a>         <span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-498"></a>         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-499"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-500"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-501"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-502"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-503"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-504"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-505"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-506"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">rs6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-507"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-508"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--zerom-param&quot;</span><span class="p">)</span>
+<a name="ln-509"></a>         <span class="n">config</span><span class="p">%</span><span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-510"></a>         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-511"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-512"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-513"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-514"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-515"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-516"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-517"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-518"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">rs6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-519"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-520"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-521"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">bet</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-522"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-523"></a><span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--bj&quot;</span><span class="p">)</span>
+<a name="ln-524"></a>         <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-525"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-526"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-527"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-528"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+<a name="ln-529"></a>            <span class="k">exit</span>
+<a name="ln-530"></a><span class="k">         end if</span>
+<a name="ln-531"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-532"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bjm&quot;</span><span class="p">)</span>
+<a name="ln-533"></a>         <span class="n">config</span><span class="p">%</span><span class="n">mrational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-534"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-535"></a>         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+<a name="ln-536"></a>         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-537"></a><span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+<a name="ln-538"></a>            <span class="k">exit</span>
+<a name="ln-539"></a><span class="k">         end if</span>
+<a name="ln-540"></a><span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+<a name="ln-541"></a>      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bj-param&quot;</span><span class="p">,</span> <span class="s2">&quot;--bjm-param&quot;</span><span class="p">)</span>
+<a name="ln-542"></a>         <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-543"></a>         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-544"></a>         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-545"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-546"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-547"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-548"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-549"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-550"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-551"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">a1</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-552"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-553"></a><span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+<a name="ln-554"></a>         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">a2</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+<a name="ln-555"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<a name="ln-556"></a><span class="k">      end select</span>
+<a name="ln-557"></a><span class="k">   end do</span>
+<a name="ln-558"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">return</span>
+<a name="ln-559"></a>
+<a name="ln-560"></a><span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">method</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-561"></a><span class="k">      </span><span class="n">config</span><span class="p">%</span><span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+<a name="ln-562"></a>   <span class="k">end if</span>
+<a name="ln-563"></a>
+<a name="ln-564"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">count</span><span class="p">([</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">rational</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">mzero</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">mrational</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-565"></a><span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Can only select zero or rational damping function&quot;</span><span class="p">)</span>
+<a name="ln-566"></a>      <span class="k">return</span>
+<a name="ln-567"></a><span class="k">   end if</span>
+<a name="ln-568"></a>
+<a name="ln-569"></a><span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-570"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-571"></a><span class="k">         call </span><span class="n">help</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
+<a name="ln-572"></a>         <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-573"></a><span class="k">      end if</span>
+<a name="ln-574"></a><span class="k">   end if</span>
+<a name="ln-575"></a>
+<a name="ln-576"></a><span class="k">end subroutine </span><span class="n">get_arguments</span>
+<a name="ln-577"></a>
+<a name="ln-578"></a>
+<a name="ln-579"></a><span class="k">end program </span><span class="n">dftd3_main</span>
 </pre></div>
 
     </section>
@@ -781,7 +866,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

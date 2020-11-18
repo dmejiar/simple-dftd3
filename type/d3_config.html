@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p>15.5% of total for derived types.</p>Including implementation: 13 statements,  3.3% of total for derived types.">13 statements</a>
+    title="<p>15.7% of total for derived types.</p>Including implementation: 16 statements,  3.1% of total for derived types.">16 statements</a>
      </li> 
      
      
@@ -183,11 +183,17 @@
       
       <a class="list-group-item" href="../type/d3_config.html#variable-grad">grad</a>
       
+      <a class="list-group-item" href="../type/d3_config.html#variable-grad_output">grad_output</a>
+      
       <a class="list-group-item" href="../type/d3_config.html#variable-has_param">has_param</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-json">json</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-json_output">json_output</a>
+      
+      <a class="list-group-item" href="../type/d3_config.html#variable-mrational">mrational</a>
+      
+      <a class="list-group-item" href="../type/d3_config.html#variable-mzero">mzero</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-properties">properties</a>
       
@@ -261,11 +267,17 @@
       
       <a class="list-group-item" href="../type/d3_config.html#variable-grad">grad</a>
       
+      <a class="list-group-item" href="../type/d3_config.html#variable-grad_output">grad_output</a>
+      
       <a class="list-group-item" href="../type/d3_config.html#variable-has_param">has_param</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-json">json</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-json_output">json_output</a>
+      
+      <a class="list-group-item" href="../type/d3_config.html#variable-mrational">mrational</a>
+      
+      <a class="list-group-item" href="../type/d3_config.html#variable-mzero">mzero</a>
       
       <a class="list-group-item" href="../type/d3_config.html#variable-properties">properties</a>
       
@@ -361,6 +373,20 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-grad_output"></span>character(len=:),</td>
+  
+  <td>public,</td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>grad_output</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-has_param"></span>logical,</td>
   
   <td>public</td>
@@ -394,6 +420,34 @@
   <td>public,</td>
   <td>allocatable</td><td>::</td>
   <td><strong>json_output</strong></td><td></td><td></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mrational"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>mrational</strong></td><td> =</td><td>.false.</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-mzero"></span>logical,</td>
+  
+  <td>public</td>
+  <td></td><td>::</td>
+  <td><strong>mzero</strong></td><td> =</td><td>.false.</td><td></td>
   
 </tr>
 
@@ -505,8 +559,11 @@
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">grad</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">grad_output</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
+      <span class="kt">logical</span> <span class="kd">::</span> <span class="n">mrational</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">integer</span> <span class="kd">::</span> <span class="n">verbosity</span> <span class="o">=</span> <span class="mi">2</span>
    <span class="k">end type </span><span class="n">d3_config</span>
@@ -530,7 +587,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.7% of total for procedures.">31 statements</a>
+    title=" 1.4% of total for procedures.">31 statements</a>
      </li> 
      
      
@@ -238,7 +238,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
   
 <tr>
   
-  <td><span class="anchor" id="variable-verror~2"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-verror~4"></span>type(c_ptr),</td>
   <td></td>
   <td></td>
   
@@ -253,7 +253,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
   
 <tr>
   
-  <td><span class="anchor" id="variable-vmol"></span>type(c_ptr),</td>
+  <td><span class="anchor" id="variable-vmol~3"></span>type(c_ptr),</td>
   <td></td>
   <td></td>
   
@@ -268,7 +268,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
   
 <tr>
   
-  <td><span class="anchor" id="variable-charptr"></span>character(kind=c_char),</td>
+  <td><span class="anchor" id="variable-charptr~3"></span>character(kind=c_char),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -283,7 +283,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
   
 <tr>
   
-  <td><span class="anchor" id="variable-atm~2"></span>logical(kind=c_bool),</td>
+  <td><span class="anchor" id="variable-atm~4"></span>logical(kind=c_bool),</td>
   <td>intent(in),</td>
   <td></td>
   
@@ -302,7 +302,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
     
     
     
-   <h3>Return Value <small><span class="anchor" id="variable-vparam"></span>type(c_ptr)
+   <h3>Return Value <small><span class="anchor" id="variable-vparam~3"></span>type(c_ptr)
   </small></h3>
     
     
@@ -379,7 +379,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
    <span class="kt">logical</span><span class="p">(</span><span class="kt">c_bool</span><span class="p">),</span> <span class="k">value</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">atm</span>
    <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:,</span> <span class="nb">kind</span><span class="o">=</span><span class="kt">c_char</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">method</span>
    <span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vparam</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tmp</span>
+   <span class="k">type</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">tmp</span>
    <span class="k">type</span><span class="p">(</span><span class="n">vp_param</span><span class="p">),</span> <span class="k">pointer</span> <span class="kd">::</span> <span class="n">param</span>
    <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">s9</span>
@@ -402,7 +402,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
    <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="n">ptr</span><span class="p">))</span> <span class="k">return</span>
 
 <span class="k">   allocate</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">new_zero_damping</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
+   <span class="k">call </span><span class="n">new_rational_damping</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">ptr</span><span class="p">%</span><span class="n">num</span><span class="p">)</span>
 
    <span class="k">allocate</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
    <span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">ptr</span><span class="p">)</span>
@@ -430,7 +430,7 @@ public function load_rational_damping_api(verror, vmol, charptr, atm) result(vpa
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

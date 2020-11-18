@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="13.6% of total for modules and submodules.">378 statements</a>
+    title="15.5% of total for modules and submodules.">485 statements</a>
      </li> 
      
      
@@ -209,6 +209,10 @@
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-get_version_api">get_version_api</a>
       
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-load_mrational_damping_api">load_mrational_damping_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-load_mzero_damping_api">load_mzero_damping_api</a>
+      
       <a class="list-group-item" href="../module/dftd3_api.html#proc-load_rational_damping_api">load_rational_damping_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-load_zero_damping_api">load_zero_damping_api</a>
@@ -216,6 +220,10 @@
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_d3_model_api">new_d3_model_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_error_api">new_error_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-new_mrational_damping_api">new_mrational_damping_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-new_mzero_damping_api">new_mzero_damping_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_rational_damping_api">new_rational_damping_api</a>
       
@@ -291,6 +299,7 @@
 <span class="cp">#endif</span>
 <span class="cp">#define SDFTD3_API_CALL</span>
 <span class="cp">#define SDFTD3_API_SUFFIX__V_0_2</span>
+<span class="cp">#define SDFTD3_API_SUFFIX__V_0_3</span>
 
 <span class="c1">/// Error handle class</span>
 <span class="k">typedef</span> <span class="k">struct</span> <span class="nc">_dftd3_error</span><span class="o">*</span> <span class="n">dftd3_error</span><span class="p">;</span>
@@ -410,6 +419,43 @@
                             <span class="kt">char</span><span class="o">*</span> <span class="cm">/* method */</span><span class="p">,</span>
                             <span class="kt">bool</span> <span class="cm">/* atm */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_2</span><span class="p">;</span>
 
+<span class="c1">/// Create new modified zero damping parameters</span>
+<span class="n">SDFTD3_API_ENTRY</span> <span class="n">dftd3_param</span> <span class="n">SDFTD3_API_CALL</span>
+<span class="n">dftd3_new_mzero_damping</span><span class="p">(</span><span class="n">dftd3_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                        <span class="n">dftd3_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* s6 */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* s8 */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* s9 */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* rs6 */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* rs8 */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* alp */</span><span class="p">,</span>
+                        <span class="kt">double</span> <span class="cm">/* bet */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_3</span><span class="p">;</span>
+
+<span class="c1">/// Load modified zero damping parameters from internal storage</span>
+<span class="n">SDFTD3_API_ENTRY</span> <span class="n">dftd3_param</span> <span class="n">SDFTD3_API_CALL</span>
+<span class="n">dftd3_load_mzero_damping</span><span class="p">(</span><span class="n">dftd3_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                         <span class="n">dftd3_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                         <span class="kt">char</span><span class="o">*</span> <span class="cm">/* method */</span><span class="p">,</span>
+                         <span class="kt">bool</span> <span class="cm">/* atm */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_3</span><span class="p">;</span>
+
+<span class="c1">/// Create new modified rational damping parameters</span>
+<span class="n">SDFTD3_API_ENTRY</span> <span class="n">dftd3_param</span> <span class="n">SDFTD3_API_CALL</span>
+<span class="n">dftd3_new_mrational_damping</span><span class="p">(</span><span class="n">dftd3_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                            <span class="n">dftd3_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* s6 */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* s8 */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* s9 */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* a1 */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* a2 */</span><span class="p">,</span>
+                            <span class="kt">double</span> <span class="cm">/* alp */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_3</span><span class="p">;</span>
+
+<span class="c1">/// Load modified rational damping parameters from internal storage</span>
+<span class="n">SDFTD3_API_ENTRY</span> <span class="n">dftd3_param</span> <span class="n">SDFTD3_API_CALL</span>
+<span class="n">dftd3_load_mrational_damping</span><span class="p">(</span><span class="n">dftd3_error</span> <span class="cm">/* error */</span><span class="p">,</span>
+                             <span class="n">dftd3_structure</span> <span class="cm">/* mol */</span><span class="p">,</span>
+                             <span class="kt">char</span><span class="o">*</span> <span class="cm">/* method */</span><span class="p">,</span>
+                             <span class="kt">bool</span> <span class="cm">/* atm */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_3</span><span class="p">;</span>
+
 <span class="c1">/// Delete damping parameters</span>
 <span class="n">SDFTD3_API_ENTRY</span> <span class="kt">void</span> <span class="n">SDFTD3_API_CALL</span>
 <span class="n">dftd3_delete_param</span><span class="p">(</span><span class="n">dftd3_param</span><span class="o">*</span> <span class="cm">/* param */</span><span class="p">)</span> <span class="n">SDFTD3_API_SUFFIX__V_0_2</span><span class="p">;</span>
@@ -446,6 +492,8 @@
     <li>mctc_io_structure</li>
     
     <li><a href='../module/dftd3_cutoff.html'>dftd3_cutoff</a></li>
+    
+    <li><a href='../module/dftd3_damping_mzero.html'>dftd3_damping_mzero</a></li>
     
     <li><a href='../module/dftd3_damping_rational.html'>dftd3_damping_rational</a></li>
     
@@ -519,6 +567,10 @@
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-get_version_api">get_version_api</a>
       
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-load_mrational_damping_api">load_mrational_damping_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-load_mzero_damping_api">load_mzero_damping_api</a>
+      
       <a class="list-group-item" href="../module/dftd3_api.html#proc-load_rational_damping_api">load_rational_damping_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-load_zero_damping_api">load_zero_damping_api</a>
@@ -526,6 +578,10 @@
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_d3_model_api">new_d3_model_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_error_api">new_error_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-new_mrational_damping_api">new_mrational_damping_api</a>
+      
+      <a class="list-group-item" href="../module/dftd3_api.html#proc-new_mzero_damping_api">new_mzero_damping_api</a>
       
       <a class="list-group-item" href="../module/dftd3_api.html#proc-new_rational_damping_api">new_rational_damping_api</a>
       
@@ -891,6 +947,232 @@ public function <a href='../proc/get_version_api.html'>get_version_api</a>() res
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-load_mrational_damping_api"></span><h3>
+public function <a href='../proc/load_mrational_damping_api.html'>load_mrational_damping_api</a>(verror, vmol, charptr, atm) result(vparam) bind(C, name="dftd3_load_mrational_damping")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Load rational damping parameters from internal storage</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(kind=c_char),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>charptr</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=c_bool),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>atm</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(c_ptr)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-load_mzero_damping_api"></span><h3>
+public function <a href='../proc/load_mzero_damping_api.html'>load_mzero_damping_api</a>(verror, vmol, charptr, atm) result(vparam) bind(C, name="dftd3_load_mzero_damping")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Load zero damping parameters from internal storage</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>character(kind=c_char),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>charptr</strong>(*)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>logical(kind=c_bool),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>atm</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(c_ptr)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-load_rational_damping_api"></span><h3>
 public function <a href='../proc/load_rational_damping_api.html'>load_rational_damping_api</a>(verror, vmol, charptr, atm) result(vparam) bind(C, name="dftd3_load_rational_damping")
     
@@ -1221,6 +1503,367 @@ public function <a href='../proc/new_error_api.html'>new_error_api</a>() result(
     <h4>Arguments</h4>
     
       <em>None</em>
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(c_ptr)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-new_mrational_damping_api"></span><h3>
+public function <a href='../proc/new_mrational_damping_api.html'>new_mrational_damping_api</a>(verror, vmol, s6, s8, s9, a1, a2, alp) result(vparam) bind(C, name="dftd3_new_mrational_damping")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create new rational damping parameters</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s6</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s8</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s9</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>a1</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>a2</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>alp</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  
+  
+  
+  
+     <h4>Return Value <small>type(c_ptr)
+  </small></h4>
+  
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-new_mzero_damping_api"></span><h3>
+public function <a href='../proc/new_mzero_damping_api.html'>new_mzero_damping_api</a>(verror, vmol, s6, s8, s9, rs6, rs8, alp, bet) result(vparam) bind(C, name="dftd3_new_mzero_damping")
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Create new zero damping parameters</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>verror</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>type(c_ptr),</td>
+  <td></td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>vmol</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s6</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s8</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>s9</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>rs6</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>rs8</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>alp</strong></td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=c_double),</td>
+  <td>intent(in),</td>
+  <td></td>
+  
+  <td>value</td><td>::</td>
+  <td><strong>bet</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
     
     
 
@@ -2183,7 +2826,7 @@ public subroutine <a href='../proc/update_structure_api.html'>update_structure_a
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

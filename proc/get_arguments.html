@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 7.3% of total for procedures.">136 statements</a>
+    title=" 8.0% of total for procedures.">179 statements</a>
      </li> 
      
      
@@ -281,7 +281,7 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-method~5"></span>character(len=:),</td>
+  <td><span class="anchor" id="variable-method~7"></span>character(len=:),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -326,7 +326,7 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
   
 <tr>
   
-  <td><span class="anchor" id="variable-error~4"></span>type(error_type),</td>
+  <td><span class="anchor" id="variable-error~6"></span>type(error_type),</td>
   <td>intent(out),</td>
   <td></td>
   
@@ -481,7 +481,17 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
          <span class="n">config</span><span class="p">%</span><span class="n">wrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--grad&quot;</span><span class="p">)</span>
          <span class="n">config</span><span class="p">%</span><span class="n">grad</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
-      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--atm&quot;</span><span class="p">)</span>
+         <span class="n">config</span><span class="p">%</span><span class="n">grad_output</span> <span class="o">=</span> <span class="s2">&quot;dftd3.txt&quot;</span>
+         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            if</span> <span class="p">(</span><span class="n">arg</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&quot;-&quot;</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">               </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">-</span> <span class="mi">1</span>
+               <span class="k">cycle</span>
+<span class="k">            end if</span>
+<span class="k">            call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">grad_output</span><span class="p">)</span>
+         <span class="k">end if</span>
+<span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--atm&quot;</span><span class="p">)</span>
          <span class="n">inp</span><span class="p">%</span><span class="n">s9</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
          <span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
       <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--atm-scale&quot;</span><span class="p">)</span>
@@ -491,6 +501,15 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
 <span class="k">         </span><span class="n">config</span><span class="p">%</span><span class="n">atm</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
       <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zero&quot;</span><span class="p">)</span>
          <span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+            <span class="k">exit</span>
+<span class="k">         end if</span>
+<span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--zerom&quot;</span><span class="p">)</span>
+         <span class="n">config</span><span class="p">%</span><span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
          <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
          <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
          <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
@@ -510,6 +529,21 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
 <span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
          <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">rs6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
          <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--zerom-param&quot;</span><span class="p">)</span>
+         <span class="n">config</span><span class="p">%</span><span class="n">mzero</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+         <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">rs6</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
+<span class="k">         </span><span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">inp</span><span class="p">%</span><span class="n">bet</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">exit</span>
 <span class="k">      case</span><span class="p">(</span><span class="s2">&quot;--bj&quot;</span><span class="p">)</span>
          <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
          <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
@@ -519,7 +553,16 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
             <span class="k">exit</span>
 <span class="k">         end if</span>
 <span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
-      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bj-param&quot;</span><span class="p">)</span>
+      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bjm&quot;</span><span class="p">)</span>
+         <span class="n">config</span><span class="p">%</span><span class="n">mrational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
+         <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
+         <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
+         <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">            call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Missing argument for method&quot;</span><span class="p">)</span>
+            <span class="k">exit</span>
+<span class="k">         end if</span>
+<span class="k">         call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">method</span><span class="p">)</span>
+      <span class="k">case</span><span class="p">(</span><span class="s2">&quot;--bj-param&quot;</span><span class="p">,</span> <span class="s2">&quot;--bjm-param&quot;</span><span class="p">)</span>
          <span class="n">config</span><span class="p">%</span><span class="n">rational</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
          <span class="n">config</span><span class="p">%</span><span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
          <span class="n">iarg</span> <span class="o">=</span> <span class="n">iarg</span> <span class="o">+</span> <span class="mi">1</span>
@@ -542,7 +585,7 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
 <span class="k">      </span><span class="n">config</span><span class="p">%</span><span class="n">properties</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
    <span class="k">end if</span>
 
-<span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">config</span><span class="p">%</span><span class="n">rational</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">count</span><span class="p">([</span><span class="n">config</span><span class="p">%</span><span class="n">zero</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">rational</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">mzero</span><span class="p">,</span> <span class="n">config</span><span class="p">%</span><span class="n">mrational</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Can only select zero or rational damping function&quot;</span><span class="p">)</span>
       <span class="k">return</span>
 <span class="k">   end if</span>
@@ -576,7 +619,7 @@ subroutine get_arguments(input, input_format, config, method, inp, echo, error)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

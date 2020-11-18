@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.6% of total for source files.">20 statements</a>
+    title=" 0.7% of total for source files.">24 statements</a>
      </li> 
      
      
@@ -286,28 +286,33 @@
 <a name="ln-15"></a><span class="c">! along with s-dftd3.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 <a name="ln-16"></a>
 <a name="ln-17"></a><span class="k">module </span><span class="n">dftd3</span>
-<a name="ln-18"></a>   <span class="k">use </span><span class="n">dftd3_cutoff</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">realspace_cutoff</span>
+<a name="ln-18"></a>   <span class="k">use </span><span class="n">dftd3_cutoff</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">realspace_cutoff</span><span class="p">,</span> <span class="n">get_lattice_points</span>
 <a name="ln-19"></a>   <span class="k">use </span><span class="n">dftd3_disp</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">get_dispersion</span>
 <a name="ln-20"></a>   <span class="k">use </span><span class="n">dftd3_ncoord</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">get_coordination_number</span>
 <a name="ln-21"></a>   <span class="k">use </span><span class="n">dftd3_damping</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">damping_param</span>
-<a name="ln-22"></a>   <span class="k">use </span><span class="n">dftd3_damping_rational</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">rational_damping_param</span><span class="p">,</span> <span class="n">new_rational_damping</span>
-<a name="ln-23"></a>   <span class="k">use </span><span class="n">dftd3_damping_zero</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">zero_damping_param</span><span class="p">,</span> <span class="n">new_zero_damping</span>
-<a name="ln-24"></a>   <span class="k">use </span><span class="n">dftd3_model</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">d3_model</span><span class="p">,</span> <span class="n">new_d3_model</span>
-<a name="ln-25"></a>   <span class="k">use </span><span class="n">dftd3_param</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">d3_param</span><span class="p">,</span> <span class="n">get_rational_damping</span><span class="p">,</span> <span class="n">get_zero_damping</span>
-<a name="ln-26"></a>   <span class="k">use </span><span class="n">dftd3_version</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">get_dftd3_version</span>
-<a name="ln-27"></a>   <span class="k">implicit none</span>
-<a name="ln-28"></a><span class="k">   private</span>
-<a name="ln-29"></a>
-<a name="ln-30"></a><span class="k">   public</span> <span class="kd">::</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_coordination_number</span><span class="p">,</span> <span class="n">realspace_cutoff</span>
-<a name="ln-31"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">damping_param</span><span class="p">,</span> <span class="n">d3_param</span>
-<a name="ln-32"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_rational_damping</span><span class="p">,</span> <span class="n">get_zero_damping</span>
-<a name="ln-33"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">rational_damping_param</span><span class="p">,</span> <span class="n">new_rational_damping</span>
-<a name="ln-34"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">zero_damping_param</span><span class="p">,</span> <span class="n">new_zero_damping</span>
-<a name="ln-35"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">d3_model</span><span class="p">,</span> <span class="n">new_d3_model</span>
-<a name="ln-36"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_dftd3_version</span>
-<a name="ln-37"></a>
-<a name="ln-38"></a>
-<a name="ln-39"></a><span class="k">end module </span><span class="n">dftd3</span>
+<a name="ln-22"></a>   <span class="k">use </span><span class="n">dftd3_damping_mzero</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">mzero_damping_param</span><span class="p">,</span> <span class="n">new_mzero_damping</span>
+<a name="ln-23"></a>   <span class="k">use </span><span class="n">dftd3_damping_rational</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">rational_damping_param</span><span class="p">,</span> <span class="n">new_rational_damping</span>
+<a name="ln-24"></a>   <span class="k">use </span><span class="n">dftd3_damping_zero</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">zero_damping_param</span><span class="p">,</span> <span class="n">new_zero_damping</span>
+<a name="ln-25"></a>   <span class="k">use </span><span class="n">dftd3_model</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">d3_model</span><span class="p">,</span> <span class="n">new_d3_model</span>
+<a name="ln-26"></a>   <span class="k">use </span><span class="n">dftd3_param</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">d3_param</span><span class="p">,</span> <span class="n">get_rational_damping</span><span class="p">,</span> <span class="n">get_zero_damping</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-27"></a>      <span class="p">&amp;</span> <span class="n">get_mrational_damping</span><span class="p">,</span> <span class="n">get_mzero_damping</span>
+<a name="ln-28"></a>   <span class="k">use </span><span class="n">dftd3_version</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">get_dftd3_version</span>
+<a name="ln-29"></a>   <span class="k">implicit none</span>
+<a name="ln-30"></a><span class="k">   private</span>
+<a name="ln-31"></a>
+<a name="ln-32"></a><span class="k">   public</span> <span class="kd">::</span> <span class="n">get_dispersion</span><span class="p">,</span> <span class="n">get_coordination_number</span>
+<a name="ln-33"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">realspace_cutoff</span><span class="p">,</span> <span class="n">get_lattice_points</span>
+<a name="ln-34"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">damping_param</span><span class="p">,</span> <span class="n">d3_param</span>
+<a name="ln-35"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_rational_damping</span><span class="p">,</span> <span class="n">get_zero_damping</span>
+<a name="ln-36"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_mrational_damping</span><span class="p">,</span> <span class="n">get_mzero_damping</span>
+<a name="ln-37"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">mzero_damping_param</span><span class="p">,</span> <span class="n">new_mzero_damping</span>
+<a name="ln-38"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">rational_damping_param</span><span class="p">,</span> <span class="n">new_rational_damping</span>
+<a name="ln-39"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">zero_damping_param</span><span class="p">,</span> <span class="n">new_zero_damping</span>
+<a name="ln-40"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">d3_model</span><span class="p">,</span> <span class="n">new_d3_model</span>
+<a name="ln-41"></a>   <span class="k">public</span> <span class="kd">::</span> <span class="n">get_dftd3_version</span>
+<a name="ln-42"></a>
+<a name="ln-43"></a>
+<a name="ln-44"></a><span class="k">end module </span><span class="n">dftd3</span>
 </pre></div>
 
     </section>
@@ -326,7 +331,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-17 13:25  
+             on 2020-11-18 13:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
