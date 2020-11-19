@@ -139,16 +139,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/mzero.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/zero.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/mzero.f90.html'>mzero.f90</a></li>
+     <li><a href='../sourcefile/zero.f90.html'>zero.f90</a></li>
     
-     <li><a href='../module/dftd3_damping_mzero.html'>dftd3_damping_mzero</a></li>
+     <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
     
   
      <li class="active">get_dispersion3</li>
@@ -238,7 +238,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~4"></span>class(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~4"></span>class(<a href='../type/zero_damping_param.html'>zero_damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -253,7 +253,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~12"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~13"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -268,7 +268,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~6"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -283,7 +283,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~6"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -298,7 +298,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~8"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -313,7 +313,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dcn~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dcn~4"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -328,7 +328,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~10"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -343,7 +343,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedcn~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~4"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -358,7 +358,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~9"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -373,7 +373,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~9"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -453,7 +453,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
       <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">mzero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
 
    <span class="c">!&gt; Molecular structure data</span>
    <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
@@ -507,7 +507,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, c6, dc6dcn, energy, 
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-18 13:11  
+             on 2020-11-19 09:59  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
