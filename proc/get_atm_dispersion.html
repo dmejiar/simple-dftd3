@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 5.4% of total for procedures.">121 statements</a>
+    title=" 5.6% of total for procedures.">125 statements</a>
      </li> 
      
      
@@ -378,7 +378,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, rs9, alp, rvdw, c6,
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>energy</strong></td><td><p>Dispersion energy</p></td>
+  <td><strong>energy</strong>(:)</td><td><p>Dispersion energy</p></td>
   
 </tr>
 
@@ -525,7 +525,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, rs9, alp, rvdw, c6,
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
 
    <span class="c">!&gt; Dispersion energy</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
 
    <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
@@ -616,7 +616,9 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, rs9, alp, rvdw, c6,
                      <span class="n">dGjk</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">c9</span> <span class="o">*</span> <span class="p">(</span><span class="o">-</span><span class="n">dang</span> <span class="o">*</span> <span class="n">fdmp</span> <span class="o">+</span> <span class="n">ang</span> <span class="o">*</span> <span class="n">dfdmp</span><span class="p">)</span> <span class="o">/</span> <span class="n">r2jk</span> <span class="o">*</span> <span class="n">vjk</span>
 
                      <span class="n">dE</span> <span class="o">=</span> <span class="n">rr</span> <span class="o">*</span> <span class="n">c9</span> <span class="o">*</span> <span class="n">triple</span>
-                     <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">-</span> <span class="n">dE</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">kat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">kat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
 
                      <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dGij</span> <span class="o">-</span> <span class="n">dGik</span>
                      <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dGij</span> <span class="o">-</span> <span class="n">dGjk</span>
@@ -684,7 +686,9 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, rs9, alp, rvdw, c6,
                      <span class="n">rr</span> <span class="o">=</span> <span class="n">ang</span><span class="o">*</span><span class="n">fdmp</span>
 
                      <span class="n">dE</span> <span class="o">=</span> <span class="n">rr</span> <span class="o">*</span> <span class="n">c9</span> <span class="o">*</span> <span class="n">triple</span>
-                     <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">-</span> <span class="n">dE</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
+                     <span class="n">energy</span><span class="p">(</span><span class="n">kat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">kat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dE</span><span class="o">/</span><span class="mi">3</span>
                   <span class="k">end do</span>
 <span class="k">               end do</span>
 <span class="k">            end do</span>
@@ -714,7 +718,7 @@ public subroutine get_atm_dispersion(mol, trans, cutoff, s9, rs9, alp, rvdw, c6,
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-19 09:59  
+             on 2020-11-23 08:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

@@ -383,7 +383,7 @@
 <a name="ln-112"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
 <a name="ln-113"></a>
 <a name="ln-114"></a>   <span class="c">!&gt; Dispersion energy</span>
-<a name="ln-115"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>
+<a name="ln-115"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
 <a name="ln-116"></a>
 <a name="ln-117"></a>   <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
 <a name="ln-118"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
@@ -434,11 +434,11 @@
 <a name="ln-163"></a>               <span class="n">dG</span><span class="p">(:)</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">gdisp</span><span class="o">*</span><span class="n">vec</span>
 <a name="ln-164"></a>               <span class="n">dS</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="nb">spread</span><span class="p">(</span><span class="n">dG</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="nb">spread</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
 <a name="ln-165"></a>
-<a name="ln-166"></a>               <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<a name="ln-166"></a>               <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
 <a name="ln-167"></a>               <span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dc6dcn</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">edisp</span>
 <a name="ln-168"></a>               <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">+</span> <span class="n">dS</span>
 <a name="ln-169"></a>               <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-170"></a><span class="k">                  </span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<a name="ln-170"></a><span class="k">                  </span><span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
 <a name="ln-171"></a>                  <span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dc6dcn</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">edisp</span>
 <a name="ln-172"></a>                  <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dG</span>
 <a name="ln-173"></a>                  <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dG</span>
@@ -470,9 +470,9 @@
 <a name="ln-199"></a>
 <a name="ln-200"></a>               <span class="n">dE</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">edisp</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
 <a name="ln-201"></a>
-<a name="ln-202"></a>               <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<a name="ln-202"></a>               <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
 <a name="ln-203"></a>               <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-204"></a><span class="k">                  </span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<a name="ln-204"></a><span class="k">                  </span><span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
 <a name="ln-205"></a>               <span class="k">end if</span>
 <a name="ln-206"></a><span class="k">            end do</span>
 <a name="ln-207"></a><span class="k">         end do</span>
@@ -505,7 +505,7 @@
 <a name="ln-234"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
 <a name="ln-235"></a>
 <a name="ln-236"></a>   <span class="c">!&gt; Dispersion energy</span>
-<a name="ln-237"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>
+<a name="ln-237"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
 <a name="ln-238"></a>
 <a name="ln-239"></a>   <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
 <a name="ln-240"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
@@ -541,7 +541,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-19 09:59  
+             on 2020-11-23 08:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

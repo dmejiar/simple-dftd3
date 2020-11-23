@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.6% of total for source files.">58 statements</a>
+    title=" 1.7% of total for source files.">60 statements</a>
      </li> 
      
      
@@ -332,7 +332,7 @@
 <a name="ln-61"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:),</span> <span class="n">dcndr</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:),</span> <span class="n">dcndL</span><span class="p">(:,</span> <span class="p">:,</span> <span class="p">:)</span>
 <a name="ln-62"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">gwdcn</span><span class="p">(:,</span> <span class="p">:)</span>
 <a name="ln-63"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
-<a name="ln-64"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
+<a name="ln-64"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:),</span> <span class="n">energies</span><span class="p">(:)</span>
 <a name="ln-65"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
 <a name="ln-66"></a>
 <a name="ln-67"></a>   <span class="n">mref</span> <span class="o">=</span> <span class="nb">maxval</span><span class="p">(</span><span class="n">disp</span><span class="p">%</span><span class="n">ref</span><span class="p">)</span>
@@ -351,28 +351,31 @@
 <a name="ln-80"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">allocate</span><span class="p">(</span><span class="n">dc6dcn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
 <a name="ln-81"></a>   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">gwdcn</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">)</span>
 <a name="ln-82"></a>
-<a name="ln-83"></a>   <span class="n">energy</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-84"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-85"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
-<a name="ln-86"></a>      <span class="n">dEdcn</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-87"></a>      <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-88"></a>      <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a name="ln-89"></a>   <span class="k">end if</span>
-<a name="ln-90"></a><span class="k">   call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
-<a name="ln-91"></a>   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-92"></a>      <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<a name="ln-93"></a>   <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
-<a name="ln-94"></a>   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion3</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
-<a name="ln-95"></a>      <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<a name="ln-96"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
-<a name="ln-97"></a><span class="k">      call </span><span class="n">d3_gemv</span><span class="p">(</span><span class="n">dcndr</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">)</span>
-<a name="ln-98"></a>      <span class="k">call </span><span class="n">d3_gemv</span><span class="p">(</span><span class="n">dcndL</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">)</span>
-<a name="ln-99"></a>   <span class="k">end if</span>
-<a name="ln-100"></a>
-<a name="ln-101"></a><span class="k">end subroutine </span><span class="n">get_dispersion</span>
-<a name="ln-102"></a>
+<a name="ln-83"></a>   <span class="k">allocate</span><span class="p">(</span><span class="n">energies</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+<a name="ln-84"></a>   <span class="n">energies</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-85"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-86"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
+<a name="ln-87"></a>      <span class="n">dEdcn</span><span class="p">(:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-88"></a>      <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-89"></a>      <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a name="ln-90"></a>   <span class="k">end if</span>
+<a name="ln-91"></a><span class="k">   call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
+<a name="ln-92"></a>   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-93"></a>      <span class="p">&amp;</span> <span class="n">energies</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-94"></a>   <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
+<a name="ln-95"></a>   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion3</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+<a name="ln-96"></a>      <span class="p">&amp;</span> <span class="n">energies</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a name="ln-97"></a>   <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
+<a name="ln-98"></a><span class="k">      call </span><span class="n">d3_gemv</span><span class="p">(</span><span class="n">dcndr</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">)</span>
+<a name="ln-99"></a>      <span class="k">call </span><span class="n">d3_gemv</span><span class="p">(</span><span class="n">dcndL</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">)</span>
+<a name="ln-100"></a>   <span class="k">end if</span>
+<a name="ln-101"></a>
+<a name="ln-102"></a><span class="k">   </span><span class="n">energy</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">energies</span><span class="p">)</span>
 <a name="ln-103"></a>
-<a name="ln-104"></a><span class="k">end module </span><span class="n">dftd3_disp</span>
+<a name="ln-104"></a><span class="k">end subroutine </span><span class="n">get_dispersion</span>
+<a name="ln-105"></a>
+<a name="ln-106"></a>
+<a name="ln-107"></a><span class="k">end module </span><span class="n">dftd3_disp</span>
 </pre></div>
 
     </section>
@@ -391,7 +394,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-19 09:59  
+             on 2020-11-23 08:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

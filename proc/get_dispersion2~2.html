@@ -333,7 +333,7 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   <td></td>
   
   <td></td><td>::</td>
-  <td><strong>energy</strong></td><td><p>Dispersion energy</p></td>
+  <td><strong>energy</strong>(:)</td><td><p>Dispersion energy</p></td>
   
 </tr>
 
@@ -471,7 +471,7 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
 
    <span class="c">!&gt; Dispersion energy</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
 
    <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
@@ -522,11 +522,11 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
                <span class="n">dG</span><span class="p">(:)</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">gdisp</span><span class="o">*</span><span class="n">vec</span>
                <span class="n">dS</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="nb">spread</span><span class="p">(</span><span class="n">dG</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="nb">spread</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
 
-               <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+               <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
                <span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dc6dcn</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">edisp</span>
                <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="n">sigma</span> <span class="o">+</span> <span class="n">dS</span>
                <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">                  </span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<span class="k">                  </span><span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
                   <span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dc6dcn</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">edisp</span>
                   <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dG</span>
                   <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">-</span> <span class="n">dG</span>
@@ -558,9 +558,9 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
 
                <span class="n">dE</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">edisp</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
 
-               <span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+               <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
                <span class="k">if</span> <span class="p">(</span><span class="n">iat</span> <span class="o">/=</span> <span class="n">jat</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">                  </span><span class="n">energy</span> <span class="o">=</span> <span class="n">energy</span> <span class="o">+</span> <span class="n">dE</span>
+<span class="k">                  </span><span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">energy</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">dE</span>
                <span class="k">end if</span>
 <span class="k">            end do</span>
 <span class="k">         end do</span>
@@ -589,7 +589,7 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-11-19 09:59  
+             on 2020-11-23 08:21  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
