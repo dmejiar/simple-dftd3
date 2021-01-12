@@ -286,7 +286,7 @@
 <a name="ln-15"></a><span class="c">! along with s-dftd3.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
 <a name="ln-16"></a>
 <a name="ln-17"></a><span class="k">program </span><span class="n">dftd3_main</span>
-<a name="ln-18"></a>   <span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="n">only</span> <span class="p">:</span> <span class="n">output_unit</span><span class="p">,</span> <span class="n">error_unit</span><span class="p">,</span> <span class="n">input_unit</span>
+<a name="ln-18"></a>   <span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="n">iso_fortran_env</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="n">output_unit</span><span class="p">,</span> <span class="n">error_unit</span><span class="p">,</span> <span class="n">input_unit</span>
 <a name="ln-19"></a>   <span class="k">use </span><span class="n">mctc_env</span>
 <a name="ln-20"></a>   <span class="k">use </span><span class="n">mctc_io</span>
 <a name="ln-21"></a>   <span class="k">use </span><span class="n">dftd3</span>
@@ -333,7 +333,7 @@
 <a name="ln-62"></a>   <span class="k">call </span><span class="n">get_arguments</span><span class="p">(</span><span class="n">input</span><span class="p">,</span> <span class="n">input_format</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">inp</span><span class="p">,</span> <span class="n">echo</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
 <a name="ln-63"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-64"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-65"></a>      <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-65"></a>      <span class="k">error stop</span>
 <a name="ln-66"></a><span class="k">   end if</span>
 <a name="ln-67"></a>
 <a name="ln-68"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
@@ -348,7 +348,7 @@
 <a name="ln-77"></a>   <span class="k">end if</span>
 <a name="ln-78"></a><span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-79"></a><span class="k">      write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-80"></a>      <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-80"></a>      <span class="k">error stop</span>
 <a name="ln-81"></a><span class="k">   end if</span>
 <a name="ln-82"></a><span class="k">   if</span> <span class="p">(</span><span class="n">config</span><span class="p">%</span><span class="n">wrap</span><span class="p">)</span> <span class="k">then</span>
 <a name="ln-83"></a><span class="k">      call </span><span class="n">wrap_to_central_cell</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">)</span>
@@ -360,7 +360,7 @@
 <a name="ln-89"></a><span class="k">         call </span><span class="n">get_zero_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
 <a name="ln-90"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-91"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-92"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-92"></a>            <span class="k">error stop</span>
 <a name="ln-93"></a><span class="k">         end if</span>
 <a name="ln-94"></a><span class="k">      end if</span>
 <a name="ln-95"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">zparam</span><span class="p">)</span>
@@ -372,7 +372,7 @@
 <a name="ln-101"></a><span class="k">         call </span><span class="n">get_mzero_damping</span><span class="p">(</span><span class="n">inp</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">s9</span><span class="p">)</span>
 <a name="ln-102"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-103"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-104"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-104"></a>            <span class="k">error stop</span>
 <a name="ln-105"></a><span class="k">         end if</span>
 <a name="ln-106"></a><span class="k">      end if</span>
 <a name="ln-107"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">mparam</span><span class="p">)</span>
@@ -388,7 +388,7 @@
 <a name="ln-117"></a>         <span class="k">end if</span>
 <a name="ln-118"></a><span class="k">         if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-119"></a><span class="k">            write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
-<a name="ln-120"></a>            <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-120"></a>            <span class="k">error stop</span>
 <a name="ln-121"></a><span class="k">         end if</span>
 <a name="ln-122"></a><span class="k">      end if</span>
 <a name="ln-123"></a><span class="k">      allocate</span><span class="p">(</span><span class="n">rparam</span><span class="p">)</span>
@@ -840,7 +840,7 @@
 <a name="ln-569"></a><span class="k">   if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">input</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-570"></a><span class="k">      if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-571"></a><span class="k">         call </span><span class="n">help</span><span class="p">(</span><span class="n">output_unit</span><span class="p">)</span>
-<a name="ln-572"></a>         <span class="n">error</span> <span class="k">stop</span>
+<a name="ln-572"></a>         <span class="k">error stop</span>
 <a name="ln-573"></a><span class="k">      end if</span>
 <a name="ln-574"></a><span class="k">   end if</span>
 <a name="ln-575"></a>
@@ -860,13 +860,13 @@
     <footer>
       <div class="container">
       <div class="row">
-        <div class="col-xs-6 col-md-4"><p>&copy; 2020 
+        <div class="col-xs-6 col-md-4"><p>&copy; 2021 
                                           </p></div>
         <div class="col-xs-6 col-md-4 col-md-push-4">
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2020-12-31 11:53  
+             on 2021-01-12 09:50  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
