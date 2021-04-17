@@ -552,10 +552,10 @@
 <a name="ln-281"></a>         <span class="n">gradlatt</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">sigma</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">inv_lat</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="p">&amp;</span>
 <a name="ln-282"></a>            <span class="p">&amp;</span> <span class="o">+</span> <span class="n">sigma</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">inv_lat</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="p">&amp;</span>
 <a name="ln-283"></a>            <span class="p">&amp;</span> <span class="o">+</span> <span class="n">sigma</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">inv_lat</span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
-<a name="ln-284"></a>      <span class="n">enddo</span>
-<a name="ln-285"></a>   <span class="n">enddo</span>
+<a name="ln-284"></a>      <span class="k">enddo</span>
+<a name="ln-285"></a><span class="k">   enddo</span>
 <a name="ln-286"></a>
-<a name="ln-287"></a>   <span class="n">icycle</span> <span class="o">=</span> <span class="mi">1</span>
+<a name="ln-287"></a><span class="k">   </span><span class="n">icycle</span> <span class="o">=</span> <span class="mi">1</span>
 <a name="ln-288"></a>   <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
 <a name="ln-289"></a>   <span class="n">escf</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 <a name="ln-290"></a>
@@ -567,16 +567,16 @@
 <a name="ln-296"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">exit </span><span class="n">read_file</span>
 <a name="ln-297"></a>         <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
 <a name="ln-298"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="s1">&#39;cycle&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">line_number</span> <span class="o">=</span> <span class="n">i</span>
-<a name="ln-299"></a>      <span class="n">enddo</span> <span class="n">read_file</span>
+<a name="ln-299"></a>      <span class="k">enddo </span><span class="n">read_file</span>
 <a name="ln-300"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">line_number</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <a name="ln-301"></a><span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
 <a name="ln-302"></a>         <span class="k">return</span>
-<a name="ln-303"></a><span class="k">      </span><span class="n">endif</span>
+<a name="ln-303"></a><span class="k">      endif</span>
 <a name="ln-304"></a>
-<a name="ln-305"></a>      <span class="k">rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+<a name="ln-305"></a><span class="k">      rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-306"></a>      <span class="n">skip_lines</span><span class="p">:</span> <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">line_number</span><span class="o">-</span><span class="mi">1</span>
 <a name="ln-307"></a>         <span class="k">read</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-<a name="ln-308"></a>      <span class="n">enddo</span> <span class="n">skip_lines</span>
+<a name="ln-308"></a>      <span class="k">enddo </span><span class="n">skip_lines</span>
 <a name="ln-309"></a>      <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-310"></a>      <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">17</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">icycle</span>
 <a name="ln-311"></a>      <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">33</span><span class="p">:</span><span class="mi">51</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">escf</span>
@@ -584,35 +584,35 @@
 <a name="ln-313"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
 <a name="ln-314"></a>         <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-315"></a>         <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">dlat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">dlat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">dlat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-316"></a>      <span class="n">enddo</span>
-<a name="ln-317"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">dlat</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-316"></a>      <span class="k">enddo</span>
+<a name="ln-317"></a><span class="k">      if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">dlat</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-318"></a><span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
 <a name="ln-319"></a>         <span class="k">return</span>
-<a name="ln-320"></a><span class="k">      </span><span class="n">endif</span>
-<a name="ln-321"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<a name="ln-320"></a><span class="k">      endif</span>
+<a name="ln-321"></a><span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
 <a name="ln-322"></a>         <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-323"></a>         <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">glat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">glat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">glat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-324"></a>      <span class="n">enddo</span>
-<a name="ln-325"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<a name="ln-324"></a>      <span class="k">enddo</span>
+<a name="ln-325"></a><span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
 <a name="ln-326"></a>         <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-327"></a>         <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
-<a name="ln-328"></a>      <span class="n">enddo</span>
-<a name="ln-329"></a>      <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+<a name="ln-328"></a>      <span class="k">enddo</span>
+<a name="ln-329"></a><span class="k">      backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-330"></a>   <span class="k">else</span>
 <a name="ln-331"></a><span class="k">      open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">igrad</span><span class="p">,</span><span class="k">file</span><span class="o">=</span><span class="n">fname</span><span class="p">)</span>
 <a name="ln-332"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$gradlatt&quot;)&#39;</span><span class="p">)</span>
-<a name="ln-333"></a>   <span class="n">endif</span>
+<a name="ln-333"></a>   <span class="k">endif</span>
 <a name="ln-334"></a>
-<a name="ln-335"></a>   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+<a name="ln-335"></a><span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
 <a name="ln-336"></a>                   <span class="s1">&#39;&quot;|dE/dlatt| =&quot;,f10.6)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
 <a name="ln-337"></a>      <span class="n">icycle</span><span class="p">,</span> <span class="n">energy</span><span class="o">+</span><span class="n">escf</span><span class="p">,</span> <span class="nb">norm2</span><span class="p">(</span><span class="n">gradlatt</span><span class="o">+</span><span class="n">glat</span><span class="p">)</span>
 <a name="ln-338"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
 <a name="ln-339"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3(F20.14,2x))&#39;</span><span class="p">)</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-340"></a>   <span class="n">enddo</span>
-<a name="ln-341"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
+<a name="ln-340"></a>   <span class="k">enddo</span>
+<a name="ln-341"></a><span class="k">   do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span>
 <a name="ln-342"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3D22.13)&#39;</span><span class="p">)</span> <span class="n">gradlatt</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">glat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradlatt</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">glat</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradlatt</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">glat</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-343"></a>   <span class="n">enddo</span>
-<a name="ln-344"></a>   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
+<a name="ln-343"></a>   <span class="k">enddo</span>
+<a name="ln-344"></a><span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
 <a name="ln-345"></a>   <span class="k">close</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-346"></a>
 <a name="ln-347"></a><span class="k">end subroutine </span><span class="n">turbomole_gradlatt</span>
@@ -646,16 +646,16 @@
 <a name="ln-375"></a>         <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">exit </span><span class="n">read_file</span>
 <a name="ln-376"></a>         <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
 <a name="ln-377"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="s1">&#39;cycle&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">line_number</span> <span class="o">=</span> <span class="n">i</span>
-<a name="ln-378"></a>      <span class="n">enddo</span> <span class="n">read_file</span>
+<a name="ln-378"></a>      <span class="k">enddo </span><span class="n">read_file</span>
 <a name="ln-379"></a>      <span class="k">if</span> <span class="p">(</span><span class="n">line_number</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <a name="ln-380"></a><span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
 <a name="ln-381"></a>         <span class="k">return</span>
-<a name="ln-382"></a><span class="k">      </span><span class="n">endif</span>
+<a name="ln-382"></a><span class="k">      endif</span>
 <a name="ln-383"></a>
-<a name="ln-384"></a>      <span class="k">rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+<a name="ln-384"></a><span class="k">      rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-385"></a>      <span class="n">skip_lines</span><span class="p">:</span> <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">line_number</span><span class="o">-</span><span class="mi">1</span>
 <a name="ln-386"></a>         <span class="k">read</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-<a name="ln-387"></a>      <span class="n">enddo</span> <span class="n">skip_lines</span>
+<a name="ln-387"></a>      <span class="k">enddo </span><span class="n">skip_lines</span>
 <a name="ln-388"></a>      <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-389"></a>      <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">17</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">icycle</span>
 <a name="ln-390"></a>      <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">33</span><span class="p">:</span><span class="mi">51</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">escf</span>
@@ -664,35 +664,35 @@
 <a name="ln-393"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
 <a name="ln-394"></a>         <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-395"></a>         <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">xyz</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">xyz</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-396"></a>      <span class="n">enddo</span>
-<a name="ln-397"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">xyz</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
+<a name="ln-396"></a>      <span class="k">enddo</span>
+<a name="ln-397"></a><span class="k">      if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">xyz</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
 <a name="ln-398"></a><span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
 <a name="ln-399"></a>         <span class="k">return</span>
-<a name="ln-400"></a><span class="k">      </span><span class="n">endif</span>
-<a name="ln-401"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a name="ln-400"></a><span class="k">      endif</span>
+<a name="ln-401"></a><span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
 <a name="ln-402"></a>         <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
 <a name="ln-403"></a>         <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">gscf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gscf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gscf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-404"></a>      <span class="n">enddo</span>
-<a name="ln-405"></a>      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a name="ln-404"></a>      <span class="k">enddo</span>
+<a name="ln-405"></a><span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
 <a name="ln-406"></a>         <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-407"></a>         <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
-<a name="ln-408"></a>      <span class="n">enddo</span>
-<a name="ln-409"></a>      <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+<a name="ln-408"></a>      <span class="k">enddo</span>
+<a name="ln-409"></a><span class="k">      backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-410"></a>   <span class="k">else</span>
 <a name="ln-411"></a><span class="k">      open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">igrad</span><span class="p">,</span><span class="k">file</span><span class="o">=</span><span class="n">fname</span><span class="p">)</span>
 <a name="ln-412"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$grad&quot;)&#39;</span><span class="p">)</span>
-<a name="ln-413"></a>   <span class="n">endif</span>
+<a name="ln-413"></a>   <span class="k">endif</span>
 <a name="ln-414"></a>
-<a name="ln-415"></a>   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+<a name="ln-415"></a><span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
 <a name="ln-416"></a>                   <span class="s1">&#39;&quot;|dE/dxyz| =&quot;,f10.6)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
 <a name="ln-417"></a>      <span class="n">icycle</span><span class="p">,</span> <span class="n">energy</span><span class="o">+</span><span class="n">escf</span><span class="p">,</span> <span class="nb">norm2</span><span class="p">(</span><span class="n">gradient</span><span class="o">+</span><span class="n">gscf</span><span class="p">)</span>
 <a name="ln-418"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
 <a name="ln-419"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3(F20.14,2x),4x,a2)&#39;</span><span class="p">)</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">sym</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-420"></a>   <span class="n">enddo</span>
-<a name="ln-421"></a>   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a name="ln-420"></a>   <span class="k">enddo</span>
+<a name="ln-421"></a><span class="k">   do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
 <a name="ln-422"></a>      <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3D22.13)&#39;</span><span class="p">)</span> <span class="n">gradient</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-<a name="ln-423"></a>   <span class="n">enddo</span>
-<a name="ln-424"></a>   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
+<a name="ln-423"></a>   <span class="k">enddo</span>
+<a name="ln-424"></a><span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
 <a name="ln-425"></a>   <span class="k">close</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 <a name="ln-426"></a>
 <a name="ln-427"></a><span class="k">end subroutine </span><span class="n">turbomole_gradient</span>
@@ -716,14 +716,14 @@
 <a name="ln-445"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <a name="ln-446"></a><span class="k">         if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iostat</span><span class="p">))</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span>
 <a name="ln-447"></a><span class="nb">         </span><span class="k">return</span> <span class="c">! an error occurred</span>
-<a name="ln-448"></a>      <span class="n">endif</span>
-<a name="ln-449"></a>      <span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">//</span> <span class="n">buffer</span><span class="p">(:</span><span class="n">size</span><span class="p">)</span>
+<a name="ln-448"></a>      <span class="k">endif</span>
+<a name="ln-449"></a><span class="k">      </span><span class="n">line</span> <span class="o">=</span> <span class="n">line</span> <span class="o">//</span> <span class="n">buffer</span><span class="p">(:</span><span class="n">size</span><span class="p">)</span>
 <a name="ln-450"></a>      <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">lt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
 <a name="ln-451"></a><span class="k">         if</span> <span class="p">(</span><span class="nb">is_iostat_eor</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span> <span class="nb">stat</span> <span class="o">=</span> <span class="mi">0</span>
 <a name="ln-452"></a>         <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">iostat</span><span class="p">))</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span>
 <a name="ln-453"></a><span class="nb">         </span><span class="k">return</span>
-<a name="ln-454"></a><span class="k">      </span><span class="n">endif</span>
-<a name="ln-455"></a>   <span class="n">enddo</span>
+<a name="ln-454"></a><span class="k">      endif</span>
+<a name="ln-455"></a><span class="k">   enddo</span>
 <a name="ln-456"></a>
 <a name="ln-457"></a><span class="k">end subroutine </span><span class="n">getline</span>
 <a name="ln-458"></a>
@@ -847,7 +847,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-01-21 12:07  
+             on 2021-04-17 17:46  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

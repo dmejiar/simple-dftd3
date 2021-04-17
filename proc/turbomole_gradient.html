@@ -236,7 +236,7 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~7"></span>type(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~8"></span>type(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -266,7 +266,7 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~6"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -281,7 +281,7 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~5"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~6"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -400,16 +400,16 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
          <span class="k">if</span> <span class="p">(</span><span class="n">err</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span> <span class="k">exit </span><span class="n">read_file</span>
          <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
          <span class="k">if</span> <span class="p">(</span><span class="nb">index</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="s1">&#39;cycle&#39;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="n">line_number</span> <span class="o">=</span> <span class="n">i</span>
-      <span class="n">enddo</span> <span class="n">read_file</span>
+      <span class="k">enddo </span><span class="n">read_file</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">line_number</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
          <span class="k">return</span>
-<span class="k">      </span><span class="n">endif</span>
+<span class="k">      endif</span>
 
-      <span class="k">rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+<span class="k">      rewind</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
       <span class="n">skip_lines</span><span class="p">:</span> <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">line_number</span><span class="o">-</span><span class="mi">1</span>
          <span class="k">read</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-      <span class="n">enddo</span> <span class="n">skip_lines</span>
+      <span class="k">enddo </span><span class="n">skip_lines</span>
       <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
       <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">17</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">icycle</span>
       <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">(</span><span class="mi">33</span><span class="p">:</span><span class="mi">51</span><span class="p">),</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">escf</span>
@@ -418,35 +418,35 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
       <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
          <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
          <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">xyz</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">xyz</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">enddo</span>
-      <span class="k">if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">xyz</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
+      <span class="k">enddo</span>
+<span class="k">      if</span> <span class="p">(</span><span class="nb">any</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">xyz</span><span class="o">-</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0e-8_wp</span><span class="p">))</span> <span class="k">then</span>
 <span class="k">         </span><span class="nb">stat</span> <span class="o">=</span> <span class="mi">1</span>
          <span class="k">return</span>
-<span class="k">      </span><span class="n">endif</span>
-      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<span class="k">      endif</span>
+<span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
          <span class="k">call </span><span class="n">getline</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="n">line</span><span class="p">)</span>
          <span class="k">read</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">err</span><span class="p">)</span> <span class="n">gscf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gscf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gscf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-      <span class="n">enddo</span>
-      <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+      <span class="k">enddo</span>
+<span class="k">      do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
          <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
          <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
-      <span class="n">enddo</span>
-      <span class="k">backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
+      <span class="k">enddo</span>
+<span class="k">      backspace</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
    <span class="k">else</span>
 <span class="k">      open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">igrad</span><span class="p">,</span><span class="k">file</span><span class="o">=</span><span class="n">fname</span><span class="p">)</span>
       <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$grad&quot;)&#39;</span><span class="p">)</span>
-   <span class="n">endif</span>
+   <span class="k">endif</span>
 
-   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
+<span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(2x,&quot;cycle =&quot;,1x,i6,4x,&quot;SCF energy =&quot;,f18.11,3x,&#39;</span><span class="o">//</span><span class="p">&amp;</span>
                    <span class="s1">&#39;&quot;|dE/dxyz| =&quot;,f10.6)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
       <span class="n">icycle</span><span class="p">,</span> <span class="n">energy</span><span class="o">+</span><span class="n">escf</span><span class="p">,</span> <span class="nb">norm2</span><span class="p">(</span><span class="n">gradient</span><span class="o">+</span><span class="n">gscf</span><span class="p">)</span>
    <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
       <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3(F20.14,2x),4x,a2)&#39;</span><span class="p">)</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">mol</span><span class="p">%</span><span class="n">sym</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-   <span class="n">enddo</span>
-   <span class="k">do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+   <span class="k">enddo</span>
+<span class="k">   do </span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
       <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(3D22.13)&#39;</span><span class="p">)</span> <span class="n">gradient</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradient</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">i</span><span class="p">),</span><span class="n">gradient</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="n">gscf</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="n">i</span><span class="p">)</span>
-   <span class="n">enddo</span>
-   <span class="k">write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
+   <span class="k">enddo</span>
+<span class="k">   write</span><span class="p">(</span><span class="n">igrad</span><span class="p">,</span><span class="s1">&#39;(&quot;$end&quot;)&#39;</span><span class="p">)</span>
    <span class="k">close</span><span class="p">(</span><span class="n">igrad</span><span class="p">)</span>
 
 <span class="k">end subroutine </span><span class="n">turbomole_gradient</span>
@@ -471,7 +471,7 @@ public subroutine turbomole_gradient(mol, fname, energy, gradient, stat)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-01-21 12:07  
+             on 2021-04-17 17:46  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
