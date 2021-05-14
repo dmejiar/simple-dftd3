@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 2.0% of total for procedures.">45 statements</a>
+    title=" 2.1% of total for procedures.">45 statements</a>
      </li> 
      
      
@@ -236,7 +236,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~3"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~8"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -251,7 +251,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-disp"></span>class(<a href='../type/d3_model.html'>d3_model</a>),</td>
+  <td><span class="anchor" id="variable-disp~4"></span>class(<a href='../type/d3_model.html'>d3_model</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -266,7 +266,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-param"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td><span class="anchor" id="variable-param~6"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -296,7 +296,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~7"></span>real(kind=wp),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -311,7 +311,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~6"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td>optional</td>
   
@@ -326,7 +326,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~6"></span>real(kind=wp),</td>
   <td>intent(out),</td>
   <td>optional</td>
   
@@ -458,10 +458,10 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
       <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
    <span class="k">end if</span>
 <span class="k">   call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp2</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rvdw</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
       <span class="p">&amp;</span> <span class="n">energies</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
    <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion3</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+   <span class="k">call </span><span class="n">param</span><span class="p">%</span><span class="n">get_dispersion3</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">%</span><span class="n">disp3</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rvdw</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
       <span class="p">&amp;</span> <span class="n">energies</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
    <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
 <span class="k">      call </span><span class="n">d3_gemv</span><span class="p">(</span><span class="n">dcndr</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">beta</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">)</span>
@@ -492,7 +492,7 @@ public subroutine get_dispersion(mol, disp, param, cutoff, energy, gradient, sig
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-04-17 17:46  
+             on 2021-05-14 12:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

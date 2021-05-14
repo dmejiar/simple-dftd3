@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p>12.7% of total for derived types.</p>Including implementation: 115 statements, 22.4% of total for derived types.">13 statements</a>
+    title="<p>11.5% of total for derived types.</p>Including implementation: 117 statements, 22.5% of total for derived types.">11 statements</a>
      </li> 
      
      
@@ -181,13 +181,9 @@
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-alp~4">alp</a>
       
-      <a class="list-group-item" href="../type/zero_damping_param.html#variable-r4r2~4">r4r2</a>
-      
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-rs6~3">rs6</a>
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-rs8~3">rs8</a>
-      
-      <a class="list-group-item" href="../type/zero_damping_param.html#variable-rvdw~4">rvdw</a>
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-s6~4">s6</a>
       
@@ -267,13 +263,9 @@
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-alp~4">alp</a>
       
-      <a class="list-group-item" href="../type/zero_damping_param.html#variable-r4r2~4">r4r2</a>
-      
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-rs6~3">rs6</a>
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-rs8~3">rs8</a>
-      
-      <a class="list-group-item" href="../type/zero_damping_param.html#variable-rvdw~4">rvdw</a>
       
       <a class="list-group-item" href="../type/zero_damping_param.html#variable-s6~4">s6</a>
       
@@ -363,20 +355,6 @@
   
 <tr>
   
-  <td><span class="anchor" id="variable-r4r2~4"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>allocatable</td><td>::</td>
-  <td><strong>r4r2</strong>(:)</td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
   <td><span class="anchor" id="variable-rs6~3"></span>real(kind=wp),</td>
   
   <td>public</td>
@@ -396,20 +374,6 @@
   <td>public</td>
   <td></td><td>::</td>
   <td><strong>rs8</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-rvdw~4"></span>real(kind=wp),</td>
-  
-  <td>public,</td>
-  <td>allocatable</td><td>::</td>
-  <td><strong>rvdw</strong>(:,:)</td><td></td><td></td><td></td>
   
 </tr>
 
@@ -491,7 +455,7 @@
           
     
     <h3>
-public subroutine <a href='../proc/get_dispersion2~3.html'>get_dispersion2</a>(self, mol, trans, cutoff, c6, dc6dcn, energy, dEdcn, gradient, sigma)
+public subroutine <a href='../proc/get_dispersion2~3.html'>get_dispersion2</a>(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6dcn, energy, dEdcn, gradient, sigma)
     
     
    
@@ -576,6 +540,36 @@ public subroutine <a href='../proc/get_dispersion2~3.html'>get_dispersion2</a>(s
   
   <td></td><td>::</td>
   <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for C8 extrapolation</p></td>
   
 </tr>
 
@@ -705,7 +699,7 @@ public subroutine <a href='../proc/get_dispersion2~3.html'>get_dispersion2</a>(s
           
     
     <h3>
-public subroutine <a href='../proc/get_dispersion3~3.html'>get_dispersion3</a>(self, mol, trans, cutoff, c6, dc6dcn, energy, dEdcn, gradient, sigma)
+public subroutine <a href='../proc/get_dispersion3~3.html'>get_dispersion3</a>(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6dcn, energy, dEdcn, gradient, sigma)
     
     
    
@@ -790,6 +784,36 @@ public subroutine <a href='../proc/get_dispersion3~3.html'>get_dispersion3</a>(s
   
   <td></td><td>::</td>
   <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for C8 extrapolation</p></td>
   
 </tr>
 
@@ -911,8 +935,6 @@ public subroutine <a href='../proc/get_dispersion3~3.html'>get_dispersion3</a>(s
       <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rs6</span>
       <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rs8</span>
       <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">alp</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
-      <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
    <span class="k">contains</span>
 
       <span class="c">!&gt; Evaluate pairwise dispersion energy expression</span>
@@ -942,7 +964,7 @@ public subroutine <a href='../proc/get_dispersion3~3.html'>get_dispersion3</a>(s
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-04-17 17:46  
+             on 2021-05-14 12:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

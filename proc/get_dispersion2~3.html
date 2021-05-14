@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.0% of total for procedures.">89 statements</a>
+    title=" 4.2% of total for procedures.">91 statements</a>
      </li> 
      
      
@@ -207,7 +207,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, dEdcn, gradient, sigma)
+public subroutine get_dispersion2(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6dcn, energy, dEdcn, gradient, sigma)
     
     
    
@@ -289,6 +289,36 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
   
   <td></td><td>::</td>
   <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rvdw~8"></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-r4r2~7"></span>real(kind=wp),</td>
+  <td></td>
+  <td></td>
+  
+  <td>allocatable</td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for C8 extrapolation</p></td>
   
 </tr>
 
@@ -449,7 +479,7 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_dispersion2</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rvdw</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
       <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
@@ -463,6 +493,12 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
 
    <span class="c">!&gt; Real space cutoff</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+
+   <span class="c">!&gt; Van-der-Waals radii for damping function</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
+
+   <span class="c">!&gt; Expectation values for C8 extrapolation</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
 
    <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
@@ -497,15 +533,15 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
    <span class="k">if</span> <span class="p">(</span><span class="n">grad</span><span class="p">)</span> <span class="k">then</span>
       <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
       <span class="c">!$omp reduction(+:energy, gradient, sigma, dEdcn) &amp;</span>
-      <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, alp6, alp8) &amp;</span>
+      <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, alp6, alp8, r4r2, rvdw) &amp;</span>
       <span class="c">!$omp private(iat, jat, izp, jzp, jtr, vec, r2, r1, r6, r8, t6, t8, d6, &amp;</span>
       <span class="c">!$omp&amp; d8, f6, f8, edisp, gdisp, r0ij, rrij, c6ij, dE, dG, dS)</span>
       <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
          <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
          <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
             <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
-            <span class="n">rrij</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
-            <span class="n">r0ij</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">jzp</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
+            <span class="n">rrij</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
+            <span class="n">r0ij</span> <span class="o">=</span> <span class="n">rvdw</span><span class="p">(</span><span class="n">jzp</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
             <span class="n">c6ij</span> <span class="o">=</span> <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span>
             <span class="k">do </span><span class="n">jtr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                <span class="n">vec</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span><span class="p">(:,</span> <span class="n">jtr</span><span class="p">))</span>
@@ -549,15 +585,15 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
 <span class="k">      end do</span>
 <span class="k">   else</span>
       <span class="c">!$omp parallel do schedule(runtime) default(none) reduction(+:energy) &amp;</span>
-      <span class="c">!$omp shared(mol, self, c6, trans, cutoff2, alp6, alp8) &amp;</span>
+      <span class="c">!$omp shared(mol, self, c6, trans, cutoff2, alp6, alp8, rvdw, r4r2) &amp;</span>
       <span class="c">!$omp private(iat, jat, izp, jzp, jtr, vec, r2, r1, r6, r8, t6, t8, f6, &amp;</span>
       <span class="c">!$omp&amp; f8, edisp, r0ij, rrij, c6ij, dE)</span>
       <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
          <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
          <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
             <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
-            <span class="n">rrij</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
-            <span class="n">r0ij</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">jzp</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
+            <span class="n">rrij</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
+            <span class="n">r0ij</span> <span class="o">=</span> <span class="n">rvdw</span><span class="p">(</span><span class="n">jzp</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
             <span class="n">c6ij</span> <span class="o">=</span> <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span>
             <span class="k">do </span><span class="n">jtr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
                <span class="n">vec</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span><span class="p">(:,</span> <span class="n">jtr</span><span class="p">))</span>
@@ -609,7 +645,7 @@ public subroutine get_dispersion2(self, mol, trans, cutoff, c6, dc6dcn, energy, 
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-04-17 17:46  
+             on 2021-05-14 12:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

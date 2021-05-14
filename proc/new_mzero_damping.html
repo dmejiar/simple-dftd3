@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.2% of total for procedures.">27 statements</a>
+    title=" 0.5% of total for procedures.">11 statements</a>
      </li> 
      
      
@@ -207,7 +207,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-public subroutine new_mzero_damping(self, param, num)
+public subroutine new_mzero_damping(self, param)
     
     
    
@@ -238,7 +238,7 @@ public subroutine new_mzero_damping(self, param, num)
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~5"></span>type(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~8"></span>type(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -253,27 +253,12 @@ public subroutine new_mzero_damping(self, param, num)
   
 <tr>
   
-  <td><span class="anchor" id="variable-param~7"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
+  <td><span class="anchor" id="variable-param~8"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
   <td></td><td>::</td>
   <td><strong>param</strong></td><td><p>Parameters</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-num"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>num</strong>(:)</td><td><p>Atomic numbers</p></td>
   
 </tr>
 
@@ -344,18 +329,13 @@ public subroutine new_mzero_damping(self, param, num)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">new_mzero_damping</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="n">num</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">new_mzero_damping</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">param</span><span class="p">)</span>
 
    <span class="c">!&gt; Modified zero damping parameters</span>
    <span class="k">type</span><span class="p">(</span><span class="n">mzero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
 
    <span class="c">!&gt; Parameters</span>
    <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">param</span>
-
-   <span class="c">!&gt; Atomic numbers</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">num</span><span class="p">(:)</span>
-
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">isp</span><span class="p">,</span> <span class="n">jsp</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span>
 
    <span class="n">self</span><span class="p">%</span><span class="n">s6</span> <span class="o">=</span> <span class="n">param</span><span class="p">%</span><span class="n">s6</span>   
    <span class="n">self</span><span class="p">%</span><span class="n">s8</span> <span class="o">=</span> <span class="n">param</span><span class="p">%</span><span class="n">s8</span>   
@@ -364,22 +344,6 @@ public subroutine new_mzero_damping(self, param, num)
    <span class="n">self</span><span class="p">%</span><span class="n">rs8</span> <span class="o">=</span> <span class="n">param</span><span class="p">%</span><span class="n">rs8</span>  
    <span class="n">self</span><span class="p">%</span><span class="n">alp</span> <span class="o">=</span> <span class="n">param</span><span class="p">%</span><span class="n">alp</span>  
    <span class="n">self</span><span class="p">%</span><span class="n">bet</span> <span class="o">=</span> <span class="n">param</span><span class="p">%</span><span class="n">bet</span>
-
-   <span class="k">allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">num</span><span class="p">)))</span>
-   <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-      <span class="n">izp</span> <span class="o">=</span> <span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
-      <span class="n">self</span><span class="p">%</span><span class="n">r4r2</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_r4r2_val</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
-   <span class="k">end do</span>
-
-<span class="k">   allocate</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">num</span><span class="p">),</span> <span class="n">size</span><span class="p">(</span><span class="n">num</span><span class="p">)))</span>
-   <span class="k">do </span><span class="n">isp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
-      <span class="n">izp</span> <span class="o">=</span> <span class="n">num</span><span class="p">(</span><span class="n">isp</span><span class="p">)</span>
-      <span class="k">do </span><span class="n">jsp</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">isp</span>
-         <span class="n">jzp</span> <span class="o">=</span> <span class="n">num</span><span class="p">(</span><span class="n">jsp</span><span class="p">)</span>
-         <span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">jsp</span><span class="p">,</span> <span class="n">isp</span><span class="p">)</span> <span class="o">=</span> <span class="n">get_vdw_rad</span><span class="p">(</span><span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">)</span>
-         <span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">isp</span><span class="p">,</span> <span class="n">jsp</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">rvdw</span><span class="p">(</span><span class="n">jsp</span><span class="p">,</span> <span class="n">isp</span><span class="p">)</span>
-      <span class="k">end do</span>
-<span class="k">   end do</span>
 
 <span class="k">end subroutine </span><span class="n">new_mzero_damping</span>
 </pre></div>
@@ -403,7 +367,7 @@ public subroutine new_mzero_damping(self, param, num)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-04-17 17:46  
+             on 2021-05-14 12:01  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
