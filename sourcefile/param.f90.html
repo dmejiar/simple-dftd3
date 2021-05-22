@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="13.2% of total for source files.">463 statements</a>
+    title="13.8% of total for source files.">490 statements</a>
      </li> 
      
      
@@ -344,7 +344,7 @@
 <a id="ln-73" name="ln-73"></a>         <span class="n">lc_method</span><span class="p">(</span><span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">method</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span>
 <a id="ln-74" name="ln-74"></a>      <span class="k">end if</span>
 <a id="ln-75" name="ln-75"></a><span class="k">   end do</span>
-<a id="ln-76" name="ln-76"></a><span class="k">   select case</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">lc_method</span><span class="p">))</span>
+<a id="ln-76" name="ln-76"></a><span class="k">   select case</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">lowercase</span><span class="p">(</span><span class="n">lc_method</span><span class="p">)))</span>
 <a id="ln-77" name="ln-77"></a>   <span class="k">case </span><span class="n">default</span><span class="p">;</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_invalid</span>
 <a id="ln-78" name="ln-78"></a>   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b1b95&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b1b95_df</span>
 <a id="ln-79" name="ln-79"></a>   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b2gpplyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b2gpplyp_df</span>
@@ -765,7 +765,39 @@
 <a id="ln-494" name="ln-494"></a><span class="k">end subroutine </span><span class="n">get_mzero_damping</span>
 <a id="ln-495" name="ln-495"></a>
 <a id="ln-496" name="ln-496"></a>
-<a id="ln-497" name="ln-497"></a><span class="k">end module </span><span class="n">dftd3_param</span>
+<a id="ln-497" name="ln-497"></a><span class="c">!&gt; Convert string to lower case</span>
+<a id="ln-498" name="ln-498"></a><span class="k">pure function </span><span class="n">lowercase</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">lcstr</span><span class="p">)</span>
+<a id="ln-499" name="ln-499"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">str</span>
+<a id="ln-500" name="ln-500"></a>   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">str</span><span class="p">))</span> <span class="kd">::</span> <span class="n">lcstr</span>
+<a id="ln-501" name="ln-501"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ilen</span><span class="p">,</span> <span class="n">ioffset</span><span class="p">,</span> <span class="n">iquote</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">iav</span><span class="p">,</span> <span class="n">iqc</span>
+<a id="ln-502" name="ln-502"></a>
+<a id="ln-503" name="ln-503"></a>   <span class="n">ilen</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+<a id="ln-504" name="ln-504"></a>   <span class="n">ioffset</span><span class="o">=</span><span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">-</span><span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+<a id="ln-505" name="ln-505"></a>   <span class="n">iquote</span><span class="o">=</span><span class="mi">0</span>
+<a id="ln-506" name="ln-506"></a>   <span class="n">lcstr</span><span class="o">=</span><span class="n">str</span>
+<a id="ln-507" name="ln-507"></a>   <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ilen</span>
+<a id="ln-508" name="ln-508"></a>      <span class="n">iav</span><span class="o">=</span><span class="nb">iachar</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">))</span>
+<a id="ln-509" name="ln-509"></a>      <span class="k">if</span><span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">iav</span><span class="o">==</span><span class="mi">34</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="n">iav</span><span class="o">==</span><span class="mi">39</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-510" name="ln-510"></a><span class="k">         </span><span class="n">iquote</span><span class="o">=</span><span class="mi">1</span>
+<a id="ln-511" name="ln-511"></a>         <span class="n">iqc</span><span class="o">=</span><span class="n">iav</span>
+<a id="ln-512" name="ln-512"></a>        <span class="k">cycle</span>
+<a id="ln-513" name="ln-513"></a><span class="k">      endif</span>
+<a id="ln-514" name="ln-514"></a><span class="k">      if</span><span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">1</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">iav</span><span class="o">==</span><span class="n">iqc</span><span class="p">)</span> <span class="k">then</span>
+<a id="ln-515" name="ln-515"></a><span class="k">         </span><span class="n">iquote</span><span class="o">=</span><span class="mi">0</span>
+<a id="ln-516" name="ln-516"></a>         <span class="k">cycle</span>
+<a id="ln-517" name="ln-517"></a><span class="k">      endif</span>
+<a id="ln-518" name="ln-518"></a><span class="k">      if</span> <span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">cycle</span>
+<a id="ln-519" name="ln-519"></a><span class="k">      if</span><span class="p">(</span><span class="n">iav</span> <span class="o">&gt;=</span> <span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">iav</span> <span class="o">&lt;=</span> <span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-520" name="ln-520"></a><span class="k">         </span><span class="n">lcstr</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="nb">achar</span><span class="p">(</span><span class="n">iav</span><span class="o">-</span><span class="n">ioffset</span><span class="p">)</span>
+<a id="ln-521" name="ln-521"></a>      <span class="k">else</span>
+<a id="ln-522" name="ln-522"></a><span class="k">         </span><span class="n">lcstr</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">str</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span>
+<a id="ln-523" name="ln-523"></a>      <span class="k">endif</span>
+<a id="ln-524" name="ln-524"></a><span class="k">   enddo</span>
+<a id="ln-525" name="ln-525"></a>
+<a id="ln-526" name="ln-526"></a><span class="k">end function </span><span class="n">lowercase</span>
+<a id="ln-527" name="ln-527"></a>
+<a id="ln-528" name="ln-528"></a>
+<a id="ln-529" name="ln-529"></a><span class="k">end module </span><span class="n">dftd3_param</span>
 </pre></div>
 
     </section>
@@ -784,7 +816,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-05-14 12:06  
+             on 2021-05-22 15:59  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>

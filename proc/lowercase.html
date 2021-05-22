@@ -10,7 +10,7 @@
     <meta name="author" content="Sebastian Ehlert" >
     <link rel="icon" href="../favicon.png">
 
-    <title>dftd3_data &ndash; Simple DFT-D3</title>
+    <title>lowercase &ndash; Simple DFT-D3</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -116,8 +116,8 @@
     
   
   <div class="row">
-    <h1>dftd3_data 
-    <small>Module</small>
+    <h1>lowercase
+      <small>Function</small>
     
     </h1>
     
@@ -134,22 +134,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.3% of total for modules and submodules.">8 statements</a>
+    title=" 1.2% of total for procedures.">27 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/data.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/param.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/data.f90.html'>data.f90</a></li>
+     <li><a href='../sourcefile/param.f90.html'>param.f90</a></li>
+    
+     <li><a href='../module/dftd3_param.html'>dftd3_param</a></li>
     
   
-     <li class="active">dftd3_data</li>
+     <li class="active">lowercase</li>
   </ol>
 </div>
 </div>
@@ -190,7 +192,13 @@
 
 
 
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lowercase.html#src">lowercase</a>
+  </div>
+</div>
+
 
 
 </div>
@@ -198,37 +206,64 @@
     </div>
     
     <div class="col-md-9" id='text'>
+    <h2>
+public pure function lowercase(str) result(lcstr)
     
-      <br>
+    
+   
+</h2>
     
   
-    <div class="panel panel-default">
-      <div class="panel-heading">
-  <h3 class="panel-title">Uses</h3>
-      </div>
-      <ul class="list-group">
+
+
+    
+    <p>Convert string to lower case</p>
+    
+
+    <h3>Arguments</h3>
+    
       
-      <li class="list-group-item">
-  <ul class="list-inline">
-    
-    <li><a href='../module/dftd3_data_covrad.html'>dftd3_data_covrad</a></li>
-    
-    <li><a href='../module/dftd3_data_r4r2.html'>dftd3_data_r4r2</a></li>
-    
-    <li><a href='../module/dftd3_data_vdwrad.html'>dftd3_data_vdwrad</a></li>
-    
-  </ul>
-      </li>
-      
-      
-      
-      </ul>
-    </div>
-    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-str"></span>character(len=*),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>str</strong></td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
 
     
     
-
+    
+    
+    
+    
+    
+   <h3>Return Value <small><span class="anchor" id="variable-lcstr"></span>character(len=len_trim(str))
+  </small></h3>
+    
+    
+    
+    
+     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
@@ -256,7 +291,13 @@
 
 
 
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/lowercase.html#src">lowercase</a>
+  </div>
+</div>
+
 
 
     </section>
@@ -276,13 +317,51 @@
     
     
 
+
     
+    
+    
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">pure function </span><span class="n">lowercase</span><span class="p">(</span><span class="n">str</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">lcstr</span><span class="p">)</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span>  <span class="kd">::</span> <span class="n">str</span>
+   <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">str</span><span class="p">))</span> <span class="kd">::</span> <span class="n">lcstr</span>
+   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">ilen</span><span class="p">,</span> <span class="n">ioffset</span><span class="p">,</span> <span class="n">iquote</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">iav</span><span class="p">,</span> <span class="n">iqc</span>
+
+   <span class="n">ilen</span><span class="o">=</span><span class="nb">len_trim</span><span class="p">(</span><span class="n">str</span><span class="p">)</span>
+   <span class="n">ioffset</span><span class="o">=</span><span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span><span class="o">-</span><span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+   <span class="n">iquote</span><span class="o">=</span><span class="mi">0</span>
+   <span class="n">lcstr</span><span class="o">=</span><span class="n">str</span>
+   <span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ilen</span>
+      <span class="n">iav</span><span class="o">=</span><span class="nb">iachar</span><span class="p">(</span><span class="n">str</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">))</span>
+      <span class="k">if</span><span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">0</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="p">(</span><span class="n">iav</span><span class="o">==</span><span class="mi">34</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="n">iav</span><span class="o">==</span><span class="mi">39</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">iquote</span><span class="o">=</span><span class="mi">1</span>
+         <span class="n">iqc</span><span class="o">=</span><span class="n">iav</span>
+        <span class="k">cycle</span>
+<span class="k">      endif</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">1</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">iav</span><span class="o">==</span><span class="n">iqc</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">iquote</span><span class="o">=</span><span class="mi">0</span>
+         <span class="k">cycle</span>
+<span class="k">      endif</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">iquote</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span> <span class="k">cycle</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">iav</span> <span class="o">&gt;=</span> <span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;A&#39;</span><span class="p">)</span> <span class="p">.</span><span class="nb">and</span><span class="p">.</span> <span class="n">iav</span> <span class="o">&lt;=</span> <span class="nb">iachar</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">         </span><span class="n">lcstr</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="nb">achar</span><span class="p">(</span><span class="n">iav</span><span class="o">-</span><span class="n">ioffset</span><span class="p">)</span>
+      <span class="k">else</span>
+<span class="k">         </span><span class="n">lcstr</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span><span class="o">=</span><span class="n">str</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="p">)</span>
+      <span class="k">endif</span>
+<span class="k">   enddo</span>
+
+<span class="k">end function </span><span class="n">lowercase</span>
+</pre></div>
+
+    </section>
+    <br>
     
     
     </div>
   </div>
 
-  
+
     <hr>    
     </div> <!-- /container -->
     <footer>
