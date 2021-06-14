@@ -253,7 +253,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~13"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~15"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -268,7 +268,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~8"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -283,7 +283,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~6"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~8"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -298,11 +298,11 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-rvdw~5"></span>real(kind=wp),</td>
-  <td></td>
+  <td><span class="anchor" id="variable-rvdw~7"></span>real(kind=wp),</td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>allocatable</td><td>::</td>
+  <td></td><td>::</td>
   <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
   
 </tr>
@@ -314,10 +314,10 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
 <tr>
   
   <td><span class="anchor" id="variable-r4r2~4"></span>real(kind=wp),</td>
-  <td></td>
+  <td>intent(in)</td>
   <td></td>
   
-  <td>allocatable</td><td>::</td>
+  <td></td><td>::</td>
   <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for C8 extrapolation</p></td>
   
 </tr>
@@ -328,7 +328,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~10"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -343,7 +343,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dcn~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dcn~5"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -358,7 +358,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~12"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -373,7 +373,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedcn~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~5"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -388,7 +388,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~10"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -403,7 +403,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~10"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -495,10 +495,10 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
 
    <span class="c">!&gt; Van-der-Waals radii for damping function</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
 
    <span class="c">!&gt; Expectation values for C8 extrapolation</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
 
    <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
@@ -543,7 +543,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-06-13 16:05  
+             on 2021-06-14 19:11  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
