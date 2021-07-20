@@ -134,7 +134,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 6.0% of total for procedures.">151 statements</a>
+    title=" 8.0% of total for procedures.">213 statements</a>
      </li> 
      
      
@@ -341,48 +341,71 @@ public function get_method_id(method) result(id)
 <span class="k">   select case</span><span class="p">(</span><span class="nb">trim</span><span class="p">(</span><span class="n">lowercase</span><span class="p">(</span><span class="n">lc_method</span><span class="p">)))</span>
    <span class="k">case </span><span class="n">default</span><span class="p">;</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_invalid</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b1b95&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b1b95_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b1lyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b1lyp_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b1p&quot;</span><span class="p">,</span> <span class="s2">&quot;b1p86&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b1p_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b2gpplyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b2gpplyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b2plyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b2plyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b3lyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b3lyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b3lyp/631gd&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b3lyp_631gd_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b3p&quot;</span><span class="p">,</span> <span class="s2">&quot;b3p86&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b3p_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b3pw91&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b3pw91_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b971&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b97_1_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b972&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b97_2_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b97d&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b97d_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b97m&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b97m_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b98&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b98_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bhlyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bhlyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;blyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_blyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bmk&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bmk_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bop&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bop_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bp&quot;</span><span class="p">,</span> <span class="s2">&quot;bp86&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bpbe_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;bp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_bp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;camb3lyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_camb3lyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;dftb3&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_dftb3_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;dsdblypfc&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_dsdblypfc_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;dsdblyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_dsdblyp_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;dsdblypfc&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_dsdblypfc_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hcth120&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hcth120_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf3c&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf3c_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf3cv&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf3cv_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hcth407&quot;</span><span class="p">,</span> <span class="s2">&quot;hcth/407&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hcth407_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf/minis&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf_minis_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf/mixed&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf_mixed_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf/sv&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf_sv_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf3c&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf3c_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hf3cv&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hf3cv_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hiss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hiss_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hse03&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hse03_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hse06&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hse06_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;hsesol&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_hsesol_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;lcwhpbe&quot;</span><span class="p">,</span> <span class="s2">&quot;lcomegahpbe&quot;</span><span class="p">,</span> <span class="s2">&quot;lcωhpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_lc_whpbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;lcwpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_lcwpbe_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m052x&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m052x_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m05&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m05_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m052x&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m052x_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m06&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m06_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m062x&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m062x_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m06hf&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m06hf_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m06&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m06_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m06l&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m06l_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;m11&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_m11_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mn12sx&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mn12sx_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mn15&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mn15_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpw1b95&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpw1b95_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpw1kcis&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpw1kcis_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpw1pw&quot;</span><span class="p">,</span> <span class="s2">&quot;mpw1pw91&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpw1pw_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpw2plyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpw2plyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpwb1k&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpwb1k_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpwlyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpwlyp_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;mpwpw&quot;</span><span class="p">,</span> <span class="s2">&quot;mpwpw91&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_mpwpw_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;n12sx&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_n12sx_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;o3lyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_o3lyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;olyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_olyp_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;opbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_opbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;otpss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_otpss_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe0_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe38&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe38_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbeh3c&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbeh3c_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe0_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe1kcis&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe1kcis_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbe38&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbe38_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbeh1pbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbeh1pbe_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbeh3c&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbeh3c_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbehpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbehpbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pbesol&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pbesol_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;ptpss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_ptpss_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pw1pw&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pw1pw_df</span>
@@ -390,23 +413,31 @@ public function get_method_id(method) result(id)
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pwb6k&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pwb6k_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pwgga&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pwgga_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;pwpb95&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_pwpb95_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;r2scan&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_r2scan_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revpbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revpbe0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revpbe0_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revpbe38&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revpbe38_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revpbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revssb&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revssb_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revtpss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revtpss_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revtpss0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revtpss0_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;revtpssh&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_revtpssh_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;rpbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_rpbe_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;rpw86pbe&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_rpw86pbe_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;slaterdiracexchange&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_slaterdiracexchange_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;ssb&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_ssb_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpss0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpss0_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpssh&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpssh_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpss_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;scan&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_scan_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;rscan&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_rscan_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;r2scan&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_r2scan_df</span>
-   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;b97m&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_b97m_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;scan&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_scan_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;slaterdiracexchange&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_slaterdiracexchange_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;sogga11x&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_sogga11x_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;ssb&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_ssb_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tauhcth&quot;</span><span class="p">,</span> <span class="s2">&quot;τhcth&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tauhcth_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tauhcthhyb&quot;</span><span class="p">,</span> <span class="s2">&quot;τhcthhyb&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tauhcthhyb_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpss&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpss_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpss0&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpss0_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpss1kcis&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpss1kcis_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;tpssh&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_tpssh_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;wb97m&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_wb97m_df</span>
    <span class="k">case</span><span class="p">(</span><span class="s2">&quot;wb97x&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_wb97x_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;x3lyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_x3lyp_df</span>
+   <span class="k">case</span><span class="p">(</span><span class="s2">&quot;xlyp&quot;</span><span class="p">);</span> <span class="n">id</span> <span class="o">=</span> <span class="n">p_xlyp_df</span>
    <span class="k">end select</span>
 
 <span class="k">end function </span><span class="n">get_method_id</span>
@@ -431,7 +462,7 @@ public function get_method_id(method) result(id)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/cmacmackin/ford">FORD</a>
-             on 2021-07-01 12:26  
+             on 2021-07-20 09:49  
           </p>
         </div>
         <div class="col-xs-12 col-md-4 col-md-pull-4"><p class="text-center"> Simple DFT-D3 was developed by Sebastian Ehlert</p></div>
