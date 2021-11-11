@@ -197,65 +197,65 @@ Other data types to communicate with the library are obtained from the <a href="
 
 <h3 id="c-api">C API</h3>
 <p>An example wrapper for a DFT-D3(BJ)-ATM calculation is given here.</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">#include</span> <span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+<div class="codehilite"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdbool.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 
-<span class="cp">#include</span> <span class="cpf">&quot;dftd3.h&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;dftd3.h&quot;</span><span class="cp"></span>
 
-<span class="k">static</span> <span class="k">const</span> <span class="n">buffersize</span> <span class="o">=</span> <span class="mi">512</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">buffersize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">512</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">int</span>
-<span class="nf">calc_dftd3</span><span class="p">(</span><span class="kt">int</span> <span class="n">natoms</span><span class="p">,</span> <span class="kt">int</span><span class="o">*</span> <span class="n">numbers</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">positions</span><span class="p">,</span>
-           <span class="kt">double</span><span class="o">*</span> <span class="n">lattice</span><span class="p">,</span> <span class="kt">bool</span><span class="o">*</span> <span class="n">periodic</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">method</span><span class="p">,</span>
-           <span class="kt">double</span><span class="o">*</span> <span class="n">energy</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">gradient</span><span class="p">,</span> <span class="kt">double</span><span class="o">*</span> <span class="n">sigma</span><span class="p">)</span>
-<span class="p">{</span>
-   <span class="c1">// Local API objects from the s-dftd3 library</span>
-   <span class="n">dftd3_error</span> <span class="n">error</span> <span class="o">=</span> <span class="n">dftd3_new_error</span><span class="p">();</span>
-   <span class="n">dftd3_structure</span> <span class="n">mol</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-   <span class="n">dftd3_model</span> <span class="n">disp</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-   <span class="n">dftd3_param</span> <span class="n">param</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-   <span class="kt">int</span> <span class="n">stat</span> <span class="o">=</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="kt">int</span><span class="w"></span>
+<span class="nf">calc_dftd3</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">natoms</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="o">*</span><span class="w"> </span><span class="n">numbers</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">positions</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">lattice</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="o">*</span><span class="w"> </span><span class="n">periodic</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"></span>
+<span class="w">           </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">*</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">// Local API objects from the s-dftd3 library</span>
+<span class="w">   </span><span class="n">dftd3_error</span><span class="w"> </span><span class="n">error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_new_error</span><span class="p">();</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_structure</span><span class="w"> </span><span class="n">mol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_model</span><span class="w"> </span><span class="n">disp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_param</span><span class="w"> </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="kt">int</span><span class="w"> </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EXIT_SUCCESS</span><span class="p">;</span><span class="w"></span>
 
-   <span class="c1">// Create a new geometry for the library to work with</span>
-   <span class="n">mol</span> <span class="o">=</span> <span class="n">dftd3_new_structure</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">natoms</span><span class="p">,</span> <span class="n">numbers</span><span class="p">,</span> <span class="n">positions</span><span class="p">,</span> <span class="n">lattice</span><span class="p">,</span> <span class="n">periodic</span><span class="p">);</span>
-   <span class="n">stat</span> <span class="o">=</span> <span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
+<span class="w">   </span><span class="c1">// Create a new geometry for the library to work with</span>
+<span class="w">   </span><span class="n">mol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_new_structure</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">natoms</span><span class="p">,</span><span class="w"> </span><span class="n">numbers</span><span class="p">,</span><span class="w"> </span><span class="n">positions</span><span class="p">,</span><span class="w"> </span><span class="n">lattice</span><span class="p">,</span><span class="w"> </span><span class="n">periodic</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// Initialize the D3 dispersion model for the given structure,</span>
-      <span class="c1">// this step depends on the atomic numbers, but not on the actual geometry</span>
-      <span class="n">disp</span> <span class="o">=</span> <span class="n">dftd3_new_d3_model</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">mol</span><span class="p">);</span>
-      <span class="n">stat</span> <span class="o">=</span> <span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
-   <span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Initialize the D3 dispersion model for the given structure,</span>
+<span class="w">      </span><span class="c1">// this step depends on the atomic numbers, but not on the actual geometry</span>
+<span class="w">      </span><span class="n">disp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_new_d3_model</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// Load D3(BJ)-ATM parameters for the given method from internal storage,</span>
-      <span class="c1">// this step depends on the atomic numbers, but not on the actual geometry</span>
-      <span class="n">param</span> <span class="o">=</span> <span class="n">dftd3_load_rational_damping</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
-      <span class="n">stat</span> <span class="o">=</span> <span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
-   <span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Load D3(BJ)-ATM parameters for the given method from internal storage,</span>
+<span class="w">      </span><span class="c1">// this step depends on the atomic numbers, but not on the actual geometry</span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_load_rational_damping</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="n">stat</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// Evaluate the dispersion energy, gradient and virial,</span>
-      <span class="c1">// the gradient and virial are optional and can be replaced by NULL</span>
-      <span class="n">dftd3_get_dispersion</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">param</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">energy</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">);</span>
-      <span class="n">stat</span> <span class="o">=</span> <span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span>
-   <span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Evaluate the dispersion energy, gradient and virial,</span>
+<span class="w">      </span><span class="c1">// the gradient and virial are optional and can be replaced by NULL</span>
+<span class="w">      </span><span class="n">dftd3_get_dispersion</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">disp</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">energy</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">stat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dftd3_check_error</span><span class="p">(</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">stat</span><span class="p">)</span> <span class="p">{</span>
-      <span class="kt">char</span> <span class="n">buffer</span><span class="p">[</span><span class="n">buffersize</span><span class="p">];</span>
-      <span class="n">dftd3_get_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="n">buffer</span><span class="p">,</span> <span class="n">buffersize</span><span class="p">);</span>
-      <span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Error] %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">buffer</span><span class="p">);</span>
-   <span class="p">}</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">stat</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kt">char</span><span class="w"> </span><span class="n">buffer</span><span class="p">[</span><span class="n">buffersize</span><span class="p">];</span><span class="w"></span>
+<span class="w">      </span><span class="n">dftd3_get_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">buffersize</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;[Error] %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">buffer</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
 
-   <span class="c1">// Always free the used memory</span>
-   <span class="n">dftd3_delete_error</span><span class="p">(</span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span>
-   <span class="n">dftd3_delete_structure</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mol</span><span class="p">);</span>
-   <span class="n">dftd3_delete_model</span><span class="p">(</span><span class="o">&amp;</span><span class="n">disp</span><span class="p">);</span>
-   <span class="n">dftd3_delete_param</span><span class="p">(</span><span class="o">&amp;</span><span class="n">param</span><span class="p">);</span>
+<span class="w">   </span><span class="c1">// Always free the used memory</span>
+<span class="w">   </span><span class="n">dftd3_delete_error</span><span class="p">(</span><span class="o">&amp;</span><span class="n">error</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_delete_structure</span><span class="p">(</span><span class="o">&amp;</span><span class="n">mol</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_delete_model</span><span class="p">(</span><span class="o">&amp;</span><span class="n">disp</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="n">dftd3_delete_param</span><span class="p">(</span><span class="o">&amp;</span><span class="n">param</span><span class="p">);</span><span class="w"></span>
 
-   <span class="k">return</span> <span class="n">stat</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="n">stat</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </code></pre></div>
 
 <p>Overall, any DFT-D3 calculation requires the creation of four API objects.</p>
@@ -477,7 +477,7 @@ Just add it to the dependencies in your <code>fpm.toml</code> file:</p>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-07-25 21:55  
+             on 2021-11-11 23:08  
             
           </p>
         </div>

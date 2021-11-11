@@ -145,16 +145,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/mzero.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/zero.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/mzero.f90.html'>mzero.f90</a></li>
+     <li><a href='../sourcefile/zero.f90.html'>zero.f90</a></li>
     
-     <li><a href='../module/dftd3_damping_mzero.html'>dftd3_damping_mzero</a></li>
+     <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
     
   
      <li class="active">get_dispersion_derivs</li>
@@ -244,7 +244,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~10"></span>class(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~10"></span>class(<a href='../type/zero_damping_param.html'>zero_damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -489,7 +489,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
       <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">mzero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
 
    <span class="c">!&gt; Molecular structure data</span>
    <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
@@ -534,7 +534,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
 
    <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
    <span class="c">!$omp reduction(+:energy, gradient, sigma, dEdcn) &amp;</span>
-   <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, alp6, alp8, rvdw, r4r2) &amp;</span>
+   <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, alp6, alp8, r4r2, rvdw) &amp;</span>
    <span class="c">!$omp private(iat, jat, izp, jzp, jtr, vec, r2, r1, r6, r8, t6, t8, d6, &amp;</span>
    <span class="c">!$omp&amp; d8, f6, f8, edisp, gdisp, r0ij, rrij, c6ij, dE, dG, dS)</span>
    <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
@@ -553,16 +553,16 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
             <span class="n">r6</span> <span class="o">=</span> <span class="n">r2</span><span class="o">*</span><span class="n">r2</span><span class="o">*</span><span class="n">r2</span>
             <span class="n">r8</span> <span class="o">=</span> <span class="n">r6</span><span class="o">*</span><span class="n">r2</span>
 
-            <span class="n">t6</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="o">/</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs6</span><span class="o">*</span><span class="n">r0ij</span><span class="p">)</span><span class="o">+</span><span class="n">self</span><span class="p">%</span><span class="n">bet</span><span class="o">*</span><span class="n">r0ij</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">alp6</span><span class="p">)</span>
-            <span class="n">t8</span> <span class="o">=</span> <span class="p">(</span><span class="n">r1</span><span class="o">/</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs8</span><span class="o">*</span><span class="n">r0ij</span><span class="p">)</span><span class="o">+</span><span class="n">self</span><span class="p">%</span><span class="n">bet</span><span class="o">*</span><span class="n">r0ij</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">alp8</span><span class="p">)</span>
+            <span class="n">t6</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs6</span><span class="o">*</span><span class="n">r0ij</span><span class="o">/</span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="n">alp6</span>
+            <span class="n">t8</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs8</span><span class="o">*</span><span class="n">r0ij</span><span class="o">/</span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="n">alp8</span>
 
             <span class="n">f6</span> <span class="o">=</span> <span class="mf">1.0_wp</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">t6</span><span class="p">)</span>
             <span class="n">f8</span> <span class="o">=</span> <span class="mf">1.0_wp</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">t8</span><span class="p">)</span>
 
             <span class="n">d6</span> <span class="o">=</span> <span class="o">-</span><span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">f6</span> <span class="o">/</span> <span class="n">r2</span> <span class="p">&amp;</span>
-               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">alp6</span><span class="o">*</span><span class="n">t6</span><span class="o">*</span><span class="n">f6</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">r2</span><span class="o">+</span><span class="n">self</span><span class="p">%</span><span class="n">rs6</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">bet</span><span class="o">*</span><span class="n">r0ij</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">r1</span><span class="p">)</span>
+               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">alp6</span> <span class="o">*</span> <span class="n">t6</span> <span class="o">*</span> <span class="n">f6</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">r2</span>
             <span class="n">d8</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.0_wp</span> <span class="o">*</span> <span class="n">f8</span> <span class="o">/</span> <span class="n">r2</span> <span class="p">&amp;</span>
-               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">alp8</span><span class="o">*</span><span class="n">t8</span><span class="o">*</span><span class="n">f8</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">r2</span><span class="o">+</span><span class="n">self</span><span class="p">%</span><span class="n">rs8</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">bet</span><span class="o">*</span><span class="n">r0ij</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">r1</span><span class="p">)</span>
+               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">alp8</span> <span class="o">*</span> <span class="n">t8</span> <span class="o">*</span> <span class="n">f8</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">r2</span>
 
             <span class="n">edisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span> <span class="o">*</span> <span class="n">f6</span> <span class="o">/</span> <span class="n">r6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span> <span class="o">*</span> <span class="n">rrij</span> <span class="o">*</span> <span class="n">f8</span> <span class="o">/</span> <span class="n">r8</span>
             <span class="n">gdisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span> <span class="o">*</span> <span class="n">d6</span> <span class="o">/</span> <span class="n">r6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span> <span class="o">*</span> <span class="n">rrij</span> <span class="o">*</span> <span class="n">d8</span> <span class="o">/</span> <span class="n">r8</span>
@@ -608,7 +608,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-07-25 21:55  
+             on 2021-11-11 23:08  
             
           </p>
         </div>
