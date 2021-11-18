@@ -140,21 +140,21 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 2.2% of total for procedures.">58 statements</a>
+    title=" 1.9% of total for procedures.">51 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/zero.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/rational.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/zero.f90.html'>zero.f90</a></li>
+     <li><a href='../sourcefile/rational.f90.html'>rational.f90</a></li>
     
-     <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
+     <li><a href='../module/dftd3_damping_rational.html'>dftd3_damping_rational</a></li>
     
   
      <li class="active">get_dispersion_derivs</li>
@@ -244,7 +244,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~10"></span>class(<a href='../type/zero_damping_param.html'>zero_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~10"></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -259,7 +259,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~17"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~20"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -274,7 +274,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~13"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -289,7 +289,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~10"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~13"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -304,7 +304,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-rvdw~9"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-rvdw~12"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -334,7 +334,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~12"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~15"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -349,7 +349,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dcn~7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dcn~9"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -364,7 +364,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~14"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~17"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -379,7 +379,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedcn~7"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~9"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -394,7 +394,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~12"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~14"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -409,7 +409,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~12"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~14"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -489,7 +489,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
       <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
 
    <span class="c">!&gt; Molecular structure data</span>
    <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
@@ -525,47 +525,36 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
    <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span>
 
    <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">jtr</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r6</span><span class="p">,</span> <span class="n">r8</span><span class="p">,</span> <span class="n">t6</span><span class="p">,</span> <span class="n">t8</span><span class="p">,</span> <span class="n">d6</span><span class="p">,</span> <span class="n">d8</span><span class="p">,</span> <span class="n">f6</span><span class="p">,</span> <span class="n">f8</span><span class="p">,</span> <span class="n">alp6</span><span class="p">,</span> <span class="n">alp8</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">edisp</span><span class="p">,</span> <span class="n">gdisp</span><span class="p">,</span> <span class="n">cutoff2</span><span class="p">,</span> <span class="n">r0ij</span><span class="p">,</span> <span class="n">rrij</span><span class="p">,</span> <span class="n">c6ij</span><span class="p">,</span> <span class="n">dE</span><span class="p">,</span> <span class="n">dG</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dS</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">r2</span><span class="p">,</span> <span class="n">cutoff2</span><span class="p">,</span> <span class="n">r0ij</span><span class="p">,</span> <span class="n">rrij</span><span class="p">,</span> <span class="n">c6ij</span><span class="p">,</span> <span class="n">t6</span><span class="p">,</span> <span class="n">t8</span><span class="p">,</span> <span class="n">d6</span><span class="p">,</span> <span class="n">d8</span><span class="p">,</span> <span class="n">edisp</span><span class="p">,</span> <span class="n">gdisp</span>
+   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">dE</span><span class="p">,</span> <span class="n">dG</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">dS</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 
    <span class="n">cutoff2</span> <span class="o">=</span> <span class="n">cutoff</span><span class="o">*</span><span class="n">cutoff</span>
-   <span class="n">alp6</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">alp</span>
-   <span class="n">alp8</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">alp</span> <span class="o">+</span> <span class="mf">2.0_wp</span>
 
    <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
    <span class="c">!$omp reduction(+:energy, gradient, sigma, dEdcn) &amp;</span>
-   <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, alp6, alp8, r4r2, rvdw) &amp;</span>
-   <span class="c">!$omp private(iat, jat, izp, jzp, jtr, vec, r2, r1, r6, r8, t6, t8, d6, &amp;</span>
-   <span class="c">!$omp&amp; d8, f6, f8, edisp, gdisp, r0ij, rrij, c6ij, dE, dG, dS)</span>
+   <span class="c">!$omp shared(mol, self, c6, dc6dcn, trans, cutoff2, r4r2) &amp;</span>
+   <span class="c">!$omp private(iat, jat, izp, jzp, jtr, vec, r2, r0ij, rrij, c6ij, t6, t8, &amp;</span>
+   <span class="c">!$omp&amp; d6, d8, edisp, gdisp, dE, dG, dS)</span>
    <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
       <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
       <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
          <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
          <span class="n">rrij</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="o">*</span><span class="n">r4r2</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
-         <span class="n">r0ij</span> <span class="o">=</span> <span class="n">rvdw</span><span class="p">(</span><span class="n">jzp</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span>
+         <span class="n">r0ij</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">a1</span> <span class="o">*</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">rrij</span><span class="p">)</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">a2</span>
          <span class="n">c6ij</span> <span class="o">=</span> <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span>
          <span class="k">do </span><span class="n">jtr</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
             <span class="n">vec</span><span class="p">(:)</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">+</span> <span class="n">trans</span><span class="p">(:,</span> <span class="n">jtr</span><span class="p">))</span>
             <span class="n">r2</span> <span class="o">=</span> <span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">vec</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">vec</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">vec</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">r2</span> <span class="o">&gt;</span> <span class="n">cutoff2</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="n">r2</span> <span class="o">&lt;</span> <span class="nb">epsilon</span><span class="p">(</span><span class="mf">1.0_wp</span><span class="p">))</span> <span class="k">cycle</span>
-<span class="k">            </span><span class="n">r1</span> <span class="o">=</span> <span class="nb">sqrt</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span>
 
-            <span class="n">r6</span> <span class="o">=</span> <span class="n">r2</span><span class="o">*</span><span class="n">r2</span><span class="o">*</span><span class="n">r2</span>
-            <span class="n">r8</span> <span class="o">=</span> <span class="n">r6</span><span class="o">*</span><span class="n">r2</span>
+<span class="k">            </span><span class="n">t6</span> <span class="o">=</span> <span class="mf">1.0_wp</span><span class="o">/</span><span class="p">(</span><span class="n">r2</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">r0ij</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+            <span class="n">t8</span> <span class="o">=</span> <span class="mf">1.0_wp</span><span class="o">/</span><span class="p">(</span><span class="n">r2</span><span class="o">**</span><span class="mi">4</span> <span class="o">+</span> <span class="n">r0ij</span><span class="o">**</span><span class="mi">8</span><span class="p">)</span>
 
-            <span class="n">t6</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs6</span><span class="o">*</span><span class="n">r0ij</span><span class="o">/</span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="n">alp6</span>
-            <span class="n">t8</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">rs8</span><span class="o">*</span><span class="n">r0ij</span><span class="o">/</span><span class="n">r1</span><span class="p">)</span><span class="o">**</span><span class="n">alp8</span>
+            <span class="n">d6</span> <span class="o">=</span> <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="n">r2</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">t6</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">d8</span> <span class="o">=</span> <span class="o">-</span><span class="mi">8</span><span class="o">*</span><span class="n">r2</span><span class="o">**</span><span class="mi">3</span><span class="o">*</span><span class="n">t8</span><span class="o">**</span><span class="mi">2</span>
 
-            <span class="n">f6</span> <span class="o">=</span> <span class="mf">1.0_wp</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">t6</span><span class="p">)</span>
-            <span class="n">f8</span> <span class="o">=</span> <span class="mf">1.0_wp</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0_wp</span> <span class="o">+</span> <span class="mf">6.0_wp</span><span class="o">*</span><span class="n">t8</span><span class="p">)</span>
-
-            <span class="n">d6</span> <span class="o">=</span> <span class="o">-</span><span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">f6</span> <span class="o">/</span> <span class="n">r2</span> <span class="p">&amp;</span>
-               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">alp6</span> <span class="o">*</span> <span class="n">t6</span> <span class="o">*</span> <span class="n">f6</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">r2</span>
-            <span class="n">d8</span> <span class="o">=</span> <span class="o">-</span><span class="mf">8.0_wp</span> <span class="o">*</span> <span class="n">f8</span> <span class="o">/</span> <span class="n">r2</span> <span class="p">&amp;</span>
-               <span class="p">&amp;</span> <span class="o">+</span> <span class="mf">6.0_wp</span> <span class="o">*</span> <span class="n">alp8</span> <span class="o">*</span> <span class="n">t8</span> <span class="o">*</span> <span class="n">f8</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="n">r2</span>
-
-            <span class="n">edisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span> <span class="o">*</span> <span class="n">f6</span> <span class="o">/</span> <span class="n">r6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span> <span class="o">*</span> <span class="n">rrij</span> <span class="o">*</span> <span class="n">f8</span> <span class="o">/</span> <span class="n">r8</span>
-            <span class="n">gdisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span> <span class="o">*</span> <span class="n">d6</span> <span class="o">/</span> <span class="n">r6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span> <span class="o">*</span> <span class="n">rrij</span> <span class="o">*</span> <span class="n">d8</span> <span class="o">/</span> <span class="n">r8</span>
+            <span class="n">edisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span><span class="o">*</span><span class="n">t6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span><span class="o">*</span><span class="n">rrij</span><span class="o">*</span><span class="n">t8</span>
+            <span class="n">gdisp</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">s6</span><span class="o">*</span><span class="n">d6</span> <span class="o">+</span> <span class="n">self</span><span class="p">%</span><span class="n">s8</span><span class="o">*</span><span class="n">rrij</span><span class="o">*</span><span class="n">d8</span>
 
             <span class="n">dE</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">edisp</span> <span class="o">*</span> <span class="mf">0.5_wp</span>
             <span class="n">dG</span><span class="p">(:)</span> <span class="o">=</span> <span class="o">-</span><span class="n">c6ij</span><span class="o">*</span><span class="n">gdisp</span><span class="o">*</span><span class="n">vec</span>
@@ -608,7 +597,7 @@ public subroutine get_dispersion_derivs(self, mol, trans, cutoff, rvdw, r4r2, c6
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-13 13:30  
+             on 2021-11-18 18:20  
             
           </p>
         </div>
