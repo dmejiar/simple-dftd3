@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 5.1% of total for source files.">202 statements</a>
+    title=" 5.2% of total for source files.">207 statements</a>
      </li> 
      
      
@@ -462,7 +462,7 @@
 <a id="ln-185" name="ln-185"></a>            <span class="n">expw</span> <span class="o">=</span> <span class="n">weight_cn</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">wf</span><span class="p">,</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span>
 <a id="ln-186" name="ln-186"></a>            <span class="n">expd</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">self</span><span class="p">%</span><span class="n">wf</span> <span class="o">*</span> <span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">)</span> <span class="o">-</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">))</span> <span class="o">*</span> <span class="n">expw</span>
 <a id="ln-187" name="ln-187"></a>            <span class="n">gwk</span> <span class="o">=</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">norm</span>
-<a id="ln-188" name="ln-188"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-188" name="ln-188"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
 <a id="ln-189" name="ln-189"></a><span class="k">               if</span> <span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(:</span><span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">),</span> <span class="n">izp</span><span class="p">))</span> <span class="o">==</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span> <span class="k">then</span>
 <a id="ln-190" name="ln-190"></a><span class="k">                  </span><span class="n">gwk</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
 <a id="ln-191" name="ln-191"></a>               <span class="k">else</span>
@@ -472,7 +472,7 @@
 <a id="ln-195" name="ln-195"></a><span class="k">            </span><span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">gwk</span>
 <a id="ln-196" name="ln-196"></a>
 <a id="ln-197" name="ln-197"></a>            <span class="n">dgwk</span> <span class="o">=</span> <span class="n">expd</span> <span class="o">*</span> <span class="n">norm</span> <span class="o">-</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">dnorm</span> <span class="o">*</span> <span class="n">norm</span><span class="o">**</span><span class="mi">2</span>
-<a id="ln-198" name="ln-198"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">dgwk</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-198" name="ln-198"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">dgwk</span><span class="p">))</span> <span class="k">then</span>
 <a id="ln-199" name="ln-199"></a><span class="k">               </span><span class="n">dgwk</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
 <a id="ln-200" name="ln-200"></a>            <span class="k">end if</span>
 <a id="ln-201" name="ln-201"></a><span class="k">            </span><span class="n">gwdcn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dgwk</span>
@@ -497,7 +497,7 @@
 <a id="ln-220" name="ln-220"></a>         <span class="k">do </span><span class="n">iref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
 <a id="ln-221" name="ln-221"></a>            <span class="n">expw</span> <span class="o">=</span> <span class="n">weight_cn</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">wf</span><span class="p">,</span> <span class="n">cn</span><span class="p">(</span><span class="n">iat</span><span class="p">),</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span>
 <a id="ln-222" name="ln-222"></a>            <span class="n">gwk</span> <span class="o">=</span> <span class="n">expw</span> <span class="o">*</span> <span class="n">norm</span>
-<a id="ln-223" name="ln-223"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-223" name="ln-223"></a>            <span class="k">if</span> <span class="p">(</span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">gwk</span><span class="p">))</span> <span class="k">then</span>
 <a id="ln-224" name="ln-224"></a><span class="k">               if</span> <span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(:</span><span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">),</span> <span class="n">izp</span><span class="p">))</span> <span class="o">==</span> <span class="n">self</span><span class="p">%</span><span class="n">cn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">izp</span><span class="p">))</span> <span class="k">then</span>
 <a id="ln-225" name="ln-225"></a><span class="k">                  </span><span class="n">gwk</span> <span class="o">=</span> <span class="mf">1.0_wp</span>
 <a id="ln-226" name="ln-226"></a>               <span class="k">else</span>
@@ -512,96 +512,104 @@
 <a id="ln-235" name="ln-235"></a><span class="k">end subroutine </span><span class="n">weight_references</span>
 <a id="ln-236" name="ln-236"></a>
 <a id="ln-237" name="ln-237"></a>
-<a id="ln-238" name="ln-238"></a><span class="c">!&gt; Calculate atomic dispersion coefficients and their derivatives w.r.t.</span>
-<a id="ln-239" name="ln-239"></a><span class="c">!&gt; the coordination number.</span>
-<a id="ln-240" name="ln-240"></a><span class="k">subroutine </span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">gwdcn</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">)</span>
-<a id="ln-241" name="ln-241"></a>
-<a id="ln-242" name="ln-242"></a>   <span class="c">!&gt; Instance of the dispersion model</span>
-<a id="ln-243" name="ln-243"></a>   <span class="k">class</span><span class="p">(</span><span class="n">d3_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+<a id="ln-238" name="ln-238"></a><span class="c">!&gt; Check whether we are dealing with an exceptional value, NaN or Inf</span>
+<a id="ln-239" name="ln-239"></a><span class="k">elemental function </span><span class="n">is_exceptional</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<a id="ln-240" name="ln-240"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
+<a id="ln-241" name="ln-241"></a>   <span class="kt">logical</span> <span class="kd">::</span> <span class="n">is_exceptional</span>
+<a id="ln-242" name="ln-242"></a>   <span class="n">is_exceptional</span> <span class="o">=</span> <span class="n">ieee_is_nan</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="p">.</span><span class="nb">or</span><span class="p">.</span> <span class="nb">abs</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">huge</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+<a id="ln-243" name="ln-243"></a><span class="k">end function </span><span class="n">is_exceptional</span>
 <a id="ln-244" name="ln-244"></a>
-<a id="ln-245" name="ln-245"></a>   <span class="c">!&gt; Molecular structure data</span>
-<a id="ln-246" name="ln-246"></a>   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-<a id="ln-247" name="ln-247"></a>
-<a id="ln-248" name="ln-248"></a>   <span class="c">!&gt; Weighting function for the atomic reference systems</span>
-<a id="ln-249" name="ln-249"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-250" name="ln-250"></a>
-<a id="ln-251" name="ln-251"></a>   <span class="c">!&gt; Derivative of the weighting function w.r.t. the coordination number</span>
-<a id="ln-252" name="ln-252"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">gwdcn</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-253" name="ln-253"></a>
-<a id="ln-254" name="ln-254"></a>   <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
-<a id="ln-255" name="ln-255"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-256" name="ln-256"></a>
-<a id="ln-257" name="ln-257"></a>   <span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
-<a id="ln-258" name="ln-258"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-259" name="ln-259"></a>
-<a id="ln-260" name="ln-260"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">iref</span><span class="p">,</span> <span class="n">jref</span>
-<a id="ln-261" name="ln-261"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">refc6</span><span class="p">,</span> <span class="n">dc6</span><span class="p">,</span> <span class="n">dc6dcni</span><span class="p">,</span> <span class="n">dc6dcnj</span>
-<a id="ln-262" name="ln-262"></a>
-<a id="ln-263" name="ln-263"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">gwdcn</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">dc6dcn</span><span class="p">))</span> <span class="k">then</span>
-<a id="ln-264" name="ln-264"></a><span class="k">      </span><span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-265" name="ln-265"></a>      <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-266" name="ln-266"></a>
-<a id="ln-267" name="ln-267"></a>      <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
-<a id="ln-268" name="ln-268"></a>      <span class="c">!$omp shared(c6, dc6dcn, mol, self, gwvec, gwdcn) &amp;</span>
-<a id="ln-269" name="ln-269"></a>      <span class="c">!$omp private(iat, jat, izp, jzp, iref, jref, refc6, dc6, dc6dcni, dc6dcnj)</span>
-<a id="ln-270" name="ln-270"></a>      <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
-<a id="ln-271" name="ln-271"></a>         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
-<a id="ln-272" name="ln-272"></a>         <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
-<a id="ln-273" name="ln-273"></a>            <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
-<a id="ln-274" name="ln-274"></a>            <span class="n">dc6</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-275" name="ln-275"></a>            <span class="n">dc6dcni</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-276" name="ln-276"></a>            <span class="n">dc6dcnj</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-277" name="ln-277"></a>            <span class="k">do </span><span class="n">iref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
-<a id="ln-278" name="ln-278"></a>               <span class="k">do </span><span class="n">jref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
-<a id="ln-279" name="ln-279"></a>                  <span class="n">refc6</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">c6</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">jref</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">)</span>
-<a id="ln-280" name="ln-280"></a>                  <span class="n">dc6</span> <span class="o">=</span> <span class="n">dc6</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
-<a id="ln-281" name="ln-281"></a>                  <span class="n">dc6dcni</span> <span class="o">=</span> <span class="n">dc6dcni</span> <span class="o">+</span> <span class="n">gwdcn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
-<a id="ln-282" name="ln-282"></a>                  <span class="n">dc6dcnj</span> <span class="o">=</span> <span class="n">dc6dcnj</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwdcn</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
-<a id="ln-283" name="ln-283"></a>               <span class="k">end do</span>
-<a id="ln-284" name="ln-284"></a><span class="k">            end do</span>
-<a id="ln-285" name="ln-285"></a><span class="k">            </span><span class="n">c6</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
-<a id="ln-286" name="ln-286"></a>            <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
-<a id="ln-287" name="ln-287"></a>            <span class="n">dc6dcn</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6dcni</span>
-<a id="ln-288" name="ln-288"></a>            <span class="n">dc6dcn</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6dcnj</span>
-<a id="ln-289" name="ln-289"></a>         <span class="k">end do</span>
-<a id="ln-290" name="ln-290"></a><span class="k">      end do</span>
-<a id="ln-291" name="ln-291"></a>
-<a id="ln-292" name="ln-292"></a><span class="k">   else</span>
-<a id="ln-293" name="ln-293"></a>
-<a id="ln-294" name="ln-294"></a><span class="k">      </span><span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-295" name="ln-295"></a>
-<a id="ln-296" name="ln-296"></a>      <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
-<a id="ln-297" name="ln-297"></a>      <span class="c">!$omp shared(c6, mol, self, gwvec) &amp;</span>
-<a id="ln-298" name="ln-298"></a>      <span class="c">!$omp private(iat, jat, izp, jzp, iref, jref, refc6, dc6)</span>
-<a id="ln-299" name="ln-299"></a>      <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
-<a id="ln-300" name="ln-300"></a>         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
-<a id="ln-301" name="ln-301"></a>         <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
-<a id="ln-302" name="ln-302"></a>            <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
-<a id="ln-303" name="ln-303"></a>            <span class="n">dc6</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
-<a id="ln-304" name="ln-304"></a>            <span class="k">do </span><span class="n">iref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
-<a id="ln-305" name="ln-305"></a>               <span class="k">do </span><span class="n">jref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
-<a id="ln-306" name="ln-306"></a>                  <span class="n">refc6</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">c6</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">jref</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">)</span>
-<a id="ln-307" name="ln-307"></a>                  <span class="n">dc6</span> <span class="o">=</span> <span class="n">dc6</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
-<a id="ln-308" name="ln-308"></a>               <span class="k">end do</span>
-<a id="ln-309" name="ln-309"></a><span class="k">            end do</span>
-<a id="ln-310" name="ln-310"></a><span class="k">            </span><span class="n">c6</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
-<a id="ln-311" name="ln-311"></a>            <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
-<a id="ln-312" name="ln-312"></a>         <span class="k">end do</span>
-<a id="ln-313" name="ln-313"></a><span class="k">      end do</span>
-<a id="ln-314" name="ln-314"></a><span class="k">   end if</span>
-<a id="ln-315" name="ln-315"></a>
-<a id="ln-316" name="ln-316"></a><span class="k">end subroutine </span><span class="n">get_atomic_c6</span>
-<a id="ln-317" name="ln-317"></a>
-<a id="ln-318" name="ln-318"></a>
-<a id="ln-319" name="ln-319"></a><span class="k">elemental function </span><span class="n">weight_cn</span><span class="p">(</span><span class="n">wf</span><span class="p">,</span><span class="n">cn</span><span class="p">,</span><span class="n">cnref</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">cngw</span><span class="p">)</span>
-<a id="ln-320" name="ln-320"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">wf</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">cnref</span>
-<a id="ln-321" name="ln-321"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cngw</span>
-<a id="ln-322" name="ln-322"></a>   <span class="k">intrinsic</span> <span class="kd">::</span> <span class="nb">exp</span>
-<a id="ln-323" name="ln-323"></a><span class="nb">   </span><span class="n">cngw</span> <span class="o">=</span> <span class="nb">exp</span> <span class="p">(</span> <span class="o">-</span><span class="n">wf</span> <span class="o">*</span> <span class="p">(</span> <span class="n">cn</span> <span class="o">-</span> <span class="n">cnref</span> <span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
-<a id="ln-324" name="ln-324"></a><span class="k">end function </span><span class="n">weight_cn</span>
+<a id="ln-245" name="ln-245"></a>
+<a id="ln-246" name="ln-246"></a><span class="c">!&gt; Calculate atomic dispersion coefficients and their derivatives w.r.t.</span>
+<a id="ln-247" name="ln-247"></a><span class="c">!&gt; the coordination number.</span>
+<a id="ln-248" name="ln-248"></a><span class="k">subroutine </span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">gwdcn</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">)</span>
+<a id="ln-249" name="ln-249"></a>
+<a id="ln-250" name="ln-250"></a>   <span class="c">!&gt; Instance of the dispersion model</span>
+<a id="ln-251" name="ln-251"></a>   <span class="k">class</span><span class="p">(</span><span class="n">d3_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+<a id="ln-252" name="ln-252"></a>
+<a id="ln-253" name="ln-253"></a>   <span class="c">!&gt; Molecular structure data</span>
+<a id="ln-254" name="ln-254"></a>   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a id="ln-255" name="ln-255"></a>
+<a id="ln-256" name="ln-256"></a>   <span class="c">!&gt; Weighting function for the atomic reference systems</span>
+<a id="ln-257" name="ln-257"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-258" name="ln-258"></a>
+<a id="ln-259" name="ln-259"></a>   <span class="c">!&gt; Derivative of the weighting function w.r.t. the coordination number</span>
+<a id="ln-260" name="ln-260"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">gwdcn</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-261" name="ln-261"></a>
+<a id="ln-262" name="ln-262"></a>   <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
+<a id="ln-263" name="ln-263"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-264" name="ln-264"></a>
+<a id="ln-265" name="ln-265"></a>   <span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
+<a id="ln-266" name="ln-266"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-267" name="ln-267"></a>
+<a id="ln-268" name="ln-268"></a>   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">,</span> <span class="n">iref</span><span class="p">,</span> <span class="n">jref</span>
+<a id="ln-269" name="ln-269"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">refc6</span><span class="p">,</span> <span class="n">dc6</span><span class="p">,</span> <span class="n">dc6dcni</span><span class="p">,</span> <span class="n">dc6dcnj</span>
+<a id="ln-270" name="ln-270"></a>
+<a id="ln-271" name="ln-271"></a>   <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">gwdcn</span><span class="p">).</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">dc6dcn</span><span class="p">))</span> <span class="k">then</span>
+<a id="ln-272" name="ln-272"></a><span class="k">      </span><span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-273" name="ln-273"></a>      <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-274" name="ln-274"></a>
+<a id="ln-275" name="ln-275"></a>      <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
+<a id="ln-276" name="ln-276"></a>      <span class="c">!$omp shared(c6, dc6dcn, mol, self, gwvec, gwdcn) &amp;</span>
+<a id="ln-277" name="ln-277"></a>      <span class="c">!$omp private(iat, jat, izp, jzp, iref, jref, refc6, dc6, dc6dcni, dc6dcnj)</span>
+<a id="ln-278" name="ln-278"></a>      <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a id="ln-279" name="ln-279"></a>         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
+<a id="ln-280" name="ln-280"></a>         <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
+<a id="ln-281" name="ln-281"></a>            <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
+<a id="ln-282" name="ln-282"></a>            <span class="n">dc6</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-283" name="ln-283"></a>            <span class="n">dc6dcni</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-284" name="ln-284"></a>            <span class="n">dc6dcnj</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-285" name="ln-285"></a>            <span class="k">do </span><span class="n">iref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
+<a id="ln-286" name="ln-286"></a>               <span class="k">do </span><span class="n">jref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
+<a id="ln-287" name="ln-287"></a>                  <span class="n">refc6</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">c6</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">jref</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">)</span>
+<a id="ln-288" name="ln-288"></a>                  <span class="n">dc6</span> <span class="o">=</span> <span class="n">dc6</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
+<a id="ln-289" name="ln-289"></a>                  <span class="n">dc6dcni</span> <span class="o">=</span> <span class="n">dc6dcni</span> <span class="o">+</span> <span class="n">gwdcn</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
+<a id="ln-290" name="ln-290"></a>                  <span class="n">dc6dcnj</span> <span class="o">=</span> <span class="n">dc6dcnj</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwdcn</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
+<a id="ln-291" name="ln-291"></a>               <span class="k">end do</span>
+<a id="ln-292" name="ln-292"></a><span class="k">            end do</span>
+<a id="ln-293" name="ln-293"></a><span class="k">            </span><span class="n">c6</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
+<a id="ln-294" name="ln-294"></a>            <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
+<a id="ln-295" name="ln-295"></a>            <span class="n">dc6dcn</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6dcni</span>
+<a id="ln-296" name="ln-296"></a>            <span class="n">dc6dcn</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6dcnj</span>
+<a id="ln-297" name="ln-297"></a>         <span class="k">end do</span>
+<a id="ln-298" name="ln-298"></a><span class="k">      end do</span>
+<a id="ln-299" name="ln-299"></a>
+<a id="ln-300" name="ln-300"></a><span class="k">   else</span>
+<a id="ln-301" name="ln-301"></a>
+<a id="ln-302" name="ln-302"></a><span class="k">      </span><span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-303" name="ln-303"></a>
+<a id="ln-304" name="ln-304"></a>      <span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
+<a id="ln-305" name="ln-305"></a>      <span class="c">!$omp shared(c6, mol, self, gwvec) &amp;</span>
+<a id="ln-306" name="ln-306"></a>      <span class="c">!$omp private(iat, jat, izp, jzp, iref, jref, refc6, dc6)</span>
+<a id="ln-307" name="ln-307"></a>      <span class="k">do </span><span class="n">iat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span>
+<a id="ln-308" name="ln-308"></a>         <span class="n">izp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span>
+<a id="ln-309" name="ln-309"></a>         <span class="k">do </span><span class="n">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">iat</span>
+<a id="ln-310" name="ln-310"></a>            <span class="n">jzp</span> <span class="o">=</span> <span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span>
+<a id="ln-311" name="ln-311"></a>            <span class="n">dc6</span> <span class="o">=</span> <span class="mf">0.0_wp</span>
+<a id="ln-312" name="ln-312"></a>            <span class="k">do </span><span class="n">iref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span>
+<a id="ln-313" name="ln-313"></a>               <span class="k">do </span><span class="n">jref</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">self</span><span class="p">%</span><span class="n">ref</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span>
+<a id="ln-314" name="ln-314"></a>                  <span class="n">refc6</span> <span class="o">=</span> <span class="n">self</span><span class="p">%</span><span class="n">c6</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">jref</span><span class="p">,</span> <span class="n">izp</span><span class="p">,</span> <span class="n">jzp</span><span class="p">)</span>
+<a id="ln-315" name="ln-315"></a>                  <span class="n">dc6</span> <span class="o">=</span> <span class="n">dc6</span> <span class="o">+</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">iref</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">*</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">jref</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">*</span> <span class="n">refc6</span>
+<a id="ln-316" name="ln-316"></a>               <span class="k">end do</span>
+<a id="ln-317" name="ln-317"></a><span class="k">            end do</span>
+<a id="ln-318" name="ln-318"></a><span class="k">            </span><span class="n">c6</span><span class="p">(</span><span class="n">iat</span><span class="p">,</span> <span class="n">jat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
+<a id="ln-319" name="ln-319"></a>            <span class="n">c6</span><span class="p">(</span><span class="n">jat</span><span class="p">,</span> <span class="n">iat</span><span class="p">)</span> <span class="o">=</span> <span class="n">dc6</span>
+<a id="ln-320" name="ln-320"></a>         <span class="k">end do</span>
+<a id="ln-321" name="ln-321"></a><span class="k">      end do</span>
+<a id="ln-322" name="ln-322"></a><span class="k">   end if</span>
+<a id="ln-323" name="ln-323"></a>
+<a id="ln-324" name="ln-324"></a><span class="k">end subroutine </span><span class="n">get_atomic_c6</span>
 <a id="ln-325" name="ln-325"></a>
 <a id="ln-326" name="ln-326"></a>
-<a id="ln-327" name="ln-327"></a><span class="k">end module </span><span class="n">dftd3_model</span>
+<a id="ln-327" name="ln-327"></a><span class="k">elemental function </span><span class="n">weight_cn</span><span class="p">(</span><span class="n">wf</span><span class="p">,</span><span class="n">cn</span><span class="p">,</span><span class="n">cnref</span><span class="p">)</span> <span class="k">result</span><span class="p">(</span><span class="n">cngw</span><span class="p">)</span>
+<a id="ln-328" name="ln-328"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">wf</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">cnref</span>
+<a id="ln-329" name="ln-329"></a>   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cngw</span>
+<a id="ln-330" name="ln-330"></a>   <span class="k">intrinsic</span> <span class="kd">::</span> <span class="nb">exp</span>
+<a id="ln-331" name="ln-331"></a><span class="nb">   </span><span class="n">cngw</span> <span class="o">=</span> <span class="nb">exp</span> <span class="p">(</span> <span class="o">-</span><span class="n">wf</span> <span class="o">*</span> <span class="p">(</span> <span class="n">cn</span> <span class="o">-</span> <span class="n">cnref</span> <span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+<a id="ln-332" name="ln-332"></a><span class="k">end function </span><span class="n">weight_cn</span>
+<a id="ln-333" name="ln-333"></a>
+<a id="ln-334" name="ln-334"></a>
+<a id="ln-335" name="ln-335"></a><span class="k">end module </span><span class="n">dftd3_model</span>
 </pre></div>
 
     </section>
@@ -621,7 +629,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-18 18:20  
+             on 2021-11-19 18:15  
             
           </p>
         </div>
