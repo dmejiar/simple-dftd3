@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.7% of total for source files.">28 statements</a>
+    title=" 0.9% of total for source files.">41 statements</a>
      </li> 
      
      
@@ -303,55 +303,88 @@
 <a id="ln-26" name="ln-26"></a>   <span class="k">contains</span>
 <a id="ln-27" name="ln-27"></a><span class="k">      procedure</span><span class="p">(</span><span class="n">dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_dispersion2</span>
 <a id="ln-28" name="ln-28"></a>      <span class="k">procedure</span><span class="p">(</span><span class="n">dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_dispersion3</span>
-<a id="ln-29" name="ln-29"></a>   <span class="k">end type </span><span class="n">damping_param</span>
-<a id="ln-30" name="ln-30"></a>
-<a id="ln-31" name="ln-31"></a>
-<a id="ln-32" name="ln-32"></a>   <span class="k">abstract interface</span>
-<a id="ln-33" name="ln-33"></a>      <span class="c">!&gt; Evaluation of the dispersion energy expression</span>
-<a id="ln-34" name="ln-34"></a>      <span class="k">subroutine </span><span class="n">dispersion_interface</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rvdw</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
-<a id="ln-35" name="ln-35"></a>            <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
-<a id="ln-36" name="ln-36"></a>         <span class="k">import</span> <span class="kd">::</span> <span class="n">structure_type</span><span class="p">,</span> <span class="n">damping_param</span><span class="p">,</span> <span class="n">wp</span>
-<a id="ln-37" name="ln-37"></a>
-<a id="ln-38" name="ln-38"></a>         <span class="c">!&gt; Damping parameters</span>
-<a id="ln-39" name="ln-39"></a>         <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
-<a id="ln-40" name="ln-40"></a>
-<a id="ln-41" name="ln-41"></a>         <span class="c">!&gt; Molecular structure data</span>
-<a id="ln-42" name="ln-42"></a>         <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-<a id="ln-43" name="ln-43"></a>
-<a id="ln-44" name="ln-44"></a>         <span class="c">!&gt; Lattice points</span>
-<a id="ln-45" name="ln-45"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-46" name="ln-46"></a>
-<a id="ln-47" name="ln-47"></a>         <span class="c">!&gt; Real space cutoff</span>
-<a id="ln-48" name="ln-48"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
-<a id="ln-49" name="ln-49"></a>
-<a id="ln-50" name="ln-50"></a>         <span class="c">!&gt; Van-der-Waals radii for damping function</span>
-<a id="ln-51" name="ln-51"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-52" name="ln-52"></a>
-<a id="ln-53" name="ln-53"></a>         <span class="c">!&gt; Expectation values for C8 extrapolation</span>
-<a id="ln-54" name="ln-54"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
-<a id="ln-55" name="ln-55"></a>
-<a id="ln-56" name="ln-56"></a>         <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
-<a id="ln-57" name="ln-57"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-58" name="ln-58"></a>
-<a id="ln-59" name="ln-59"></a>         <span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
-<a id="ln-60" name="ln-60"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-61" name="ln-61"></a>
-<a id="ln-62" name="ln-62"></a>         <span class="c">!&gt; Dispersion energy</span>
-<a id="ln-63" name="ln-63"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
-<a id="ln-64" name="ln-64"></a>
-<a id="ln-65" name="ln-65"></a>         <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
-<a id="ln-66" name="ln-66"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
-<a id="ln-67" name="ln-67"></a>
-<a id="ln-68" name="ln-68"></a>         <span class="c">!&gt; Dispersion gradient</span>
-<a id="ln-69" name="ln-69"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-70" name="ln-70"></a>
-<a id="ln-71" name="ln-71"></a>         <span class="c">!&gt; Dispersion virial</span>
-<a id="ln-72" name="ln-72"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span>
-<a id="ln-73" name="ln-73"></a>      <span class="k">end subroutine </span><span class="n">dispersion_interface</span>
-<a id="ln-74" name="ln-74"></a>   <span class="k">end interface</span>
-<a id="ln-75" name="ln-75"></a>
+<a id="ln-29" name="ln-29"></a>      <span class="k">procedure</span><span class="p">(</span><span class="n">pairwise_dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_pairwise_dispersion2</span>
+<a id="ln-30" name="ln-30"></a>      <span class="k">procedure</span><span class="p">(</span><span class="n">pairwise_dispersion_interface</span><span class="p">),</span> <span class="k">deferred</span> <span class="kd">::</span> <span class="n">get_pairwise_dispersion3</span>
+<a id="ln-31" name="ln-31"></a>   <span class="k">end type </span><span class="n">damping_param</span>
+<a id="ln-32" name="ln-32"></a>
+<a id="ln-33" name="ln-33"></a>
+<a id="ln-34" name="ln-34"></a>   <span class="k">abstract interface</span>
+<a id="ln-35" name="ln-35"></a>      <span class="c">!&gt; Evaluation of the dispersion energy expression</span>
+<a id="ln-36" name="ln-36"></a>      <span class="k">subroutine </span><span class="n">dispersion_interface</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rvdw</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="n">dc6dcn</span><span class="p">,</span> <span class="p">&amp;</span>
+<a id="ln-37" name="ln-37"></a>            <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+<a id="ln-38" name="ln-38"></a>         <span class="k">import</span> <span class="kd">::</span> <span class="n">structure_type</span><span class="p">,</span> <span class="n">damping_param</span><span class="p">,</span> <span class="n">wp</span>
+<a id="ln-39" name="ln-39"></a>
+<a id="ln-40" name="ln-40"></a>         <span class="c">!&gt; Damping parameters</span>
+<a id="ln-41" name="ln-41"></a>         <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+<a id="ln-42" name="ln-42"></a>
+<a id="ln-43" name="ln-43"></a>         <span class="c">!&gt; Molecular structure data</span>
+<a id="ln-44" name="ln-44"></a>         <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a id="ln-45" name="ln-45"></a>
+<a id="ln-46" name="ln-46"></a>         <span class="c">!&gt; Lattice points</span>
+<a id="ln-47" name="ln-47"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-48" name="ln-48"></a>
+<a id="ln-49" name="ln-49"></a>         <span class="c">!&gt; Real space cutoff</span>
+<a id="ln-50" name="ln-50"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+<a id="ln-51" name="ln-51"></a>
+<a id="ln-52" name="ln-52"></a>         <span class="c">!&gt; Van-der-Waals radii for damping function</span>
+<a id="ln-53" name="ln-53"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-54" name="ln-54"></a>
+<a id="ln-55" name="ln-55"></a>         <span class="c">!&gt; Expectation values for C8 extrapolation</span>
+<a id="ln-56" name="ln-56"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
+<a id="ln-57" name="ln-57"></a>
+<a id="ln-58" name="ln-58"></a>         <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
+<a id="ln-59" name="ln-59"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-60" name="ln-60"></a>
+<a id="ln-61" name="ln-61"></a>         <span class="c">!&gt; Derivative of the C6 w.r.t. the coordination number</span>
+<a id="ln-62" name="ln-62"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dc6dcn</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-63" name="ln-63"></a>
+<a id="ln-64" name="ln-64"></a>         <span class="c">!&gt; Dispersion energy</span>
+<a id="ln-65" name="ln-65"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:)</span>
+<a id="ln-66" name="ln-66"></a>
+<a id="ln-67" name="ln-67"></a>         <span class="c">!&gt; Derivative of the energy w.r.t. the coordination number</span>
+<a id="ln-68" name="ln-68"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">dEdcn</span><span class="p">(:)</span>
+<a id="ln-69" name="ln-69"></a>
+<a id="ln-70" name="ln-70"></a>         <span class="c">!&gt; Dispersion gradient</span>
+<a id="ln-71" name="ln-71"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">gradient</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-72" name="ln-72"></a>
+<a id="ln-73" name="ln-73"></a>         <span class="c">!&gt; Dispersion virial</span>
+<a id="ln-74" name="ln-74"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">),</span> <span class="k">optional</span> <span class="kd">::</span> <span class="n">sigma</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-75" name="ln-75"></a>      <span class="k">end subroutine </span><span class="n">dispersion_interface</span>
 <a id="ln-76" name="ln-76"></a>
-<a id="ln-77" name="ln-77"></a><span class="k">end module </span><span class="n">dftd3_damping</span>
+<a id="ln-77" name="ln-77"></a>
+<a id="ln-78" name="ln-78"></a>      <span class="c">!&gt; Evaluation of the pairwise representation of the dispersion energy</span>
+<a id="ln-79" name="ln-79"></a>      <span class="k">subroutine </span><span class="n">pairwise_dispersion_interface</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">trans</span><span class="p">,</span> <span class="n">cutoff</span><span class="p">,</span> <span class="n">rvdw</span><span class="p">,</span> <span class="n">r4r2</span><span class="p">,</span> <span class="n">c6</span><span class="p">,</span> <span class="p">&amp;</span>
+<a id="ln-80" name="ln-80"></a>            <span class="p">&amp;</span> <span class="n">energy</span><span class="p">)</span>
+<a id="ln-81" name="ln-81"></a>         <span class="k">import</span> <span class="kd">::</span> <span class="n">structure_type</span><span class="p">,</span> <span class="n">damping_param</span><span class="p">,</span> <span class="n">wp</span>
+<a id="ln-82" name="ln-82"></a>
+<a id="ln-83" name="ln-83"></a>         <span class="c">!&gt; Damping parameters</span>
+<a id="ln-84" name="ln-84"></a>         <span class="k">class</span><span class="p">(</span><span class="n">damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+<a id="ln-85" name="ln-85"></a>
+<a id="ln-86" name="ln-86"></a>         <span class="c">!&gt; Molecular structure data</span>
+<a id="ln-87" name="ln-87"></a>         <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
+<a id="ln-88" name="ln-88"></a>
+<a id="ln-89" name="ln-89"></a>         <span class="c">!&gt; Lattice points</span>
+<a id="ln-90" name="ln-90"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">trans</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-91" name="ln-91"></a>
+<a id="ln-92" name="ln-92"></a>         <span class="c">!&gt; Real space cutoff</span>
+<a id="ln-93" name="ln-93"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">cutoff</span>
+<a id="ln-94" name="ln-94"></a>
+<a id="ln-95" name="ln-95"></a>         <span class="c">!&gt; Van-der-Waals radii for damping function</span>
+<a id="ln-96" name="ln-96"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">rvdw</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-97" name="ln-97"></a>
+<a id="ln-98" name="ln-98"></a>         <span class="c">!&gt; Expectation values for r4 over r2 operator</span>
+<a id="ln-99" name="ln-99"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">r4r2</span><span class="p">(:)</span>
+<a id="ln-100" name="ln-100"></a>
+<a id="ln-101" name="ln-101"></a>         <span class="c">!&gt; C6 coefficients for all atom pairs.</span>
+<a id="ln-102" name="ln-102"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-103" name="ln-103"></a>
+<a id="ln-104" name="ln-104"></a>         <span class="c">!&gt; Pairwise representation of the dispersion energy</span>
+<a id="ln-105" name="ln-105"></a>         <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">energy</span><span class="p">(:,</span> <span class="p">:)</span>
+<a id="ln-106" name="ln-106"></a>      <span class="k">end subroutine </span><span class="n">pairwise_dispersion_interface</span>
+<a id="ln-107" name="ln-107"></a>   <span class="k">end interface</span>
+<a id="ln-108" name="ln-108"></a>
+<a id="ln-109" name="ln-109"></a>
+<a id="ln-110" name="ln-110"></a><span class="k">end module </span><span class="n">dftd3_damping</span>
 </pre></div>
 
     </section>
@@ -371,7 +404,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-19 18:15  
+             on 2021-11-19 22:18  
             
           </p>
         </div>

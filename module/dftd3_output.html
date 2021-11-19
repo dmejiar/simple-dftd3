@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="11.3% of total for modules and submodules.">404 statements</a>
+    title="11.5% of total for modules and submodules.">450 statements</a>
      </li> 
      
      
@@ -200,6 +200,8 @@
       
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_damping_param">ascii_damping_param</a>
       
+      <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_pairwise">ascii_pairwise</a>
+      
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_results">ascii_results</a>
       
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_system_properties">ascii_system_properties</a>
@@ -243,25 +245,25 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_env.html">mctc_env</a></li>
-    
-    <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
-    
-    <li><a href='../module/dftd3_damping.html'>dftd3_damping</a></li>
-    
     <li><a href='../module/dftd3_model.html'>dftd3_model</a></li>
-    
-    <li><a href='../module/dftd3_damping_mzero.html'>dftd3_damping_mzero</a></li>
-    
-    <li><a href='../module/dftd3_version.html'>dftd3_version</a></li>
-    
-    <li><a href='../module/dftd3_damping_rational.html'>dftd3_damping_rational</a></li>
     
     <li>mctc_io_convert</li>
     
-    <li>mctc_io_math</li>
-    
     <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_io.html">mctc_io</a></li>
+    
+    <li><a href='../module/dftd3_damping_mzero.html'>dftd3_damping_mzero</a></li>
+    
+    <li><a href='../module/dftd3_damping_rational.html'>dftd3_damping_rational</a></li>
+    
+    <li><a href='../module/dftd3_version.html'>dftd3_version</a></li>
+    
+    <li><a href='../module/dftd3_damping.html'>dftd3_damping</a></li>
+    
+    <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
+    
+    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_env.html">mctc_env</a></li>
+    
+    <li>mctc_io_math</li>
     
   </ul>
       </li>
@@ -305,6 +307,8 @@
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_atomic_references">ascii_atomic_references</a>
       
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_damping_param">ascii_damping_param</a>
+      
+      <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_pairwise">ascii_pairwise</a>
       
       <a class="list-group-item" href="../module/dftd3_output.html#proc-ascii_results">ascii_results</a>
       
@@ -597,6 +601,102 @@ public subroutine <a href='../proc/ascii_damping_param.html'>ascii_damping_param
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-ascii_pairwise"></span><h3>
+public subroutine <a href='../proc/ascii_pairwise.html'>ascii_pairwise</a>(unit, mol, pair_disp2, pair_disp3)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>integer,</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>unit</strong></td><td><p>Unit for output</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>pair_disp2</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>pair_disp3</strong>(:,:)</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-ascii_results"></span><h3>
 public subroutine <a href='../proc/ascii_results.html'>ascii_results</a>(unit, mol, energy, gradient, sigma)
     
@@ -820,7 +920,7 @@ public subroutine <a href='../proc/ascii_system_properties.html'>ascii_system_pr
     
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-json_results"></span><h3>
-public subroutine <a href='../proc/json_results.html'>json_results</a>(unit, indentation, energy, gradient, sigma, cn, c6)
+public subroutine <a href='../proc/json_results.html'>json_results</a>(unit, indentation, energy, gradient, sigma, cn, c6, pairwise_energy2, pairwise_energy3)
     
     
    
@@ -944,6 +1044,36 @@ public subroutine <a href='../proc/json_results.html'>json_results</a>(unit, ind
   
   <td></td><td>::</td>
   <td><strong>c6</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pairwise_energy2</strong>(:,:)</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in),</td>
+  <td>optional</td>
+  
+  <td></td><td>::</td>
+  <td><strong>pairwise_energy3</strong>(:,:)</td><td></td>
   
 </tr>
 
@@ -1297,7 +1427,7 @@ public subroutine <a href='../proc/turbomole_gradlatt.html'>turbomole_gradlatt</
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-19 18:15  
+             on 2021-11-19 22:18  
             
           </p>
         </div>

@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 4.8% of total for modules and submodules.">171 statements</a>
+    title=" 5.8% of total for modules and submodules.">228 statements</a>
      </li> 
      
      
@@ -176,6 +176,18 @@
 <h3>Contents</h3>
  
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
+  <div id="vars-0" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#variable-rs9~7">rs9</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -214,6 +226,10 @@
       
       <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_dispersion_energy~3">get_dispersion_energy</a>
       
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_pairwise_dispersion2~3">get_pairwise_dispersion2</a>
+      
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_pairwise_dispersion3~3">get_pairwise_dispersion3</a>
+      
       <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-new_mzero_damping">new_mzero_damping</a>
       
     </div>
@@ -247,15 +263,15 @@
       <li class="list-group-item">
   <ul class="list-inline">
     
-    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_env.html">mctc_env</a></li>
-    
-    <li><a href='../module/dftd3_damping.html'>dftd3_damping</a></li>
+    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_io.html">mctc_io</a></li>
     
     <li><a href='../module/dftd3_damping_atm.html'>dftd3_damping_atm</a></li>
     
-    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_io.html">mctc_io</a></li>
-    
     <li><a href='../module/dftd3_param.html'>dftd3_param</a></li>
+    
+    <li><a href='../module/dftd3_damping.html'>dftd3_damping</a></li>
+    
+    <li><a href="https://grimme-lab.github.io/mctc-lib/modules/mctc_env.html">mctc_env</a></li>
     
   </ul>
       </li>
@@ -276,6 +292,18 @@
 <h3>Contents</h3>
  
 
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
+  <div id="vars-1" class="panel-collapse collapse">
+    <div class="list-group">
+      
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#variable-rs9~7">rs9</a>
+      
+    </div>
+  </div>
+</div>
 
 
 
@@ -314,6 +342,10 @@
       
       <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_dispersion_energy~3">get_dispersion_energy</a>
       
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_pairwise_dispersion2~3">get_pairwise_dispersion2</a>
+      
+      <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-get_pairwise_dispersion3~3">get_pairwise_dispersion3</a>
+      
       <a class="list-group-item" href="../module/dftd3_damping_mzero.html#proc-new_mzero_damping">new_mzero_damping</a>
       
     </div>
@@ -334,6 +366,38 @@
 
     
 
+    
+    <section>
+    <h2>Variables</h2>
+    
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th><th>Visibility</th>
+
+<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-rs9~7"></span>real(kind=wp),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>rs9</strong></td><td> =</td><td>4.0_wp/3.0_wp</td><td></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+    </section>
+    <br>
     
     
     
@@ -482,6 +546,12 @@
       
        <tr><td>procedure, public :: <strong><a href='../type/mzero_damping_param.html#boundprocedure-get_dispersion3~3'>get_dispersion3</a></strong>  </td>
        <td><p>Evaluate ATM three-body dispersion energy expression</p></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/mzero_damping_param.html#boundprocedure-get_pairwise_dispersion2~3'>get_pairwise_dispersion2</a></strong>  </td>
+       <td><p>Evaluate pairwise representation of additive dispersion energy</p></td></tr>
+      
+       <tr><td>procedure, public :: <strong><a href='../type/mzero_damping_param.html#boundprocedure-get_pairwise_dispersion3~3'>get_pairwise_dispersion3</a></strong>  </td>
+       <td><p>Evaluate pairwise representation of non-additive dispersion energy</p></td></tr>
       
        </tbody>
        </table>
@@ -1338,6 +1408,334 @@ public subroutine <a href='../proc/get_dispersion_energy~3.html'>get_dispersion_
     
     
   <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_pairwise_dispersion2~3"></span><h3>
+public subroutine <a href='../proc/get_pairwise_dispersion2~3.html'>get_pairwise_dispersion2</a>(self, mol, trans, cutoff, rvdw, r4r2, c6, energy)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Evaluation of the dispersion energy expression projected on atomic pairs</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:,:)</td><td><p>Dispersion energy</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
+  <div class="panel-heading codesum"><span class="anchor" id="proc-get_pairwise_dispersion3~3"></span><h3>
+public subroutine <a href='../proc/get_pairwise_dispersion3~3.html'>get_pairwise_dispersion3</a>(self, mol, trans, cutoff, rvdw, r4r2, c6, energy)
+    
+    
+   
+</h3></div>
+  <div class="panel-body">
+       
+    
+
+
+
+
+
+
+
+<p>Evaluation of the dispersion energy expression</p>
+    
+    <h4>Arguments</h4>
+    
+      
+      
+<table class="table table-striped varlist">
+<thead><tr><th>Type</th>
+<th>Intent</th><th>Optional</th>
+<th>Attributes</th><th></th><th>Name</th><th></th></thead>
+
+
+
+<tbody>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(<a href='../type/mzero_damping_param.html'>mzero_damping_param</a>),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>class(structure_type),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(in)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" ></span>real(kind=wp),</td>
+  <td>intent(inout)</td>
+  <td></td>
+  
+  <td></td><td>::</td>
+  <td><strong>energy</strong>(:,:)</td><td><p>Dispersion energy</p></td>
+  
+</tr>
+
+</tbody>
+</table>
+
+      
+    
+    
+
+  </div>
+  </div>
+
+    
+    
+  <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-new_mzero_damping"></span><h3>
 public subroutine <a href='../proc/new_mzero_damping.html'>new_mzero_damping</a>(self, param)
     
@@ -1431,7 +1829,7 @@ public subroutine <a href='../proc/new_mzero_damping.html'>new_mzero_damping</a>
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-19 18:15  
+             on 2021-11-19 22:18  
             
           </p>
         </div>
