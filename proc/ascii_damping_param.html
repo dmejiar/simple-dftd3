@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 1.3% of total for procedures.">37 statements</a>
+    title=" 1.4% of total for procedures.">47 statements</a>
      </li> 
      
      
@@ -257,7 +257,7 @@ public subroutine ascii_damping_param(unit, param, method)
   
 <tr>
   
-  <td><span class="anchor" id="variable-param~3"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
+  <td><span class="anchor" id="variable-param"></span>class(<a href='../type/damping_param.html'>damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -395,6 +395,24 @@ public subroutine ascii_damping_param(unit, param, method)
          <span class="p">&amp;</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">bet</span>
       <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(20(&quot;-&quot;))&#39;</span><span class="p">)</span>
       <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
+   <span class="k">type is</span> <span class="p">(</span><span class="n">optimizedpower_damping_param</span><span class="p">)</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, &quot;:&quot;, 1x)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span> <span class="s2">&quot;Optimized power damping&quot;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">method</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, &quot;-&quot;)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span> <span class="n">method</span>
+      <span class="k">end if</span>
+<span class="k">      write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="nb">trim</span><span class="p">(</span><span class="nb">merge</span><span class="p">(</span><span class="s2">&quot;D3(op)-ATM&quot;</span><span class="p">,</span> <span class="s2">&quot;D3(op)    &quot;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">param</span><span class="p">%</span><span class="n">s9</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(20(&quot;-&quot;))&#39;</span><span class="p">)</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a5, t10, f10.4)&#39;</span><span class="p">)</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;s6&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">s6</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;s8&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">s8</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;s9&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">s9</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">a1</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;a1&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">a2</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;alp&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">alp</span><span class="p">,</span> <span class="p">&amp;</span>
+         <span class="p">&amp;</span> <span class="s2">&quot;beta&quot;</span><span class="p">,</span> <span class="n">param</span><span class="p">%</span><span class="n">bet</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(20(&quot;-&quot;))&#39;</span><span class="p">)</span>
+      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
    <span class="k">type is</span> <span class="p">(</span><span class="n">rational_damping_param</span><span class="p">)</span>
       <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a, &quot;:&quot;, 1x)&#39;</span><span class="p">,</span> <span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span> <span class="s2">&quot;Rational (Becke-Johnson) damping&quot;</span>
       <span class="k">if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">method</span><span class="p">))</span> <span class="k">then</span>
@@ -437,7 +455,7 @@ public subroutine ascii_damping_param(unit, param, method)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-20 15:14  
+             on 2021-12-28 21:21  
             
           </p>
         </div>

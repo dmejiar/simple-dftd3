@@ -145,16 +145,16 @@
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/rational.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/zero.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/rational.f90.html'>rational.f90</a></li>
+     <li><a href='../sourcefile/zero.f90.html'>zero.f90</a></li>
     
-     <li><a href='../module/dftd3_damping_rational.html'>dftd3_damping_rational</a></li>
+     <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
     
   
      <li class="active">get_dispersion3</li>
@@ -244,7 +244,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-self~12"></span>class(<a href='../type/rational_damping_param.html'>rational_damping_param</a>),</td>
+  <td><span class="anchor" id="variable-self~12"></span>class(<a href='../type/zero_damping_param.html'>zero_damping_param</a>),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -259,7 +259,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-mol~25"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~21"></span>class(structure_type),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -274,7 +274,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-trans~16"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~12"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -289,7 +289,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-cutoff~17"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~13"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -304,7 +304,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-rvdw~15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-rvdw~11"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -334,7 +334,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-c6~18"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-c6~14"></span>real(kind=wp),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -349,7 +349,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-dc6dcn~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dc6dcn~6"></span>real(kind=wp),</td>
   <td>intent(in),</td>
   <td>optional</td>
   
@@ -364,7 +364,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-energy~20"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-energy~16"></span>real(kind=wp),</td>
   <td>intent(inout)</td>
   <td></td>
   
@@ -379,7 +379,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-dedcn~8"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~6"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -394,7 +394,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-gradient~13"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~11"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -409,7 +409,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
   
 <tr>
   
-  <td><span class="anchor" id="variable-sigma~13"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~11"></span>real(kind=wp),</td>
   <td>intent(inout),</td>
   <td>optional</td>
   
@@ -489,7 +489,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
       <span class="p">&amp;</span> <span class="n">energy</span><span class="p">,</span> <span class="n">dEdcn</span><span class="p">,</span> <span class="n">gradient</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
 
    <span class="c">!&gt; Damping parameters</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">rational_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
+   <span class="k">class</span><span class="p">(</span><span class="n">zero_damping_param</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">self</span>
 
    <span class="c">!&gt; Molecular structure data</span>
    <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
@@ -550,7 +550,7 @@ public subroutine get_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, dc6d
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-11-20 15:14  
+             on 2021-12-28 21:21  
             
           </p>
         </div>
