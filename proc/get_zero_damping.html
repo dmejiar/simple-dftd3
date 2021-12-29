@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 3.5% of total for procedures.">114 statements</a>
+    title=" 5.8% of total for procedures.">182 statements</a>
      </li> 
      
      
@@ -242,7 +242,7 @@ public subroutine get_zero_damping(param, method, error, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-param~8"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
+  <td><span class="anchor" id="variable-param~9"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
   <td>intent(out)</td>
   <td></td>
   
@@ -257,7 +257,7 @@ public subroutine get_zero_damping(param, method, error, s9)
   
 <tr>
   
-  <td><span class="anchor" id="variable-method~7"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-method~9"></span>character(len=*),</td>
   <td>intent(in)</td>
   <td></td>
   
@@ -481,6 +481,74 @@ public subroutine get_zero_damping(param, method, error, s9)
       <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.324_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.000_wp</span><span class="p">)</span>
    <span class="k">case</span><span class="p">(</span><span class="n">p_wb97x_df</span><span class="p">)</span>
       <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.281_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">rs8</span><span class="o">=</span><span class="mf">1.094_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pw1pw_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.4968_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.1786_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pbehpbe_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.5703_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.4010_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_xlyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">0.9384_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.7447_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpwpw_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3725_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.9467_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hcth407_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">4.0426_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.7694_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_revtpss_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3491_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.3666_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_tauhcth_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">0.9320_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.5662_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b3p_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.1897_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.1961_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b1p_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.1815_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.1209_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b1lyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3725_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.9467_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpw1lyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">2.0512_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.9529_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpw1pw_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.2892_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.4758_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpw1kcis_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.7231_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.2917_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpwkcis1k_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.4853_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.7553_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pbeh1pbe_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3719_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.0430_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pbe1kcis_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">3.6355_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.7934_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_x3lyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.0_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.2990_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_o3lyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.4060_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.8058_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b97_1_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">3.7924_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.6418_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b97_2_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.7066_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.6418_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_b98_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">2.6895_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.9078_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hiss_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3338_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.7615_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_hse03_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3944_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.0156_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_revtpssh_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3224_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.2504_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_revtpss0_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.2881_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.0649_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_tpss1kcis_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.7729_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.0902_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_tauhcthhyb_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.5001_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.6302_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pkzb_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">0.6327_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_n12_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.3493_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">2.3916_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mpw2plyp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">s6</span><span class="o">=</span><span class="mf">0.66_wp</span><span class="p">,</span> <span class="n">rs6</span><span class="o">=</span><span class="mf">1.5527_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.7529_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_m08hx_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">1.6247_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_m11l_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">2.3933_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">1.1129_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_mn15l_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">3.3388_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.0_wp</span><span class="p">)</span>
+   <span class="k">case</span><span class="p">(</span><span class="n">p_pwp_df</span><span class="p">)</span>
+      <span class="n">param</span> <span class="o">=</span> <span class="n">d3_param</span><span class="p">(</span><span class="n">rs6</span><span class="o">=</span><span class="mf">2.1040_wp</span><span class="p">,</span> <span class="n">s8</span><span class="o">=</span><span class="mf">0.8747_wp</span><span class="p">)</span>
    <span class="k">end select</span>
 
 <span class="k">   if</span> <span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">s9</span><span class="p">))</span> <span class="k">then</span>
@@ -510,7 +578,7 @@ public subroutine get_zero_damping(param, method, error, s9)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-12-28 21:21  
+             on 2021-12-29 20:42  
             
           </p>
         </div>

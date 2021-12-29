@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.6% of total for modules and submodules.">27 statements</a>
+    title=" 0.5% of total for modules and submodules.">26 statements</a>
      </li> 
      
      
@@ -183,7 +183,13 @@
   <div id="vars-0" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-help_text">help_text</a>
+      
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-param_help_text">param_help_text</a>
+      
       <a class="list-group-item" href="../module/dftd3_app_help.html#variable-prog_name">prog_name</a>
+      
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-run_help_text">run_help_text</a>
       
     </div>
   </div>
@@ -207,8 +213,6 @@
     <div id="subs-0" class="panel-collapse collapse">
       
       <a class="list-group-item" href="../module/dftd3_app_help.html#proc-header">header</a>
-      
-      <a class="list-group-item" href="../module/dftd3_app_help.html#proc-help">help</a>
       
       <a class="list-group-item" href="../module/dftd3_app_help.html#proc-version">version</a>
       
@@ -271,7 +275,13 @@
   <div id="vars-1" class="panel-collapse collapse">
     <div class="list-group">
       
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-help_text">help_text</a>
+      
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-param_help_text">param_help_text</a>
+      
       <a class="list-group-item" href="../module/dftd3_app_help.html#variable-prog_name">prog_name</a>
+      
+      <a class="list-group-item" href="../module/dftd3_app_help.html#variable-run_help_text">run_help_text</a>
       
     </div>
   </div>
@@ -295,8 +305,6 @@
     <div id="subs-1" class="panel-collapse collapse">
       
       <a class="list-group-item" href="../module/dftd3_app_help.html#proc-header">header</a>
-      
-      <a class="list-group-item" href="../module/dftd3_app_help.html#proc-help">help</a>
       
       <a class="list-group-item" href="../module/dftd3_app_help.html#proc-version">version</a>
       
@@ -337,11 +345,53 @@
   
 <tr>
   
+  <td><span class="anchor" id="variable-help_text"></span>character(len=*),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>help_text</strong></td><td> =</td><td>"Usage: "//prog_name//" [run|param] [options] ..."//nl//""//nl//"Commands"//nl//""//nl//"&nbsp;&nbsp;run&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Evaluate dispersion correction on the provided input structure."//nl//"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Periodic calculations are performed automatically for periodic inputs"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;If no command is specified run is selected by default."//nl//""//nl//"&nbsp;&nbsp;param&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Inspect and manipulate damping parameter data file."//nl//""//nl//"Options"//nl//""//nl//run_options_text//nl//""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-param_help_text"></span>character(len=*),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>param_help_text</strong></td><td> =</td><td>"Usage: "//prog_name//" param [options] <input> [method] [damping]"//nl//""//nl//"Takes a damping parameter data file and performs queries for damping"//nl//"parameters if a method is provided, if no damping function is provided"//nl//"the default damping functions as provided in the data file will be used."//nl//"The data file is provided in TOML format."//nl//""//nl//"Example:"//nl//""//nl//"&nbsp;&nbsp;&nbsp;&nbsp;[default]"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3 = [""bj"", ""zero""]"//nl//""//nl//"&nbsp;&nbsp;&nbsp;&nbsp;[default.parameter]"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bj = {s6=1.0, s9=0.0, alp=14.0, damping=""rational""}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zero = {s6=1.0, s9=0.0, rs8=1.0, alp=14.0, damping=""zero""}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bjm = {s6=1.0, s9=0.0, alp=14.0, damping=""rational""}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zerom = {s6=1.0, s9=0.0, rs8=1.0, alp=14.0, damping=""mzero""}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.op = {s9=0.0, alp=14.0, damping=""optimizedpower""}"//nl//""//nl//"&nbsp;&nbsp;&nbsp;&nbsp;[parameter.bp]"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bj = {a1=0.3946, s8=3.2822, a2=4.8516}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zero = {rs6=1.139, s8=1.683}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bjm = {a1=0.821850, s8=3.140281, a2=2.728151}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zerom = {rs6=1.233460, s8=1.945174, bet=0.000000}"//nl//""//nl//"&nbsp;&nbsp;&nbsp;&nbsp;[parameter.blyp]"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bj = {a1=0.4298, s8=2.6996, a2=4.2359}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zero = {rs6=1.094, s8=1.682}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bjm = {a1=0.448486, s8=1.875007, a2=3.610679}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zerom = {rs6=1.279637, s8=1.841686, bet=0.014370}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.op = {s6=1.0, s8=1.31867, a1=0.425, a2=3.50, bet=2.0}"//nl//""//nl//"&nbsp;&nbsp;&nbsp;&nbsp;[parameter.revpbe]"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.bj = {a1=0.5238, s8=2.3550, a2=3.5016}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.zero = {rs6=0.923, s8=1.010}"//nl//"&nbsp;&nbsp;&nbsp;&nbsp;d3.op = {s6=1.0, s8=1.44765, a1=0.600, a2=2.50, bet=0.0}"//nl//""</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
   <td><span class="anchor" id="variable-prog_name"></span>character(len=*),</td>
   
   <td>public,</td>
   <td>parameter</td><td>::</td>
   <td><strong>prog_name</strong></td><td> =</td><td>"s-dftd3"</td><td></td>
+  
+</tr>
+
+  
+  
+  
+  
+<tr>
+  
+  <td><span class="anchor" id="variable-run_help_text"></span>character(len=*),</td>
+  
+  <td>public,</td>
+  <td>parameter</td><td>::</td>
+  <td><strong>run_help_text</strong></td><td> =</td><td>"Usage: "//prog_name//" [run] [options] <input>"//nl//""//nl//"Takes an geometry input to calculate the D3 dispersion correction."//nl//"Periodic calculations are performed automatically for periodic input formats."//nl//"Specify the functional to select the correct parameters."//nl//""//nl//run_options_text//nl//""</td><td></td>
   
 </tr>
 
@@ -370,57 +420,6 @@
   <div class="panel panel-default">
   <div class="panel-heading codesum"><span class="anchor" id="proc-header"></span><h3>
 public subroutine <a href='../proc/header.html'>header</a>(unit)
-    
-    
-   
-</h3></div>
-  <div class="panel-body">
-       
-    
-    
-    <h4>Arguments</h4>
-    
-      
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" ></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>unit</strong></td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-      
-    
-    
-
-  </div>
-  </div>
-
-    
-    
-  <div class="panel panel-default">
-  <div class="panel-heading codesum"><span class="anchor" id="proc-help"></span><h3>
-public subroutine <a href='../proc/help.html'>help</a>(unit)
     
     
    
@@ -540,7 +539,7 @@ public subroutine <a href='../proc/version.html'>version</a>(unit)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-12-28 21:21  
+             on 2021-12-29 20:42  
             
           </p>
         </div>

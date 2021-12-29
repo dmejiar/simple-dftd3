@@ -10,7 +10,7 @@
     <meta name="author" content="Sebastian Ehlert" >
     <link rel="icon" href="../favicon.png">
 
-    <title>get_argument_as_real &ndash; Simple DFT-D3</title>
+    <title>param_config &ndash; Simple DFT-D3 </title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -121,8 +121,8 @@
     
   
   <div class="row">
-    <h1>get_argument_as_real
-      <small>Subroutine</small>
+    <h1>param_config
+    <small>Derived Type</small>
     
     </h1>
     
@@ -140,24 +140,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.5% of total for procedures.">17 statements</a>
+    title="<p> 3.2% of total for derived types.</p>Including implementation: 5 statements,  0.6% of total for derived types.">5 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/main.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/cli.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/main.f90.html'>main.f90</a></li>
+     <li><a href='../sourcefile/cli.f90.html'>cli.f90</a></li>
     
-     <li><a href='../program/dftd3_main.html'>dftd3_main</a></li>
+     <li><a href='../module/dftd3_app_cli.html'>dftd3_app_cli</a></li>
     
   
-     <li class="active">get_argument_as_real</li>
+     <li class="active">param_config</li>
   </ol>
 </div>
 </div>
@@ -201,7 +201,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_argument_as_real.html#src">get_argument_as_real</a>
+    <a class="list-group-item" href="../type/param_config.html#src">param_config</a>
   </div>
 </div>
 
@@ -212,83 +212,11 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>
-subroutine get_argument_as_real(iarg, val, error)
-    
-    
-   
-</h2>
-    
-  
-
-
-    
-
-    <h3>Arguments</h3>
-    
-      
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th>
-<th>Intent</th><th>Optional</th>
-<th>Attributes</th><th></th><th>Name</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-iarg"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>iarg</strong></td><td><p>Index of command line argument, range [0:command_argument_count()]</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-val"></span>real(kind=wp),</td>
-  <td>intent(out)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>val</strong></td><td><p>Real value</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-error~6"></span>type(error_type),</td>
-  <td></td>
-  <td></td>
-  
-  <td>allocatable</td><td>::</td>
-  <td><strong>error</strong></td><td><p>Error handling</p></td>
-  
-</tr>
-
-</tbody>
-</table>
-
+      <h2>type, public, extends(<a href='../type/app_config.html'>app_config</a>) :: param_config</h2>
     
     
     
     
-     
     <br>
 
     <section class="visible-xs visible-sm hidden-md">
@@ -319,7 +247,7 @@ subroutine get_argument_as_real(iarg, val, error)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/get_argument_as_real.html#src">get_argument_as_real</a>
+    <a class="list-group-item" href="../type/param_config.html#src">param_config</a>
   </div>
 </div>
 
@@ -329,55 +257,27 @@ subroutine get_argument_as_real(iarg, val, error)
     <br class="visible-xs visible-sm hidden-md">
 
     
-
     
     
     
     
     
-
-    
-    
-    
-    
-    
-
-
     
     
     
     <section>
-    <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_argument_as_real</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">val</span><span class="p">,</span> <span class="n">error</span><span class="p">)</span>
-
-   <span class="c">!&gt; Index of command line argument, range [0:command_argument_count()]</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">iarg</span>
-
-   <span class="c">!&gt; Real value</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span> <span class="kd">::</span> <span class="n">val</span>
-
-   <span class="c">!&gt; Error handling</span>
-   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">error</span>
-
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="nb">stat</span>
-<span class="nb">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">arg</span>
-
-   <span class="k">call </span><span class="n">get_argument</span><span class="p">(</span><span class="n">iarg</span><span class="p">,</span> <span class="n">arg</span><span class="p">)</span>
-   <span class="k">if</span> <span class="p">(.</span><span class="nb">not</span><span class="p">.</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arg</span><span class="p">))</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value, argument missing&quot;</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   end if</span>
-<span class="k">   read</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span> <span class="n">val</span>
-   <span class="k">if</span> <span class="p">(</span><span class="nb">stat</span> <span class="o">/=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;Cannot read real value from &#39;&quot;</span><span class="o">//</span><span class="n">arg</span><span class="o">//</span><span class="s2">&quot;&#39;&quot;</span><span class="p">)</span>
-      <span class="k">return</span>
-<span class="k">   end if</span>
-
-<span class="k">end subroutine </span><span class="n">get_argument_as_real</span>
+    <h3><span class="anchor" id="src"></span>Source Code</h3>
+    <div class="highlight"><pre><span></span>   <span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">app_config</span><span class="p">)</span> <span class="kd">::</span> <span class="n">param_config</span>
+      <span class="c">!&gt; Data base input file</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input</span>
+      <span class="c">!&gt; Method name</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">method</span>
+      <span class="c">!&gt; Damping function</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">damping</span>
+   <span class="k">end type </span><span class="n">param_config</span>
 </pre></div>
 
     </section>
-    <br>
     
     
     </div>
@@ -396,7 +296,7 @@ subroutine get_argument_as_real(iarg, val, error)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-12-28 21:21  
+             on 2021-12-29 20:42  
             
           </p>
         </div>

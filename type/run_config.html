@@ -10,7 +10,7 @@
     <meta name="author" content="Sebastian Ehlert" >
     <link rel="icon" href="../favicon.png">
 
-    <title>d3_config &ndash; Simple DFT-D3 </title>
+    <title>run_config &ndash; Simple DFT-D3 </title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -121,7 +121,7 @@
     
   
   <div class="row">
-    <h1>d3_config
+    <h1>run_config
     <small>Derived Type</small>
     
     </h1>
@@ -140,24 +140,24 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title="<p>15.0% of total for derived types.</p>Including implementation: 18 statements,  3.1% of total for derived types.">18 statements</a>
+    title="<p>14.8% of total for derived types.</p>Including implementation: 23 statements,  2.9% of total for derived types.">23 statements</a>
      </li> 
      
      
      
-    <li><i class="fa fa-code"></i><a href="../src/main.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/cli.f90"> Source File</a></li>
      
      
   </ul>
   <ol class="breadcrumb in-well text-right">
   
     
-     <li><a href='../sourcefile/main.f90.html'>main.f90</a></li>
+     <li><a href='../sourcefile/cli.f90.html'>cli.f90</a></li>
     
-     <li><a href='../program/dftd3_main.html'>dftd3_main</a></li>
+     <li><a href='../module/dftd3_app_cli.html'>dftd3_app_cli</a></li>
     
   
-     <li class="active">d3_config</li>
+     <li class="active">run_config</li>
   </ol>
 </div>
 </div>
@@ -180,48 +180,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-0">Variables</a></h3></div>
-  <div id="vars-0" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-atm">atm</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-grad">grad</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-grad_output">grad_output</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-has_param">has_param</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-json">json</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-json_output">json_output</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-mrational">mrational</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-mzero">mzero</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-optimizedpower">optimizedpower</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-pair_resolved">pair_resolved</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-properties">properties</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-rational">rational</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-tmer">tmer</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-verbosity">verbosity</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-wrap">wrap</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-zero">zero</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -243,7 +201,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../type/d3_config.html#src">d3_config</a>
+    <a class="list-group-item" href="../type/run_config.html#src">run_config</a>
   </div>
 </div>
 
@@ -254,7 +212,7 @@
     </div>
     
     <div class="col-md-9" id='text'>
-      <h2>type :: d3_config</h2>
+      <h2>type, public, extends(<a href='../type/app_config.html'>app_config</a>) :: run_config</h2>
     
     
     
@@ -268,48 +226,6 @@
 
 
 
-<div class="panel panel-primary">
-  <div class="panel-heading text-left"><h3 class="panel-title"><a data-toggle="collapse" href="#vars-1">Variables</a></h3></div>
-  <div id="vars-1" class="panel-collapse collapse">
-    <div class="list-group">
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-atm">atm</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-grad">grad</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-grad_output">grad_output</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-has_param">has_param</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-json">json</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-json_output">json_output</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-mrational">mrational</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-mzero">mzero</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-optimizedpower">optimizedpower</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-pair_resolved">pair_resolved</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-properties">properties</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-rational">rational</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-tmer">tmer</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-verbosity">verbosity</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-wrap">wrap</a>
-      
-      <a class="list-group-item" href="../type/d3_config.html#variable-zero">zero</a>
-      
-    </div>
-  </div>
-</div>
-
-
 
 
 
@@ -331,7 +247,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../type/d3_config.html#src">d3_config</a>
+    <a class="list-group-item" href="../type/run_config.html#src">run_config</a>
   </div>
 </div>
 
@@ -340,248 +256,6 @@
     </section>
     <br class="visible-xs visible-sm hidden-md">
 
-    
-    <section>
-    <h2>Components</h2>
-    
-<table class="table table-striped varlist">
-<thead><tr><th>Type</th><th>Visibility</th>
-
-<th>Attributes</th><th></th><th>Name</th><th></th><th>Initial</th><th></th></thead>
-
-
-
-<tbody>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-atm"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>atm</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-grad"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>grad</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-grad_output"></span>character(len=:),</td>
-  
-  <td>public,</td>
-  <td>allocatable</td><td>::</td>
-  <td><strong>grad_output</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-has_param"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>has_param</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-json"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>json</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-json_output"></span>character(len=:),</td>
-  
-  <td>public,</td>
-  <td>allocatable</td><td>::</td>
-  <td><strong>json_output</strong></td><td></td><td></td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-mrational"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>mrational</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-mzero"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>mzero</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-optimizedpower"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>optimizedpower</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-pair_resolved"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>pair_resolved</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-properties"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>properties</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-rational"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>rational</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-tmer"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>tmer</strong></td><td> =</td><td>.true.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-verbosity"></span>integer,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>verbosity</strong></td><td> =</td><td>2</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-wrap"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>wrap</strong></td><td> =</td><td>.true.</td><td></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-zero"></span>logical,</td>
-  
-  <td>public</td>
-  <td></td><td>::</td>
-  <td><strong>zero</strong></td><td> =</td><td>.false.</td><td></td>
-  
-</tr>
-
-</tbody>
-</table>
-
-    </section>
-    <br>
     
     
     
@@ -593,7 +267,15 @@
     
     <section>
     <h3><span class="anchor" id="src"></span>Source Code</h3>
-    <div class="highlight"><pre><span></span>   <span class="k">type</span> <span class="kd">::</span> <span class="n">d3_config</span>
+    <div class="highlight"><pre><span></span>   <span class="k">type</span><span class="p">,</span> <span class="k">extends</span><span class="p">(</span><span class="n">app_config</span><span class="p">)</span> <span class="kd">::</span> <span class="n">run_config</span>
+      <span class="c">!&gt; Geometry input file</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input</span>
+      <span class="c">!&gt; Format of the geometry input</span>
+      <span class="kt">integer</span><span class="p">,</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">input_format</span>
+      <span class="c">!&gt; Method name</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">method</span>
+      <span class="c">!&gt; Damping paramaters</span>
+      <span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">)</span> <span class="kd">::</span> <span class="n">inp</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">json</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">json_output</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">wrap</span> <span class="o">=</span> <span class="p">.</span><span class="n">true</span><span class="p">.</span>
@@ -610,7 +292,9 @@
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">has_param</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
       <span class="kt">integer</span> <span class="kd">::</span> <span class="n">verbosity</span> <span class="o">=</span> <span class="mi">2</span>
       <span class="kt">logical</span> <span class="kd">::</span> <span class="n">pair_resolved</span> <span class="o">=</span> <span class="p">.</span><span class="n">false</span><span class="p">.</span>
-   <span class="k">end type </span><span class="n">d3_config</span>
+      <span class="c">!&gt; Parameter data base</span>
+      <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">db</span>
+   <span class="k">end type </span><span class="n">run_config</span>
 </pre></div>
 
     </section>
@@ -632,7 +316,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-12-28 21:21  
+             on 2021-12-29 20:42  
             
           </p>
         </div>

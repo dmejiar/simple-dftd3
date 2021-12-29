@@ -10,7 +10,7 @@
     <meta name="author" content="Sebastian Ehlert" >
     <link rel="icon" href="../favicon.png">
 
-    <title>property_calc &ndash; Simple DFT-D3</title>
+    <title>handle_error &ndash; Simple DFT-D3</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -121,7 +121,7 @@
     
   
   <div class="row">
-    <h1>property_calc
+    <h1>handle_error
       <small>Subroutine</small>
     
     </h1>
@@ -140,7 +140,7 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.7% of total for procedures.">24 statements</a>
+    title=" 0.6% of total for procedures.">18 statements</a>
      </li> 
      
      
@@ -157,7 +157,7 @@
      <li><a href='../program/dftd3_main.html'>dftd3_main</a></li>
     
   
-     <li class="active">property_calc</li>
+     <li class="active">handle_error</li>
   </ol>
 </div>
 </div>
@@ -201,7 +201,7 @@
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/property_calc.html#src">property_calc</a>
+    <a class="list-group-item" href="../proc/handle_error.html#src">handle_error</a>
   </div>
 </div>
 
@@ -213,7 +213,7 @@
     
     <div class="col-md-9" id='text'>
     <h2>
-subroutine property_calc(unit, mol, disp, verbosity)
+subroutine handle_error(error)
     
     
    
@@ -242,57 +242,12 @@ subroutine property_calc(unit, mol, disp, verbosity)
   
 <tr>
   
-  <td><span class="anchor" id="variable-unit~12"></span>integer,</td>
-  <td>intent(in)</td>
+  <td><span class="anchor" id="variable-error~8"></span>type(error_type),</td>
+  <td>intent(inout),</td>
   <td></td>
   
-  <td></td><td>::</td>
-  <td><strong>unit</strong></td><td><p>Unit for output</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-mol~42"></span>class(structure_type),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-disp~6"></span>class(<a href='../type/d3_model.html'>d3_model</a>),</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>disp</strong></td><td><p>Dispersion model</p></td>
-  
-</tr>
-
-  
-  
-  
-  
-<tr>
-  
-  <td><span class="anchor" id="variable-verbosity~2"></span>integer,</td>
-  <td>intent(in)</td>
-  <td></td>
-  
-  <td></td><td>::</td>
-  <td><strong>verbosity</strong></td><td><p>Printout verbosity</p></td>
+  <td>allocatable</td><td>::</td>
+  <td><strong>error</strong></td><td></td>
   
 </tr>
 
@@ -334,7 +289,7 @@ subroutine property_calc(unit, mol, disp, verbosity)
 <div class="panel panel-primary">
   <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
   <div class="list-group">
-    <a class="list-group-item" href="../proc/property_calc.html#src">property_calc</a>
+    <a class="list-group-item" href="../proc/handle_error.html#src">handle_error</a>
   </div>
 </div>
 
@@ -363,43 +318,26 @@ subroutine property_calc(unit, mol, disp, verbosity)
     
     <section>
     <h2><span class="anchor" id="src"></span>Source Code</h2>
-    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">property_calc</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">verbosity</span><span class="p">)</span>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">handle_error</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+   <span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span> <span class="k">allocatable</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span> <span class="kd">::</span> <span class="n">error</span>
 
-   <span class="c">!&gt; Unit for output</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">unit</span>
+   <span class="k">interface</span>
+<span class="k">      subroutine </span><span class="n">sys_exit</span><span class="p">(</span><span class="nb">stat</span><span class="p">)</span> <span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;exit&quot;</span><span class="p">)</span>
+         <span class="k">use</span><span class="p">,</span> <span class="k">intrinsic</span> <span class="kd">::</span> <span class="nb">iso_c_binding</span><span class="p">,</span> <span class="k">only</span> <span class="p">:</span> <span class="kt">c_int</span>
+<span class="kt">         integer</span><span class="p">(</span><span class="kt">c_int</span><span class="p">),</span> <span class="k">value</span> <span class="kd">::</span> <span class="nb">stat</span>
+<span class="nb">      </span><span class="k">end subroutine </span><span class="n">sys_exit</span>
+   <span class="k">end interface</span>
 
-   <span class="c">!&gt; Molecular structure data</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">mol</span>
-
-   <span class="c">!&gt; Dispersion model</span>
-   <span class="k">class</span><span class="p">(</span><span class="n">d3_model</span><span class="p">),</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">disp</span>
-
-   <span class="c">!&gt; Printout verbosity</span>
-   <span class="kt">integer</span><span class="p">,</span> <span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span> <span class="kd">::</span> <span class="n">verbosity</span>
-
-   <span class="kt">integer</span> <span class="kd">::</span> <span class="n">mref</span>
-   <span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span> <span class="k">allocatable</span> <span class="kd">::</span> <span class="n">cn</span><span class="p">(:),</span> <span class="n">gwvec</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">c6</span><span class="p">(:,</span> <span class="p">:),</span> <span class="n">lattr</span><span class="p">(:,</span> <span class="p">:)</span>
-
-   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">ascii_atomic_radii</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
-      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-      <span class="k">call </span><span class="n">ascii_atomic_references</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">)</span>
-      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-   <span class="k">end if</span>
-
-<span class="k">   </span><span class="n">mref</span> <span class="o">=</span> <span class="nb">maxval</span><span class="p">(</span><span class="n">disp</span><span class="p">%</span><span class="n">ref</span><span class="p">)</span>
-   <span class="k">allocate</span><span class="p">(</span><span class="n">cn</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">gwvec</span><span class="p">(</span><span class="n">mref</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">),</span> <span class="n">c6</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="p">))</span>
-   <span class="k">call </span><span class="n">get_lattice_points</span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">periodic</span><span class="p">,</span> <span class="n">mol</span><span class="p">%</span><span class="n">lattice</span><span class="p">,</span> <span class="mi">3</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">lattr</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">get_coordination_number</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">lattr</span><span class="p">,</span> <span class="mi">3</span><span class="mf">0.0_wp</span><span class="p">,</span> <span class="n">disp</span><span class="p">%</span><span class="n">rcov</span><span class="p">,</span> <span class="n">cn</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">weight_references</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">)</span>
-   <span class="k">call </span><span class="n">disp</span><span class="p">%</span><span class="n">get_atomic_c6</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span> <span class="n">gwvec</span><span class="p">,</span> <span class="n">c6</span><span class="o">=</span><span class="n">c6</span><span class="p">)</span>
-
-   <span class="k">if</span> <span class="p">(</span><span class="n">verbosity</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
-<span class="k">      call </span><span class="n">ascii_system_properties</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">mol</span><span class="p">,</span> <span class="n">disp</span><span class="p">,</span> <span class="n">cn</span><span class="p">,</span> <span class="n">c6</span><span class="p">)</span>
-      <span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span>
-   <span class="k">end if</span>
-
-<span class="k">end subroutine </span><span class="n">property_calc</span>
+<span class="k">   if</span> <span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">error</span><span class="p">))</span> <span class="k">then</span>
+<span class="k">      if</span> <span class="p">(</span><span class="n">error</span><span class="p">%</span><span class="nb">stat</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="n">output_unit</span><span class="p">,</span> <span class="s1">&#39;(a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+         <span class="k">call </span><span class="n">sys_exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+      <span class="k">else</span>
+<span class="k">         write</span><span class="p">(</span><span class="n">error_unit</span><span class="p">,</span> <span class="s1">&#39;(&quot;[Error]&quot;, 1x, a)&#39;</span><span class="p">)</span> <span class="n">error</span><span class="p">%</span><span class="n">message</span>
+         <span class="k">call </span><span class="n">sys_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+      <span class="k">end if</span>
+<span class="k">   end if</span>
+<span class="k">end subroutine </span><span class="n">handle_error</span>
 </pre></div>
 
     </section>
@@ -422,7 +360,7 @@ subroutine property_calc(unit, mol, disp, verbosity)
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
-             on 2021-12-28 21:21  
+             on 2021-12-29 20:42  
             
           </p>
         </div>
