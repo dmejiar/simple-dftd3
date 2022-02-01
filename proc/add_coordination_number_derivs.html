@@ -8,7 +8,7 @@
     <meta name="author" content="Sebastian Ehlert" >
     <link rel="icon" href="../favicon.png">
 
-    <title>get_pairwise_dispersion3 &ndash; Simple DFT-D3</title>
+    <title>add_coordination_number_derivs &ndash; Simple DFT-D3</title>
 
     <link href="../css/bootstrap.min.css" rel="stylesheet">
     <link href="../css/pygments.css" rel="stylesheet">
@@ -80,7 +80,7 @@
 
     <div class="container">
   <div class="row">
-    <h1>get_pairwise_dispersion3
+    <h1>add_coordination_number_derivs
       <small>Subroutine</small>
     </h1>
     <div class="row">
@@ -90,14 +90,14 @@
      <li><i class="fa fa-list-ol"></i>
        <a data-toggle="tooltip"
     data-placement="bottom" data-html="true"
-    title=" 0.3% of total for procedures.">11 statements</a>
+    title=" 0.9% of total for procedures.">30 statements</a>
      </li> 
-    <li><i class="fa fa-code"></i><a href="../src/zero.f90"> Source File</a></li>
+    <li><i class="fa fa-code"></i><a href="../src/ncoord.f90"> Source File</a></li>
   </ul>
   <ol class="breadcrumb in-well text-right">
-     <li><a href='../sourcefile/zero.f90.html'>zero.f90</a></li>
-     <li><a href='../module/dftd3_damping_zero.html'>dftd3_damping_zero</a></li>
-     <li class="active">get_pairwise_dispersion3</li>
+     <li><a href='../sourcefile/ncoord.f90.html'>ncoord.f90</a></li>
+     <li><a href='../module/dftd3_ncoord.html'>dftd3_ncoord</a></li>
+     <li class="active">add_coordination_number_derivs</li>
   </ol>
 </div>
 </div>
@@ -122,62 +122,55 @@
     </div>
     
     <div class="col-md-9" id='text'>
-    <h2>public subroutine get_pairwise_dispersion3(self, mol, trans, cutoff, rvdw, r4r2, c6, energy)</h2>
+    <h2>public subroutine add_coordination_number_derivs(mol, trans, cutoff, rcov, dEdcn, gradient, sigma)</h2>
     
 
-    <p>Evaluation of the dispersion energy expression</p>
 
     <h3>Arguments</h3>
       <table class="table table-striped varlist">
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-self~16"></span>class(<a href='../type/zero_damping_param.html'>zero_damping_param</a>),</td>
-<td>intent(in)</td>
-  <td></td>  <td></td><td>::</td>
-  <td><strong>self</strong></td><td><p>Damping parameters</p></td>
-</tr>
-<tr>
-  <td><span class="anchor" id="variable-mol~26"></span>class(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~3"></span>type(structure_type),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-trans~17"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~3"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-cutoff~19"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~4"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-rvdw~15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-rcov~2"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
-  <td><strong>rvdw</strong>(:,:)</td><td><p>Van-der-Waals radii for damping function</p></td>
+  <td><strong>rcov</strong>(:)</td><td><p>Covalent radius</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-r4r2~15"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-dedcn~2"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
-  <td><strong>r4r2</strong>(:)</td><td><p>Expectation values for r4 over r2 operator</p></td>
+  <td><strong>dEdcn</strong>(:)</td><td><p>Derivative of expression with respect to the coordination number</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-c6~18"></span>real(kind=wp),</td>
-<td>intent(in)</td>
-  <td></td>  <td></td><td>::</td>
-  <td><strong>c6</strong>(:,:)</td><td><p>C6 coefficients for all atom pairs.</p></td>
-</tr>
-<tr>
-  <td><span class="anchor" id="variable-energy~20"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~2"></span>real(kind=wp),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
-  <td><strong>energy</strong>(:,:)</td><td><p>Dispersion energy</p></td>
+  <td><strong>gradient</strong>(:,:)</td><td><p>Derivative of the CN with respect to the Cartesian coordinates</p></td>
+</tr>
+<tr>
+  <td><span class="anchor" id="variable-sigma~2"></span>real(kind=wp),</td>
+<td>intent(inout)</td>
+  <td></td>  <td></td><td>::</td>
+  <td><strong>sigma</strong>(:,:)</td><td><p>Derivative of the CN with respect to strain deformations</p></td>
 </tr>
 </tbody>
 </table>
