@@ -115,7 +115,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/add_coordination_number_derivs.html#src">add_coordination_number_derivs</a>
+  </div>
+</div>
 
 </div>
 
@@ -131,19 +136,19 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-mol~3"></span>type(structure_type),</td>
+  <td><span class="anchor" id="variable-mol~6"></span>type(structure_type),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>mol</strong></td><td><p>Molecular structure data</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-trans~3"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-trans~4"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>trans</strong>(:,:)</td><td><p>Lattice points</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-cutoff~4"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-cutoff~6"></span>real(kind=wp),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>cutoff</strong></td><td><p>Real space cutoff</p></td>
@@ -161,13 +166,13 @@
   <td><strong>dEdcn</strong>(:)</td><td><p>Derivative of expression with respect to the coordination number</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-gradient~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-gradient~3"></span>real(kind=wp),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>gradient</strong>(:,:)</td><td><p>Derivative of the CN with respect to the Cartesian coordinates</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-sigma~2"></span>real(kind=wp),</td>
+  <td><span class="anchor" id="variable-sigma~3"></span>real(kind=wp),</td>
 <td>intent(inout)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>sigma</strong>(:,:)</td><td><p>Derivative of the CN with respect to strain deformations</p></td>
@@ -180,7 +185,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/add_coordination_number_derivs.html#src">add_coordination_number_derivs</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -194,6 +204,70 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">add_coordination_number_derivs</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="w"> </span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="n">cutoff</span><span class="p">,</span><span class="w"> </span><span class="n">rcov</span><span class="p">,</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">,</span><span class="w"> </span><span class="n">gradient</span><span class="p">,</span><span class="w"> </span><span class="n">sigma</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Molecular structure data</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">structure_type</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mol</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Lattice points</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trans</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Real space cutoff</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cutoff</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Covalent radius</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rcov</span><span class="p">(:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Derivative of expression with respect to the coordination number</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">(:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Derivative of the CN with respect to the Cartesian coordinates</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Derivative of the CN with respect to strain deformations</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sigma</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iat</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="p">,</span><span class="w"> </span><span class="n">izp</span><span class="p">,</span><span class="w"> </span><span class="n">jzp</span><span class="p">,</span><span class="w"> </span><span class="n">itr</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r2</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">,</span><span class="w"> </span><span class="n">rij</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">countf</span><span class="p">,</span><span class="w"> </span><span class="n">countd</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">ds</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">cutoff2</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">cutoff2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cutoff</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!$omp parallel do schedule(runtime) default(none) &amp;</span>
+<span class="w">   </span><span class="c">!$omp reduction(+:gradient, sigma) shared(mol, trans, cutoff2, rcov, dEdcn) &amp;</span>
+<span class="w">   </span><span class="c">!$omp private(jat, itr, izp, jzp, r2, rij, r1, rc, countd, ds)</span>
+<span class="w">   </span><span class="k">do </span><span class="n">iat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">nat</span><span class="w"></span>
+<span class="w">      </span><span class="n">izp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">do </span><span class="n">jat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">iat</span><span class="w"></span>
+<span class="w">         </span><span class="n">jzp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">id</span><span class="p">(</span><span class="n">jat</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">         </span><span class="k">do </span><span class="n">itr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">trans</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="n">rij</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">mol</span><span class="p">%</span><span class="n">xyz</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">trans</span><span class="p">(:,</span><span class="w"> </span><span class="n">itr</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">r2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">rij</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">r2</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">cutoff2</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="n">r2</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">1.0e-12_wp</span><span class="p">)</span><span class="w"> </span><span class="k">cycle</span>
+<span class="k">            </span><span class="n">r1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">r2</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">rc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rcov</span><span class="p">(</span><span class="n">izp</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">rcov</span><span class="p">(</span><span class="n">jzp</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">countd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">dexp_count</span><span class="p">(</span><span class="n">kcn</span><span class="p">,</span><span class="w"> </span><span class="n">r1</span><span class="p">,</span><span class="w"> </span><span class="n">rc</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">rij</span><span class="o">/</span><span class="n">r1</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">countd</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">))</span><span class="w"></span>
+<span class="w">            </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gradient</span><span class="p">(:,</span><span class="w"> </span><span class="n">jat</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">countd</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">ds</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">spread</span><span class="p">(</span><span class="n">countd</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">spread</span><span class="p">(</span><span class="n">rij</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">sigma</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sigma</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">               </span><span class="p">&amp;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ds</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">iat</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">merge</span><span class="p">(</span><span class="n">dEdcn</span><span class="p">(</span><span class="n">jat</span><span class="p">),</span><span class="w"> </span><span class="mf">0.0_wp</span><span class="p">,</span><span class="w"> </span><span class="n">jat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="n">iat</span><span class="p">))</span><span class="w"></span>
+<span class="w">         </span><span class="k">end do</span>
+<span class="k">      end do</span>
+<span class="k">   end do</span>
+
+<span class="k">end subroutine </span><span class="n">add_coordination_number_derivs</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
@@ -210,7 +284,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2022-02-01 23:18            </p>
+ on 2022-03-23 23:11            </p>
         </div>
       </div>
       <br>

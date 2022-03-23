@@ -115,7 +115,12 @@
     <div id="sidebar">
   <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_mrational_damping.html#src">get_mrational_damping</a>
+  </div>
+</div>
 
 </div>
 
@@ -131,13 +136,13 @@
 <thead><tr><th>Type</th><th>Intent</th><th>Optional</th><th>Attributes</th><th></th><th>Name</th><th></th></thead>
 <tbody>
 <tr>
-  <td><span class="anchor" id="variable-param~6"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
+  <td><span class="anchor" id="variable-param~2"></span>type(<a href='../type/d3_param.html'>d3_param</a>),</td>
 <td>intent(out)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>param</strong></td><td><p>Loaded parameter record</p></td>
 </tr>
 <tr>
-  <td><span class="anchor" id="variable-method~5"></span>character(len=*),</td>
+  <td><span class="anchor" id="variable-method~4"></span>character(len=*),</td>
 <td>intent(in)</td>
   <td></td>  <td></td><td>::</td>
   <td><strong>method</strong></td><td><p>Name of the method to look up</p></td>
@@ -162,7 +167,12 @@
     <section class="visible-xs visible-sm hidden-md">
       <h3>Contents</h3>
  
-<em>None</em>
+<div class="panel panel-primary">
+  <div class="panel-heading text-left"><h3 class="panel-title">Source Code</h3></div>
+  <div class="list-group">
+    <a class="list-group-item" href="../proc/get_mrational_damping.html#src">get_mrational_damping</a>
+  </div>
+</div>
 
     </section>
     <br class="visible-xs visible-sm hidden-md">
@@ -176,6 +186,53 @@
 
 
     
+    <section>
+    <h2><span class="anchor" id="src"></span>Source Code</h2>
+    <div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">get_mrational_damping</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="w"> </span><span class="n">method</span><span class="p">,</span><span class="w"> </span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="n">s9</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Loaded parameter record</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">d3_param</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">param</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Name of the method to look up</span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">method</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Overwrite s9</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s9</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">!&gt; Error handling</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="n">error_type</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">error</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">select case</span><span class="p">(</span><span class="n">get_method_id</span><span class="p">(</span><span class="n">method</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">case </span><span class="n">default</span><span class="w"></span>
+<span class="w">      </span><span class="k">call </span><span class="n">fatal_error</span><span class="p">(</span><span class="n">error</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;No entry for &#39;&quot;</span><span class="o">//</span><span class="n">method</span><span class="o">//</span><span class="s2">&quot;&#39; present&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span>
+<span class="k">   case</span><span class="p">(</span><span class="n">p_b2plyp_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.486434_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">0.672820_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">3.656466_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s6</span><span class="o">=</span><span class="mf">0.640000_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_b3lyp_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.278672_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.466677_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">4.606311_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_b97d_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.240184_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.206988_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">3.864426_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_blyp_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.448486_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">1.875007_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">3.610679_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_bp_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.821850_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">3.140281_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">2.728151_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_pbe_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.012092_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">0.358940_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">5.938951_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_pbe0_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.007912_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">0.528823_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">6.162326_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">case</span><span class="p">(</span><span class="n">p_lcwpbe_df</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="n">param</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d3_param</span><span class="p">(</span><span class="n">a1</span><span class="o">=</span><span class="mf">0.563761_wp</span><span class="p">,</span><span class="w"> </span><span class="n">s8</span><span class="o">=</span><span class="mf">0.906564_wp</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="o">=</span><span class="mf">3.593680_wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">end select</span>
+
+<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">s9</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">param</span><span class="p">%</span><span class="n">s9</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s9</span><span class="w"></span>
+<span class="w">   </span><span class="k">end if</span>
+
+<span class="k">end subroutine </span><span class="n">get_mrational_damping</span><span class="w"></span>
+</pre></div>
+
+    </section>
+    <br>
     
     </div>
   </div>
@@ -192,7 +249,7 @@
           <p class="text-right">
             Documentation generated by 
             <a href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a>
- on 2022-02-01 23:18            </p>
+ on 2022-03-23 23:11            </p>
         </div>
       </div>
       <br>
