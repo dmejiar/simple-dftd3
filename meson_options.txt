@@ -52,3 +52,10 @@ option(
   value: 'python3',
   description: 'Python version to link against.',
 )
+
+option(
+  'ilp64',
+  type: 'boolean',
+  value: false,
+  description: 'MKL ILP64 support',
+)
