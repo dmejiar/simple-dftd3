@@ -33,8 +33,21 @@ if(NOT TARGET "OpenMP::OpenMP_Fortran" AND WITH_OpenMP)
   find_package("OpenMP" REQUIRED)
 endif()
 
-if(NOT TARGET "BLAS::BLAS" AND WITH_BLAS)
-  find_package("custom-blas" REQUIRED)
+if(WITH_ILP64)
+  add_definitions(-DWITH_ILP64)
+  if(ENABLE_AUTO_LAPACK)
+    set(BLA_SIZEOF_INTEGER 8)
+  endif()
+endif()
+
+if(LAPACK_LIBRARIES)
+  message(STATUS "LAPACK supplied by user is ${LAPACK_LIBRARIES}")
+endif()
+
+if(ENABLE_AUTO_LAPACK)
+  if(NOT TARGET "BLAS::BLAS")
+    find_package("custom-blas" REQUIRED)
+  endif()
 endif()
 
 # Collect subprojects
@@ -51,6 +64,7 @@ set(
   lib-deps
   "mctc-lib::mctc-lib"
 )
+
 set(
   exe-deps
   "toml-f::toml-f"
@@ -87,17 +101,32 @@ if(WITH_OpenMP)
   )
 endif()
 if(WITH_BLAS)
-  target_link_libraries(
-    "${PROJECT_NAME}-lib"
-    PUBLIC
-    "BLAS::BLAS"
-  )
+  if (ENABLE_AUTO_LAPACK)
+    target_link_libraries(
+      "${PROJECT_NAME}-lib"
+      PUBLIC
+      "BLAS::BLAS"
+      )
+  else()
+    target_link_libraries(
+      "${PROJECT_NAME}-lib"
+      PUBLIC
+      "${LAPACK_LIBRARIES}"
+      )
+  endif()
   target_compile_definitions(
     "${PROJECT_NAME}-lib"
     PRIVATE
     "WITH_BLAS=1"
   )
 endif()
+if(WITH_ILP64)
+  target_compile_definitions(
+    "${PROJECT_NAME}-lib"
+    PRIVATE
+    "WITH_ILP64=1"
+    )
+endif() 
 target_include_directories(
   "${PROJECT_NAME}-lib"
   PUBLIC

@@ -19,9 +19,14 @@ add_subdirectory("data")
 
 set(dir "${CMAKE_CURRENT_SOURCE_DIR}")
 
+if(WITH_ILP64)
+  list(APPEND srcs "${dir}/blas64.F90")
+else()
+  list(APPEND srcs "${dir}/blas.F90")
+endif()
+
 list(
   APPEND srcs
-  "${dir}/blas.F90"
   "${dir}/cutoff.f90"
   "${dir}/damping.f90"
   "${dir}/data.f90"
