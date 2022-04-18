@@ -30,7 +30,6 @@ module test_regression
 
 contains
 
-
 !> Collect all exported unit tests
 subroutine collect_regression(testsuite)
 
@@ -51,11 +50,17 @@ subroutine test_dftbplus_871(error)
    type(error_type), allocatable, intent(out) :: error
 
    type(structure_type) :: mol
-   type(rational_damping_param) :: param = rational_damping_param( &
-      & s6=1.00_wp, s8=2.34_wp, a1=6.30_wp, a2=5.00_wp, s9=0.00_wp, alp=14.0_wp)
+   type(rational_damping_param) :: param
    type(d3_model) :: d3
    real(wp) :: energy, sigma(3, 3)
    real(wp), allocatable :: gradient(:, :)
+
+   param%s6=1.00_wp
+   param%s8=2.34_wp
+   param%a1=6.30_wp
+   param%a2=5.00_wp
+   param%s9=0.00_wp
+   param%alp=14.0_wp
 
    call structure_dftbplus_871(mol)
    allocate(gradient(3, mol%nat))
