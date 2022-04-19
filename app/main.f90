@@ -32,6 +32,7 @@ program dftd3_main
 contains
 
 subroutine handle_error(error)
+   use, intrinsic :: iso_c_binding, only : c_int
    type(error_type), allocatable, intent(inout) :: error
 
    interface
@@ -44,10 +45,10 @@ subroutine handle_error(error)
    if (allocated(error)) then
       if (error%stat == 0) then
          write(output_unit, '(a)') error%message
-         call sys_exit(0)
+         call sys_exit(0_c_int)
       else
          write(error_unit, '("[Error]", 1x, a)') error%message
-         call sys_exit(1)
+         call sys_exit(1_c_int)
       end if
    end if
 end subroutine handle_error

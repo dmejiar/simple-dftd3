@@ -21,6 +21,7 @@ option(WITH_OpenMP "Enable support for shared memory parallelisation with OpenMP
 option(WITH_BLAS "Use external BLAS library" TRUE)
 option(WITH_TESTS "Enable compilation of unit tests" TRUE)
 option(WITH_ILP64 "Enable ILP64 support" OFF)
+option(WITH_APP "Enable compilation of example application" TRUE)
 option(ENABLE_AUTO_LAPACK "Enable CMake automatic BLAS detection" ON)
 set(LAPACK_LIBRARIES "" CACHE STRING "External BLAS libraries")
 
